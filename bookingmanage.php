@@ -13,7 +13,7 @@
 <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="csstest.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
 
 
@@ -145,10 +145,16 @@ function cancFunc(booking_ID) {
 </head>
 <body>
 <div id="superDiv">
-<p id = "red">
-This is the web page which displays requested/accepted bookings.
-</p>
-<p>
+<div class="wrapper">
+<div id="top" class="left" ><p>
+Accepted and upcoming bookings
+</p></div>
+<div id="top" class="right">
+<p>Pending Bookings</p>
+</div>
+<div id="timeline" class="clear">
+<p>timeline Displaying Rooms and busy times jQuery?</p>
+</div>
 
 <?php 
 

@@ -187,7 +187,11 @@
     }
     
 ?>
-<h1>Register</h1>
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<body>
+<div class="wrapper">
+<div class="login-content">
+<div class="login-title"><h1>Register</h1></div>
 <form action="register.php" method="post">
     Username:<br />
     <input type="text" name="username" value="" />
@@ -200,3 +204,7 @@
     <br /><br />
     <input type="submit" value="Register" />
 </form>
+</div>
+</div>
+
+</body>

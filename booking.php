@@ -11,6 +11,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
+	<link rel="stylesheet" href="style.css">
 
     <!--Start of webpages Javascript-->
     <script>
@@ -70,39 +71,72 @@
 
     <div id="superDiv">
      <div id="inputDiv">
+<label id="booking-label">First Name:</label>
+<input type="text" id="fname"></input>
+<br />
+<label id="booking-label">Last Name :</label>
+<input type="text" id="lname"></input>
+<br />
+<label id="booking-label">Mobile Number :</label>
+<input type="text" id="mobile"></input>
+<br />
+<label id="booking-label">Email :</label>
+<input type="text" id="email">
+<br />
+<label id="booking-label">Date of Booking :</label>
+<input type="text" id="date_input">
+<br />
+<label id="booking-label">Start Time:</label>
+	<select id="startTime">
+	<option value = "09:00">09:00</option>
+	<option value = "09:30">09:30</option>
+	<option value = "10:00">10:00</option>
+	</select>
+<br />
+<label id="booking-label">End Time:</label>
+	<select id="endTime">
+	<option value = "09:30">09:30</option>
+	<option value = "10:00">10:00</option>
+	</select>
+<br />
+<label id="booking-label">Room Requested:</label>
+ <select id="room">
+  <option value="Red">Red</option>
+  <option value="Blue">Blue</option>
+  <option value="Yellow">Yellow</option>
+  <option value="Green">Green</option>
+</select> 
+<br />
 
-  
-      <p>First Name: <input type="text" id="fname"></input> </p>
-      <p>Last Name : <input type="text" id="lname"></input></p>
-      <p>Mobile Number : <input type="text" id="mobile"></input></p>
-      <p>Email : <input type="text" id="email"></p>
-      <p>Date of Booking: <input type="text" id="date_input"></p>
+<!-- Requires Implementation-->
+<label id="booking-label">Equipment Required:</label>
+	<select id="gear1">
+		<option value="Drums">Drum Kit</option>
+		<option value="Bass">Bass Amp</option>
+		<option value="Guitar">Guitar Amp</option>
+		<option selected="selected"value="None">None</option>
+       </select>
+       <select id="gear2">
+		<option value="Drums">Drum Kit</option>
+		<option value="Bass">Bass Amp</option>
+		<option value="Guitar">Guitar Amp</option>
+		<option selected="selected"value="None">None</option>
+       </select>
+       <select id="gear3">
+		<option value="Drums">Drum Kit</option>
+		<option value="Bass">Bass Amp</option>
+		<option value="Guitar">Guitar Amp</option>
+		<option selected="selected"value="None">None</option>
+       </select>
+       <select id="gear4">
+		<option value="Drums">Drum Kit</option>
+		<option value="Bass">Bass Amp</option>
+		<option value="Guitar">Guitar Amp</option>
+		<option selected="selected"value="None">None</option>
+       </select>
+ <br />
+<label id="booking-label"><p id ="costEstimate">Cost Estimate:</p></label>
 
-      <p>Start Time: 
-	     <select id="startTime">
-	       <option value = "09:00">09:00</option>
-	       <option value = "09:30">09:30</option>
-	       <option value = "10:00">10:00</option>
-	     </select>
-      </p>
-
-      <p>End Time:
-	     <select id="endTime">
-	      <option value = "09:30">09:30</option>
-	      <option value = "10:00">10:00</option>
-	     </select>
-      </p>
-
-
-      Room requests are subject to availability.
-      <p>Room Requested:
-        <select id="room">
-          <option value="Red">Red</option>
-          <option value="Blue">Blue</option>
-          <option value="Yellow">Yellow</option>
-          <option value="Green">Green</option>
-        </select> 
-      </p>
 
       <!-- Requires Implementation
       <p>Equipment Required:</p>
@@ -111,12 +145,12 @@
  
     
     </div>
-
+<button id="Submit">Submit</button>
 
   </div>
 
   <!-- Submit button for input data-->
-  <p id="Submit">Submit</p>
+ 
 
   </body>
 </html>

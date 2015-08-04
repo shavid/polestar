@@ -107,7 +107,11 @@
     }
     
 ?>
-<h1>Login</h1>
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<body>
+<div class="wrapper">
+<div class="login-content">
+<div class="login-title"><h1>Login</h1></div>
 <form action="login.php" method="post">
     Username:<br />
     <input type="text" name="username" value="<?php echo $submitted_username; ?>" />
@@ -117,3 +121,6 @@
     <br /><br />
     <input type="submit" value="Login" />
 </form>
+</div>
+</div>
+</body>
