@@ -54,6 +54,9 @@
       //Relevant error checking is in place
       $(document).ready(function(){
         $("#Submit").on("click", function(){
+
+       
+
           $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, email:email, date:date, startTime:startTime
       	  , endTime:endTime, room:room, costEstimate:costEstimate} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
@@ -142,7 +145,8 @@
       <p>Equipment Required:</p>
       <p id ="costEstimate">Cost Estimate: </p>
       -->
- 
+ <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  <input type="text" name="captcha_code" size="10" maxlength="6" />
+<a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
     
     </div>
 <button id="Submit">Submit</button>
