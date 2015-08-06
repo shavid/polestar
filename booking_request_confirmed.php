@@ -1,16 +1,31 @@
 <html>
-    <meta charset="utf-8"
+  <meta charset="utf-8">
 
+
+  <head>
   <?php
 
 
 
+    session_start(); 
 
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/securimage/securimage.php';
+  
+    $securimage = new Securimage();
+
+    if ($securimage->check($_POST['captcha_code']) == false) {
+    // the code was incorrect
+    // you should handle the error so that the form processor doesn't continue
+
+    // or you can use the following code if there is no validation or you do not know how
+    echo "The security code entered was incorrect.<br /><br />";
+    echo "Please go <a href='booking.php'>back</a> and try again.";
+    exit;
+    }
 
 
       
- 
-
+  
       //$conn = new mysqli("localhost","root","cake123","polestar");
        
       //if ($conn->connect_error) {
@@ -39,6 +54,9 @@
       $dbname     = "polestar";
       $dbuser     = "root";
       $dbpass     = "cake123";
+
+
+
    
       // database connection
       $conn = new PDO("mysql:host=$dbhost;dbname=$dbname",$dbuser,$dbpass);

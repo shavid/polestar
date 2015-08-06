@@ -1,5 +1,6 @@
 <html>
 
+
   <head>
 
     <!--Sets up webpage charset and sets title -->
@@ -29,12 +30,31 @@
       });
 
       //Function that is active on the page load. 
-      //When an element contained in the main input div is changed
-      //Make variables equal to the values of the corresponding input boxes 
       //Note to self, can probably make this more efficient so it only executes once the page is
       //submitted and not everytime something is changed.
       $(document).ready(function(){
         $('#inputDiv').on('change', function (e) {
+          
+
+          //Checks input boxes to ensure a value is entered before enabling the submit button.
+          if($("#fname").val().length > 0 && $("#lname").val().length > 0 && $("#lname").val().length > 0
+            && $("#mobile").val().length > 0 && $("#email").val().length > 0 && 
+            $("#date_input").val().length > 0 && $("#startTime").val().length > 0
+            && $("#endTime").val().length > 0 && $("#room").val().length > 0)
+          {
+            $('#Submit').prop('disabled', false);
+          }
+          else {
+            $('#Submit').prop('disabled', true);
+          }
+
+
+
+
+
+          
+          //When an element contained in the main input div is changed
+          //Make variables equal to the values of the corresponding input boxes 
           fname = $("#fname").val();
  	        lname = $("#lname").val();
  	        mobile = $("#mobile").val();
@@ -44,6 +64,7 @@
  	        endTime = $("#endTime").val();
         	room = $("#room").val();
  	        costEstimate = $("#costEstimate").val();
+          captcha_code = $("#captcha_code").val();
           });
       });
 
@@ -58,7 +79,7 @@
        
 
           $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, email:email, date:date, startTime:startTime
-      	  , endTime:endTime, room:room, costEstimate:costEstimate} , function(responseTxt,statusTxt,xhr){
+      	  , endTime:endTime, room:room, costEstimate:costEstimate, captcha_code:captcha_code} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
@@ -75,35 +96,35 @@
     <div id="superDiv">
      <div id="inputDiv">
 <label id="booking-label">First Name:</label>
-<input type="text" id="fname"></input>
+<input type="text" id="fname" class="input"></input>
 <br />
 <label id="booking-label">Last Name :</label>
-<input type="text" id="lname"></input>
+<input type="text" id="lname" class="input"></input>
 <br />
 <label id="booking-label">Mobile Number :</label>
-<input type="text" id="mobile"></input>
+<input type="text" id="mobile" class="input"></input>
 <br />
 <label id="booking-label">Email :</label>
-<input type="text" id="email">
+<input type="email" id="email" class="input">
 <br />
 <label id="booking-label">Date of Booking :</label>
-<input type="text" id="date_input">
+<input type="text" id="date_input" class="input">
 <br />
 <label id="booking-label">Start Time:</label>
-	<select id="startTime">
+	<select id="startTime" class="input">
 	<option value = "09:00">09:00</option>
 	<option value = "09:30">09:30</option>
 	<option value = "10:00">10:00</option>
 	</select>
 <br />
 <label id="booking-label">End Time:</label>
-	<select id="endTime">
+	<select id="endTime" class="input">
 	<option value = "09:30">09:30</option>
 	<option value = "10:00">10:00</option>
 	</select>
 <br />
 <label id="booking-label">Room Requested:</label>
- <select id="room">
+ <select id="room" class="input">
   <option value="Red">Red</option>
   <option value="Blue">Blue</option>
   <option value="Yellow">Yellow</option>
@@ -138,18 +159,19 @@
 		<option selected="selected"value="None">None</option>
        </select>
  <br />
-<label id="booking-label"><p id ="costEstimate">Cost Estimate:</p></label>
+<!--<label id="booking-label"><p id ="costEstimate">Cost Estimate:</p></label>
 
 
-      <!-- Requires Implementation
+       Requires Implementation
       <p>Equipment Required:</p>
       <p id ="costEstimate">Cost Estimate: </p>
       -->
- <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  <input type="text" name="captcha_code" size="10" maxlength="6" />
+<img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
+<input type="text" class ="input "id="captcha_code" size="10" maxlength="6" />
 <a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
     
     </div>
-<button id="Submit">Submit</button>
+<button id="Submit" disabled>Submit</button>
 
   </div>
 
