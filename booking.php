@@ -29,6 +29,38 @@
         });
       });
 
+     
+
+      
+
+
+
+
+
+      //This function is active when the email address input box is changed. 
+      //Uses reg expressions to ensure emails are in correct format
+      //such as admin@polestar.com
+      //If invalid email is enterred variable is updated which prevents page submission and 
+      //user is alerted.
+      $(document).ready(function(){
+        $('#email').on('change', function (e) {
+          
+          email = $("#email").val();  
+          var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+          if(email.match(mailformat))  
+            {     
+              correct_email = true;  
+            }  
+          else  
+            {  
+              alert("You have entered an invalid email address!");   
+              correct_email = false;  
+            }   
+          });
+      });
+
+
+
       //Function that is active on the page load. 
       //Note to self, can probably make this more efficient so it only executes once the page is
       //submitted and not everytime something is changed.
@@ -37,15 +69,18 @@
           
 
           //Checks input boxes to ensure a value is entered before enabling the submit button.
+          //Also ensures that a correct email address has been entered.
           if($("#fname").val().length > 0 && $("#lname").val().length > 0 && $("#lname").val().length > 0
             && $("#mobile").val().length > 0 && $("#email").val().length > 0 && 
             $("#date_input").val().length > 0 && $("#startTime").val().length > 0
-            && $("#endTime").val().length > 0 && $("#room").val().length > 0)
+            && $("#endTime").val().length > 0 && $("#room").val().length > 0 && correct_email == true)
           {
             $('#Submit').prop('disabled', false);
+            $('#submit_text').prop('hidden', true);
           }
           else {
             $('#Submit').prop('disabled', true);
+            $('#submit_text').prop('hidden', false);
           }
 
 
@@ -65,6 +100,10 @@
         	room = $("#room").val();
  	        costEstimate = $("#costEstimate").val();
           captcha_code = $("#captcha_code").val();
+
+
+          
+
           });
       });
 
@@ -77,7 +116,8 @@
         $("#Submit").on("click", function(){
 
        
-
+          
+          
           $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, email:email, date:date, startTime:startTime
       	  , endTime:endTime, room:room, costEstimate:costEstimate, captcha_code:captcha_code} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
@@ -85,7 +125,7 @@
           });
         });
       }); 
-
+     
     </script>
 
   </head>
@@ -95,18 +135,18 @@
 
     <div id="superDiv">
      <div id="inputDiv">
-<label id="booking-label">First Name:</label>
-<input type="text" id="fname" class="input"></input>
-<br />
-<label id="booking-label">Last Name :</label>
-<input type="text" id="lname" class="input"></input>
-<br />
-<label id="booking-label">Mobile Number :</label>
-<input type="text" id="mobile" class="input"></input>
-<br />
-<label id="booking-label">Email :</label>
-<input type="email" id="email" class="input">
-<br />
+      <label id="booking-label">First Name:</label>
+        <input type="text" id="fname" class="input"></input>
+          <br />
+      <label id="booking-label">Last Name :</label>
+        <input type="text" id="lname" class="input"></input>
+          <br />
+      <label id="booking-label">Mobile Number :</label>
+        <input type="text" id="mobile" class="input"></input>
+          <br />
+      <label id="booking-label">Email :</label>
+        <input type="email" id="email" class="input">
+          <br />
 <label id="booking-label">Date of Booking :</label>
 <input type="text" id="date_input" class="input">
 <br />
@@ -171,6 +211,10 @@
 <a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
     
     </div>
+
+</br>
+<!-- Not sure why this label isn't lined up like the rest - Alex? Changed it to a Paragraph for time being--> 
+<label id ="submit_text">You must fill in all fields before being able to submit.</label>
 <button id="Submit" disabled>Submit</button>
 
   </div>
