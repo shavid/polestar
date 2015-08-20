@@ -35,11 +35,13 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 }
 
 #top {
-	width: 46%;
-	height: 35%;
+	width: 48%;
+	height: 37%;
 	border: solid #00F;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	overflow-y:scroll;
+    overflow-x:hidden;
 }
 #timeline {
 	height: 54%;
