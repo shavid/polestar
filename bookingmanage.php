@@ -18,16 +18,37 @@
 
     <script>
 
-
+      $(function () {
+  var isMouseDown = false;
+  $("#the_table td")
+    .mousedown(function () {
+      isMouseDown = true;
+      first_cell = $(this).attr('id');
+      $(this).toggleClass("highlighted");
+      
+     
+      return false; // prevent text selection
+    })
+    .mouseover(function () {
+      if (isMouseDown) {
+        $(this).toggleClass("highlighted");
+      }
+    });
+  
+  $(document)
+    .mouseup(function () {
+      isMouseDown = false;
+    });
+});
 
       //Function to set up the Jquery datepicker used within the web page, add's the options to 
       //pick month and year, also forces minimun date to be today's date + 2 days.
       //Finally sets the format to Day - Month - Year as per standard British.
       $(function() {
-        $( "#date_input" ).datepicker({
+        $( ".date_input" ).datepicker({
          changeMonth: true,
          changeYear: true,
-         minDate: 0+2,
+         minDate: 0,
          dateFormat: "dd-mm-yy"
         });
       });
@@ -50,6 +71,9 @@
           costEstimate = $("#costEstimate").val();
           });
       });
+
+      
+      
 
 
       //Function ready on page load, when user clicks the submit button, loads into the over-arching
@@ -147,7 +171,7 @@
         var booking_Status = "Cancelled"
         if (click == true) {
           // txt = "You pressed OK!"; 
-          $("#superDiv").load("booking_cancelled.php", {booking_ID:booking_ID, booking_Status:booking_Status}, function(responseTxt,statusTxt,xhr){
+          $(".left").load("booking_cancelled.php", {booking_ID:booking_ID}, function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
@@ -163,7 +187,8 @@
 
       function alterRoomFuncs(booking_ID) {
   
-        
+        //Function that's called when the user clicks the alter button.
+
         var room_change_ID = "room_change" + booking_ID
         var requested_room_ID = "requested_room" + booking_ID
         var alter_button_ID = "alter_room" + booking_ID
@@ -177,6 +202,31 @@
         document.getElementById(room_available_ID).style.display = "none"
 
       }
+
+
+      function testfunc(bookingID) {
+  
+
+      $("#selectedBooking").load("phptest.php", {bookingID:bookingID}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
+     
+
+      }
+
+
+      function changedate() {
+  
+      chosendate = $("#grid_datepicker").val();
+
+      $("#timeline").load("select.php", {chosendate:chosendate, first_cell:first_cell}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
+     
+
+      }
     </script>
 
   </head>
@@ -184,6 +234,9 @@
   <body>
     <div id="superDiv">
       <div class="wrapper">
+
+
+
         <div id="top" class="left" >
           <?php
             $con=mysqli_connect("localhost","root","cake123","polestar");   
@@ -297,41 +350,32 @@
                 unset($all_rooms[$key]);
 
 
+                  //If the room requested is unavailable, the select box should only show
+                  //options that are available.
+                  //Loop runs through each room ..
+                  foreach($all_rooms as $val) {
 
-                //If the room requested is unavailable, the select box should only show
-                //options that are available.
-                //Loop runs through each room ..
-                foreach($all_rooms as $val) {
-
-                  //Query that will check if there is a room clash for each of the rooms.
-                  $query_Room = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE 
-                  status = 'Accepted' AND room = '$val' and booking_Date = '$date_chosen' AND
-                  ((start_Time >= '$sTime_chosen' AND start_Time < '$eTime_chosen') or
-                  (end_Time > '$sTime_chosen' AND end_Time <= '$eTime_chosen') 
-                  )
-                  "); 
+                    //Query that will check if there is a room clash for each of the rooms.
+                    $query_Room = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE 
+                    status = 'Accepted' AND room = '$val' and booking_Date = '$date_chosen' AND
+                    ((start_Time >= '$sTime_chosen' AND start_Time < '$eTime_chosen') or
+                    (end_Time > '$sTime_chosen' AND end_Time <= '$eTime_chosen') 
+                    )
+                    "); 
                     
-                  //Checks if any results have been returned from the query.
-                  $num_results = mysqli_num_rows($query_Room);   
+                   //Checks if any results have been returned from the query.
+                    $num_results = mysqli_num_rows($query_Room);   
 
-                  //If the query returned any results, unset that room from the list.
-                  if ($num_results > 0){
-                    if (($key = array_search($val, $all_rooms)) !== false) {
-                      unset($all_rooms[$key]);
+                    //If the query returned any results, unset that room from the list.
+                    if ($num_results > 0){
+                      if (($key = array_search($val, $all_rooms)) !== false) {
+                        unset($all_rooms[$key]);
+                      }
                     }
-
                   }
                 }
-
-                //Run a loop that uses each key from all_rooms and runs a query for each of 
-                //them to check if they should be unset from all_rooms
-
-
-
-
-                }
-
               }
+
               else{
                 $room_status = 'The room is available.';
               }
@@ -354,10 +398,19 @@
                     '?>
 
                     <?php
-                      echo '<select id = "room_change'.$booking_id["{$id}"].'" hidden>';         
+                      echo '<select id = "room_change'.$booking_id["{$id}"].'" hidden>';    
 
-                      foreach($all_rooms as $val) {
-                        echo "<option>$val</option>"; // OR 
+
+                      if (empty($all_rooms)){
+
+                        echo "<option>No rooms available for chosen time</option>";
+
+                      }                 
+
+                      else{
+                        foreach($all_rooms as $val) {
+                          echo "<option>$val</option>"; // OR 
+                        }
                       }
                     ?>
                     
@@ -396,8 +449,149 @@
 
 </div>
 <div id="timeline" class="clear">
-<p>timeline Displaying Rooms and busy times jQuery?</p>
+  <p>Today's booking grid view</p>
+  </br>
+
+
+    <?php
+
+      $all_rooms = array("Red", "Blue", "Green", "Yellow");
+
+      $opentime = strtotime('09:00');
+      $closetime = strtotime('22:00');
+
+      //Initalizes the booking time to be used in the loop
+      //CHANGE THE NAME OF BOOKING TIME POSSIBLY? SEEMS A BIT DAFT HERE 
+
+      $bookingtime = $opentime;
+  
+
+      echo '<table border ="1" id="the_table">';
+
+
+
+        //Summary of this loop is running through each room that has been set
+        //For each room a loop is further run for each time slot available
+        //For each time slot in each room a query is run, should this room be booked for such
+        //a time then it's particular table cell has it's background colour set , making it readily 
+        //viewable to the administrator what time slots are booked
+
+
+
+        //Loop that runs through each room one by one.
+        foreach($all_rooms as $val) {
+
+          //Sets a row and sets the ID equal to the room name, possibly conflict of ID's? 
+          //Set's up an inital cell with a class of roomcolour and that has in it printed the corresponding
+          //room colour/name for that row.
+          //Resets the bookingtime variable to that of the open time
+
+          echo '<tr id="'.$val.'">';         
+          echo '<td class="roomcolour">'.$val.'</td>';
+          $bookingtime = $opentime;
+          
+          //Loop that runs while the booking time is between the open time and the end time.        
+          while($bookingtime <= $closetime && $bookingtime >= $opentime) 
+
+          {
+            //Formats the booking time so it can be used to query the database
+            $form_bookingtime = (string)date('H:i:s', $bookingtime);
+
+            //Query that will check for any bookings that match given date (default today), room and time
+            //and that are accepted.
+            $query_Room = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE 
+                room = '$val' AND booking_Date = DATE(NOW()) AND status = 'Accepted' AND (start_Time <= 
+                '$form_bookingtime' AND end_Time > '$form_bookingtime')
+                                "); 
+
+            //Checks to see if any results are returned from the query
+            $num_results = mysqli_num_rows($query_Room);
+          
+            
+            //If there is more than 0 results (In general there should only be one result max because mutliple bookings
+            // for the same room/time shouldn't be allowed - however using a greater than 0 is a better failsafe here.)
+            if ($num_results > 0)
+            {
+
+              //Creates a variable for the cell_ref that is the bookingtime + the room,
+              //this probably isn't needed because of data passed in the onclick method.
+              //$cell_ref = (string)date('H:i', $bookingtime);
+              // $cell_ref = ((string) $val) . $cell_ref;
+
+              while($row = mysqli_fetch_array($query_Room)) {
+              # Run a loop that fetches the ID from from the query.
+
+              //Stores the bookings ID in a variable called ID, used to pass in the onclick method. REPHRASE THIS
+                //NOT WORKING JUST RETURNS 10.
+              
+              $booking_id = $row['id']; 
+
+              }
+
+
+              $cell_ref = (string)date('H:i', $bookingtime);
+              $cell_ref = ((string) $val) . $cell_ref;
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$booking_id.'</td>';
+              $bookingtime = strtotime('+30 minutes', $bookingtime);
+            }
+            else
+            {
+
+
+
+
+              $cell_ref = (string)date('H:i', $bookingtime);
+              $cell_ref = ((string) $val) . $cell_ref;
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null)"></td>';
+              $bookingtime = strtotime('+30 minutes', $bookingtime);
+
+            }
+          }
+
+        }
+
+        $bookingtime = $opentime;
+        echo '<tr>';
+        echo '<td id="cell_time"></td>';
+        while($bookingtime <= $closetime && $bookingtime >= $opentime) 
+        {
+
+        $cell_ref = (string)date('H:i', $bookingtime);
+        echo '<td id="cell_time">'.$cell_ref.'</td>';
+        $bookingtime = strtotime('+30 minutes', $bookingtime);
+
+      }
+
+echo '</table>';
+
+
+
+
+?>
+
+
+<button type="button" id="bob" 
+                onclick="changedate()">Pick Date</button>
+
+ <input type="text" class="date_input" id="grid_datepicker" width:50px>
+
 </div>
+
+</br>
+
+
+<div id="selectedBooking" class="clear">
+  <p>This box will contain the booking that has been selected in the above grid</p>
+  </br>
+
+
+   
+
+</div>
+
+
+
+
 
 <?php 
 
@@ -421,11 +615,10 @@
        
 
     		?>
-</div>
-<div id="inputDiv">
 
+<div id="input" class="clear">
       <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
-      the administrator and the customer</p>
+      the administrator and the customer.</p>
       <p>First Name: <input type="text" id="fname"></input> </p>
       <p>Last Name : <input type="text" id="lname"></input></p>
       <p>Mobile Number : <input type="text" id="mobile"></input></p>
@@ -462,10 +655,15 @@
       <p>Equipment Required:</p>
       <p id ="costEstimate">Cost Estimate: </p>
       -->
- 
+ <p id="Submit">Submit</p> 
     
     </div>
-<p id="Submit">Submit</p> 
+    </div>
+
+    <div id = "logout">
+
+ 
 <a href="logout.php">Logout</a>
+</div>
 </body>
 </html>
