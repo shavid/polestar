@@ -1,0 +1,427 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MH Purity lite v1.1.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-11 18:41+0100\n"
+"PO-Revision-Date: 2015-06-30 11:40+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.6.6\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ mh-purity-lite
+#: 404.php:7 content-none.php:9
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+# @ mh-purity-lite
+#: 404.php:11
+msgid "Latest Articles"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:7
+msgid "Welcome to MH Purity lite"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:7
+msgid "Theme Info"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:16
+#, php-format
+msgid "Welcome to %1s %2s"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:20
+msgid "Important Links:"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:21
+msgid "Theme Info Page"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:22
+msgid "Support Center"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:23
+msgid "Rate this theme"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:28
+#, php-format
+msgid "Getting Started with %s"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:32
+msgid "Theme Documentation"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:33
+#, php-format
+msgid ""
+"Need any help to setup and configure %s? Please have a look at the "
+"instructions on the Theme Info Page or read the Documentations and Tutorials "
+"in our Support Center."
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:35
+msgid "Visit Documentation"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:39
+msgid "Theme Options"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:40
+#, php-format
+msgid ""
+"%s supports the Theme Customizer for all theme settings. Click \"Customize "
+"Theme\" to open the Customizer now."
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:42
+msgid "Customize Theme"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:47
+msgid ""
+"Need more features and options? Check out the Premium Version of this theme "
+"which comes with additional features and advanced customization options for "
+"your website."
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:49 includes/mh-options.php:50
+msgid "Learn more about the Premium Version"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:60
+#, php-format
+msgid ""
+"%1s is proudly brought to you by %2s. If you like this WordPress theme, %3s."
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:63
+msgid "rate it"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:3
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:10
+msgid "Comments"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:10 comments.php:40
+msgid "Comment"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:18 includes/mh-functions.php:88 includes/mh-functions.php:286
+msgid "&laquo;"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:18 includes/mh-functions.php:88 includes/mh-functions.php:286
+msgid "&raquo;"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:24
+msgid "Trackbacks & Pingbacks"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:32
+msgid "Comments are closed."
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:37
+msgid "Leave a comment"
+msgstr ""
+
+# @ mh-purity-lite
+#: comments.php:38
+msgid "Your email address will not be published."
+msgstr ""
+
+# @ mh-purity-lite
+#: content-none.php:4
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with "
+"different keywords."
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:66
+msgid "Main Navigation"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:100
+msgid "Widget Area (Sidebar left/right) on Posts, Pages and Archives"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:101
+msgid "Widget Area on Homepage (Content Area)"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:102
+msgid "Widget Area on homepage (Sidebar)"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:103
+msgid "Footer 1"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:103 functions.php:104 functions.php:105
+msgid "Widget Area in Footer"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:104
+msgid "Footer 2"
+msgstr ""
+
+# @ mh-purity-lite
+#: functions.php:105
+msgid "Footer 3"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:15
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:43
+msgid "Articles by "
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:49
+msgid "Search Results for "
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:57
+msgid "Page not found (404)"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:118
+msgid "&larr; Back to article"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:120
+msgid "&larr; Previous image"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:123
+msgid "&larr; Previous article"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:130
+msgid "Next image &rarr;"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:132
+msgid "Next article &rarr;"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:245
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:250
+msgid "Edit"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:254
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:271
+msgid "Name "
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:272
+msgid "Email "
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-functions.php:273
+msgid "Website"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:31
+msgid "Purity Options"
+msgstr ""
+
+# @ mh-purity-lite
+#: admin/admin.php:46 includes/mh-options.php:32
+msgid "Upgrade to Premium"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:45
+msgid "Excerpt Length in Characters"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:46
+msgid "Custom Excerpt More Text"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:47
+msgid "Position of default Sidebar"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:47 includes/mh-options.php:71
+msgid "Left"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:47 includes/mh-options.php:72
+msgid "Right"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:48
+msgid "Need more features and options?"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/mh-options.php:49
+msgid ""
+"Check out the Premium Version of this theme which comes with additional "
+"features and advanced customization options for your website."
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:9
+msgid "Custom Posts Widget to display posts based on categories."
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:75
+msgid "Title:"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:79 includes/widgets/mh-slider.php:57
+msgid "Select a Category:"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:81 includes/widgets/mh-slider.php:59
+msgid "All"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:94 includes/widgets/mh-slider.php:72
+msgid "Limit Post Number:"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:98 includes/widgets/mh-slider.php:76
+msgid "Skip Posts (Offset):"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:102
+msgid "Excerpt Character Limit:"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:107 includes/widgets/mh-slider.php:81
+msgid "Ignore Sticky Posts"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:110 includes/widgets/mh-slider.php:84
+msgid ""
+"This is the lite version of this widget with basic features. If you need "
+"more professional features and options, you can upgrade to the premium "
+"version of this theme."
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-slider.php:9
+msgid "Slider widget for use on homepage templates."
+msgstr ""
+
+# @ mh-purity-lite
+#: searchform.php:4
+msgid "Search"
+msgstr ""
+
+# @ mh-purity-lite
+#: footer.php:21
+#, php-format
+msgid "Copyright &copy; %1$s | MH Purity <em>lite</em> WordPress Theme by %2$s"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-custom-posts.php:8
+msgctxt "widget name"
+msgid "MH Custom Posts [lite]"
+msgstr ""
+
+# @ mh-purity-lite
+#: includes/widgets/mh-slider.php:8
+msgctxt "widget name"
+msgid "MH Slider Widget [lite]"
+msgstr ""
