@@ -181,6 +181,8 @@
           
           //When an element contained in the main input div is changed
           //Make variables equal to the values of the corresponding input boxes 
+
+
           fname = $("#fname").val();
           lname = $("#lname").val();
           mobile = $("#mobile").val();
@@ -191,6 +193,35 @@
           room = $("#room").val();
           costEstimate = $("#costEstimate").val();
           captcha_code = $("#captcha_code").val();
+
+
+          //Minimun booking time is one hour, the following code calculates if the booking time 
+          //is less than this, if so it changes the selected value in the end time option box to the next 
+          //following option.
+          theEnd = endTime.replace(':','');
+          theStart = startTime.replace(':','');
+          totalTime = theEnd - theStart;
+          printedTime = Math.ceil(totalTime)
+      
+
+          if (totalTime <100 && endTime != '') {
+
+              endTimeIndex =document.getElementById("endTime").selectedIndex;
+              alert("Minimun booking time is 1 hour, end time has been changed.");
+              endTimeIndex = endTimeIndex + 1;
+              document.getElementById("endTime").selectedIndex = endTimeIndex;
+
+          }
+
+
+          //Calculates the cost estimate.
+          startTimec = startTime.replace(':','.');
+          endTimec = endTime.replace(':','.');
+          startTimec = Math.ceil(startTimec);
+          endTimec = Math.ceil(endTimec);
+          totalTime = endTimec - startTimec;
+          totalTime = totalTime * 9;
+          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalTime + " Number should be taken as an estimate only";
           
           });
       });
@@ -336,9 +367,9 @@
 
 
        Requires Implementation
-      <p>Equipment Required:</p>
+      <p>Equipment Required:</p>-->
       <p id ="costEstimate">Cost Estimate: </p>
-      -->
+      
       <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
       <input type="text" class ="input "id="captcha_code" size="10" maxlength="6" />
       <a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
