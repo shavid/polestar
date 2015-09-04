@@ -142,6 +142,19 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
    
 }
 
+#div_manual_bookings {
+	height: 44%;
+	border: solid #00F;
+	padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    width: 70%;	
+	margin: auto
+    
+   
+}
+
 .left {float:left;}
 .right {float:right;}
 .clear {clear:both;}
@@ -151,6 +164,8 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 /*Rename Me Plz*/#inputDiv {
 	width: 70%;	
 	margin: auto;
+	padding-top: 25px;
+	border: solid #00F;
 }
 
 label#booking-label {

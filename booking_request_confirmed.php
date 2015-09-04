@@ -87,7 +87,7 @@
     		<label id="booking-label">End Time:</label><b>'.$endTime.'</b><br/>
     		<label id="booking-label">Room Requested:</label><b>'.$room.'</b><br/>
         	<label id="booking-label">Equipment Requested:</label><b>'.$gear1.', <b>'.$gear2.', <b>'.$gear3.', <b>'.$gear4.'</b><br/>
-			<b>'.$thedate.'</b>
+			<b>'.$date.'</b>
 </div>
     			</div>';
 

@@ -213,14 +213,16 @@
 
           }
 
+          //
 
+          cpr = 9;
           //Calculates the cost estimate.
           startTimec = startTime.replace(':','.');
           endTimec = endTime.replace(':','.');
           startTimec = Math.ceil(startTimec);
           endTimec = Math.ceil(endTimec);
           totalTime = endTimec - startTimec;
-          totalTime = totalTime * 9;
+          totalcost = totalTime * 9;
           document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalTime + " Number should be taken as an estimate only";
           
           });

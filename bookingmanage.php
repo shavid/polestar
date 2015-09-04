@@ -1,4 +1,28 @@
+
+  <?php
+
+
+        require("common.php");
+    
+    // At the top of the page we check to see whether the user is logged in or not
+    if(empty($_SESSION['user']))
+    {
+        // If they are not, we redirect them to the login page.
+        header("Location: login.php");
+        
+        // Remember that this die statement is absolutely critical.  Without it,
+        // people can view your members-only content without logging in.
+        die("Redirecting to login.php");
+    }
+      
+
+      ?>
+
+
+
 <html>
+
+
 
 
   <head>
@@ -18,28 +42,28 @@
 
     <script>
 
-      $(function () {
-  var isMouseDown = false;
-  $("#the_table td")
-    .mousedown(function () {
-      isMouseDown = true;
-      first_cell = $(this).attr('id');
-      $(this).toggleClass("highlighted");
+   //   $(function () {
+ //var isMouseDown = false;
+ // $("#the_table td")
+  //  .mousedown(function () {
+  //    isMouseDown = true;
+   //   first_cell = $(this).attr('id');
+   //   $(this).toggleClass("highlighted");
       
      
-      return false; // prevent text selection
-    })
-    .mouseover(function () {
-      if (isMouseDown) {
-        $(this).toggleClass("highlighted");
-      }
-    });
+    //  return false; // prevent text selection
+   // })
+   // .mouseover(function () {
+   //  if (isMouseDown) {
+   //     $(this).toggleClass("highlighted");
+   //   }
+   // });
   
-  $(document)
-    .mouseup(function () {
-      isMouseDown = false;
-    });
-});
+  //$(document)
+   // .mouseup(function () {
+    //  isMouseDown = false;
+   // });
+//});
 
       //Function to set up the Jquery datepicker used within the web page, add's the options to 
       //pick month and year, also forces minimun date to be today's date + 2 days.
@@ -64,11 +88,11 @@
           lname = $("#lname").val();
           mobile = $("#mobile").val();
           email = $("#email").val();
-          date = $("#date_input").val(); 
+          thedate = $("#manual_book_date").val(); 
           startTime = $("#startTime").val();
           endTime = $("#endTime").val();
           room = $("#room").val();
-          costEstimate = $("#costEstimate").val();
+          
           });
       });
 
@@ -76,19 +100,18 @@
       
 
 
-      //Function ready on page load, when user clicks the submit button, loads into the over-arching
-      //or main Div the web page that will confirm with the user a booking request has been submitted
-      //Passes to this webpage all the variables collected from the webpages input boxes.
-      //Relevant error checking is in place
       $(document).ready(function(){
         $("#Submit").on("click", function(){
-          $("#superDiv").load("manual_booking.php", {fname:fname, lname:lname, mobile:mobile, email:email, date:date, startTime:startTime
-          , endTime:endTime, room:room, costEstimate:costEstimate} , function(responseTxt,statusTxt,xhr){
+          $("#inputDiv").load("manual_booking.php", {fname:fname, lname:lname, mobile:mobile, email:email, thedate:thedate, startTime:startTime
+          , endTime:endTime, room:room} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
         });
       }); 
+
+      
+
 
 
 
@@ -201,6 +224,9 @@
         document.getElementById(alter_button_ID).style.display = "none"
         document.getElementById(room_available_ID).style.display = "none"
 
+        
+
+
       }
 
 
@@ -232,6 +258,10 @@
   </head>
 
   <body>
+
+
+
+
     <div id="superDiv">
       <div class="wrapper">
 
@@ -239,6 +269,10 @@
 
         <div id="top" class="left" >
           <?php
+
+
+
+
             $con=mysqli_connect("localhost","root","cake123","polestar");   
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Accepted' AND booking_Date = DATE(NOW())");
             echo '<h5> The following are todays confirmed bookings:</h5>';
@@ -567,18 +601,18 @@ echo '</table>';
 
 
 
+
+
+
+echo '<button type="button" id="bob" 
+                onclick="changedate()">Pick Date</button>';
+
+ echo '<input type="text" class="date_input" id="grid_datepicker" width:50px>';
+
+echo '</div>';
+
+echo '</br>';
 ?>
-
-
-<button type="button" id="bob" 
-                onclick="changedate()">Pick Date</button>
-
- <input type="text" class="date_input" id="grid_datepicker" width:50px>
-
-</div>
-
-</br>
-
 
 <div id="selectedBooking" class="clear">
   <p>This box will contain the booking that has been selected in the above grid</p>
@@ -593,37 +627,15 @@ echo '</table>';
 
 
 
-<?php 
 
-
-			require("common.php");
-    
-    // At the top of the page we check to see whether the user is logged in or not
-    if(empty($_SESSION['user']))
-    {
-        // If they are not, we redirect them to the login page.
-        header("Location: login.php");
-        
-        // Remember that this die statement is absolutely critical.  Without it,
-        // people can view your members-only content without logging in.
-        die("Redirecting to login.php");
-    }
-			
-
-    		
-
-       
-
-    		?>
-
-<div id="input" class="clear">
+<div id="inputDiv" class="clear">
       <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
       the administrator and the customer.</p>
       <p>First Name: <input type="text" id="fname"></input> </p>
       <p>Last Name : <input type="text" id="lname"></input></p>
       <p>Mobile Number : <input type="text" id="mobile"></input></p>
       <p>Email : <input type="text" id="email"></p>
-      <p>Date of Booking: <input type="text" id="date_input"></p>
+      <p>Date of Booking: <input type="text" id="manual_book_date" class="date_input"></p>
 
       <p>Start Time: 
        <select id="startTime">
@@ -655,7 +667,7 @@ echo '</table>';
       <p>Equipment Required:</p>
       <p id ="costEstimate">Cost Estimate: </p>
       -->
- <p id="Submit">Submit</p> 
+ <button id="Submit">Submit</button> 
     
     </div>
     </div>
