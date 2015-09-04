@@ -9,19 +9,19 @@
 
     session_start(); 
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/securimage/securimage.php';
+    //include_once $_SERVER['DOCUMENT_ROOT'] . '/securimage/securimage.php';
   
-    $securimage = new Securimage();
+    //$securimage = new Securimage();
 
-    if ($securimage->check($_POST['captcha_code']) == false) {
+   // if ($securimage->check($_POST['captcha_code']) == false) {
     // the code was incorrect
     // you should handle the error so that the form processor doesn't continue
 
     // or you can use the following code if there is no validation or you do not know how
-    echo "The security code entered was incorrect.<br /><br />";
-    echo "Please go <a href='booking.php'>back</a> and try again.";
-    exit;
-    }
+    //echo "The security code entered was incorrect.<br /><br />";
+   // echo "Please go <a href='booking.php'>back</a> and try again.";
+   //exit;
+    //}
 
 
       
@@ -70,7 +70,8 @@
       $q->execute(array(':fname'=>$fname, ':lname' => $lname, ':mobile'=> $mobile, ':email'=>$email, 
         ':booking_Date'=>$date, ':start_Time'=>$startTime, ':end_Time' => $endTime, ':room' =>$room));
       
-
+		//THROWIG UP ERRORS SO LIVING HERE FOR NOW
+		//<label id="booking-label">Equipment Requested:</label><b>'.$gear1.', <b>'.$gear2.', <b>'.$gear3.', <b>'.$gear4.'</b><br/>
 
   
   			
@@ -86,7 +87,6 @@
     		<label id="booking-label">Start Time:</label><b>'.$startTime.'</b><br/>
     		<label id="booking-label">End Time:</label><b>'.$endTime.'</b><br/>
     		<label id="booking-label">Room Requested:</label><b>'.$room.'</b><br/>
-        	<label id="booking-label">Equipment Requested:</label><b>'.$gear1.', <b>'.$gear2.', <b>'.$gear3.', <b>'.$gear4.'</b><br/>
 			<b>'.$date.'</b>
 </div>
     			</div>';

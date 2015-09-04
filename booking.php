@@ -166,7 +166,10 @@
           if($("#fname").val().length > 0 && $("#lname").val().length > 0 && $("#lname").val().length > 0
             && $("#mobile").val().length > 0 && $("#email").val().length > 0 && 
             $("#date_input").val().length > 0 && $("#room").val().length > 0 && correct_email == true
-            && correct_mobile == true && $("#captcha_code").val().length > 0 && $("#startTime").val() != ""
+            && correct_mobile == true && 
+			<!--$("#captcha_code").val().length > 0--> 
+			
+			$("#startTime").val() != ""
             && $("#endTime").val() != "" && correct_Time == true)
             {
               $('#Submit').prop('disabled', false);
@@ -372,9 +375,9 @@
       <p>Equipment Required:</p>-->
       <p id ="costEstimate">Cost Estimate: </p>
       
-      <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
+     <!-- <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
       <input type="text" class ="input "id="captcha_code" size="10" maxlength="6" />
-      <a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+      <a href="#" onClick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>-->
     
     </div>
 

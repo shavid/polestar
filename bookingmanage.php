@@ -263,7 +263,16 @@
 
 
     <div id="superDiv">
-      <div class="wrapper">
+    <div class="wrapper">
+    
+    <nav id="manager-nav" role="navigation">
+		<!-- #site-navigation -->
+        <ul class="manager-menu-items">
+        	<li class="menu-item"><a href="logout.php">Logout</a></li>
+            <li class="menu-item"><a href="booking.php">Booking.php</a></li>
+            <li class="menu-item"><a href="bookingmanage.php">Reload</a></li>
+        </ul></nav>
+        
 
 
 
@@ -671,11 +680,7 @@ echo '</br>';
     
     </div>
     </div>
-
-    <div id = "logout">
-
- 
-<a href="logout.php">Logout</a>
-</div>
+	</div>
+    
 </body>
 </html>

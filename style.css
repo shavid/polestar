@@ -71,13 +71,14 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 
 .wrapper { 
 	margin: auto;	
-	border-left:solid ;
-	border-right: solid;
+	border-left:solid 3px #000;
+	border-right: solid 3px #000;
 	width: 95%;
 	/*padding: 1em 0;*/
 	height: 100%;
 }
 
+/*LOGIN.PHP*/
 .login-content { 
 	border: solid #F00;
 	text-align:center;
@@ -88,6 +89,23 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 .login-title {
 	padding-bottom: 2em;
 }
+
+/*BOOKINGMANAGE.php*/
+/*TOP BAR*/
+#manager-nav {
+	position:fixed;
+	top: 0;
+	height: 30px;
+	width: 100%;
+	background: #666;
+}
+
+.manager-menu.items {
+}
+
+.manager-menu-items > li {
+	float:left;
+	padding: 0px 15px;}
 
 #top {
 	width: 48%;
