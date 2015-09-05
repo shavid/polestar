@@ -240,13 +240,14 @@
      
 
       }
-
+	//RESTING WAITING TO BE INTEGRATED...
+	//, first_cell:first_cell
 
       function changedate() {
   
       chosendate = $("#grid_datepicker").val();
 
-      $("#timeline").load("select.php", {chosendate:chosendate, first_cell:first_cell}, function(responseTxt,statusTxt,xhr){
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
