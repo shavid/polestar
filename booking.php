@@ -166,11 +166,11 @@
           if($("#fname").val().length > 0 && $("#lname").val().length > 0 && $("#lname").val().length > 0
             && $("#mobile").val().length > 0 && $("#email").val().length > 0 && 
             $("#date_input").val().length > 0 && $("#room").val().length > 0 && correct_email == true
-            && correct_mobile == true && 
-			<!--$("#captcha_code").val().length > 0--> 
-			
-			$("#startTime").val() != ""
-            && $("#endTime").val() != "" && correct_Time == true)
+            && correct_mobile == true && $("#startTime").val() != ""  && $("#endTime").val() != "" && 
+            correct_Time == true)
+
+		     //$("#captcha_code").val().length > 0--> 
+				           
             {
               $('#Submit').prop('disabled', false);
               $('#submit_text').prop('hidden', true);
@@ -218,6 +218,10 @@
 
           //
 
+
+          if(startTime != '' && endTime != '')
+
+          {
           cpr = 9;
           //Calculates the cost estimate.
           startTimec = startTime.replace(':','.');
@@ -226,11 +230,46 @@
           endTimec = Math.ceil(endTimec);
           totalTime = endTimec - startTimec;
           totalcost = totalTime * 9;
-          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalTime + " Number should be taken as an estimate only";
+
+
+
           
-          });
+
+         if(document.getElementById("drumKit").options
+           [document.getElementById("drumKit").selectedIndex].value == "Yes")
+         {
+          totalcost = totalcost + 2;
+         }
+
+
+         if(document.getElementById("bassAmp").options
+           [document.getElementById("bassAmp").selectedIndex].value == "Yes")
+         {
+          totalcost = totalcost + 2;
+         }
+
+
+         if(document.getElementById("guitarAmp").options
+           [document.getElementById("guitarAmp").selectedIndex].value != "0")
+         {
+           guitarAmps = document.getElementById("guitarAmp").options
+           [document.getElementById("guitarAmp").selectedIndex].value;
+
+           guitarAmpsCost = guitarAmps * 2
+           totalcost = totalcost + guitarAmpsCost
+         }
+
+
+          //Finalises the cost estimate.
+          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalcost + " || Number should be taken as an estimate only";
+          
+
+
+          }
+         });
       });
 
+  
 
       //Function ready on page load, when user clicks the submit button, loads into the over-arching
       //or main Div the web page that will confirm with the user a booking request has been submitted
@@ -276,7 +315,7 @@
       <?php
 
         echo '<label id="booking-label">Start Time:</label>';
-        echo '<select id = "startTime">';
+        echo ' <select id = "startTime">';
 
         //Sets the inital open and close time.
         //These can be changed as per requirements
@@ -288,7 +327,7 @@
         $bookingtime = $opentime;
   
         //Echos a blank option for default.
-        echo '<option></option>';
+        echo ' <option></option>';
 
         //While the booking time is before the closing time and after the open time.
         while($bookingtime <= $closetime && $bookingtime >= $opentime) 
@@ -309,7 +348,7 @@
 
 
         echo'<label id="booking-label">End Time:</label>';
-        echo'<select id="endTime" class="input">';
+        echo' <select id="endTime" class="input">';
 
         echo '<option></option>';
 
@@ -341,26 +380,30 @@
       <br />
 
 
-      <!-- Requires Implementation
+      <!-- Requires Implementation 
+      1:1:3-->
       <label id="booking-label">Equipment Required:</label>
-        <select id="gear1">
-          <option value="Drums">Drum Kit</option>
-          <option value="Bass">Bass Amp</option>
-          <option value="Guitar">Guitar Amp</option>
-          <option selected="selected"value="None">None</option>
+        Drum Kit: 
+        <select id="drumKit">
+          <option>No</option>
+          <option>Yes</option>
         </select>
-        <select id="gear2">
-          <option value="Drums">Drum Kit</option>
-          <option value="Bass">Bass Amp</option>
-          <option value="Guitar">Guitar Amp</option>
-          <option selected="selected"value="None">None</option>
+        
+        Bass Amp:
+        <select id="bassAmp">
+          <option>No</option>
+          <option>Yes</option>
         </select>
-        <select id="gear3">
-          <option value="Drums">Drum Kit</option>
-          <option value="Bass">Bass Amp</option>
-          <option value="Guitar">Guitar Amp</option>
-          <option selected="selected"value="None">None</option>
+
+        Guitar Amps:
+        <select id="guitarAmp">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
         </select>
+
+          <!--
        <select id="gear4">
           <option value="Drums">Drum Kit</option>
           <option value="Bass">Bass Amp</option>
