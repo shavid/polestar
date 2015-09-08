@@ -41,6 +41,7 @@
 
 			$fname = $_POST["fname"];
 			$lname = $_POST["lname"];
+      $band_Name = $_POST["bandName"];
 			$mobile = $_POST["mobile"];
 			$email = $_POST["email"];			
 			$date = date('Y-m-d', strtotime($_POST['date']));
@@ -64,11 +65,12 @@
       //Prepares SQL statement to deal with storing booking to database
       //Then executes the query passing to it the information obtained through the post system.
       $sql = "INSERT INTO requested_Bookings (fname, lname, mobile, email, booking_Date,
-        start_Time, end_Time, room ) VALUES (:fname,:lname,:mobile,:email,:booking_Date,:start_Time,
-        :end_Time,:room)";
+        start_Time, end_Time, room, band_Name ) VALUES (:fname,:lname,:mobile,:email,:booking_Date,:start_Time,
+        :end_Time,:room, :band_Name)";
       $q = $conn->prepare($sql);
       $q->execute(array(':fname'=>$fname, ':lname' => $lname, ':mobile'=> $mobile, ':email'=>$email, 
-        ':booking_Date'=>$date, ':start_Time'=>$startTime, ':end_Time' => $endTime, ':room' =>$room));
+        ':booking_Date'=>$date, ':start_Time'=>$startTime, ':end_Time' => $endTime, ':room' =>$room, ':band_Name'
+        => $band_Name));
       
 		//THROWIG UP ERRORS SO LIVING HERE FOR NOW
 		//<label id="booking-label">Equipment Requested:</label><b>'.$gear1.', <b>'.$gear2.', <b>'.$gear3.', <b>'.$gear4.'</b><br/>
@@ -81,12 +83,14 @@
 			<p> Your request has been successfully submitted, please await a response from us.</p>
     		<label id="booking-label">First Name:</label><b>'.$fname.'</b><br/>
     		<label id="booking-label">Last Name:</label><b>'.$lname.'</b><br/>
+        <label id="booking-label">Band name:</label><b>'.$band_Name.'</b><br/>
     		<label id="booking-label">Mobile Number:</label><b>'.$mobile.'</b><br/>
     		<label id="booking-label">Email:</label><b>'.$email.'</b><br/>
     		<label id="booking-label">Date of Booking:</label><b>'.$date.'</b><br/>
     		<label id="booking-label">Start Time:</label><b>'.$startTime.'</b><br/>
     		<label id="booking-label">End Time:</label><b>'.$endTime.'</b><br/>
     		<label id="booking-label">Room Requested:</label><b>'.$room.'</b><br/>
+
 			<b>'.$date.'</b>
 </div>
     			</div>';

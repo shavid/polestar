@@ -32,7 +32,7 @@
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-
+       <script type="text/javascript" src="moment.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
@@ -252,8 +252,47 @@
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
      
-
       }
+
+
+      function todayFunc() {
+  
+      chosendate = moment().format('YYYY-MM-DD'); 
+
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
+     
+      }
+
+
+      function tomorrowFunc() {
+
+
+      var today = moment();
+      var tomorrow = today.add('days', 1);
+      chosendate = moment(tomorrow).format("YYYY-MM-DD");
+                   
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+         });
+      }
+
+      function yesterdayFunc() {
+
+
+      var today = moment();
+      var tomorrow = today.subtract('days', 1);
+      chosendate = moment(tomorrow).format("YYYY-MM-DD");
+                   
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+         });
+      }
+
     </script>
 
   </head>
@@ -501,15 +540,19 @@
 
       $all_rooms = array("Red", "Blue", "Green", "Yellow");
 
-      $opentime = strtotime('09:00');
-      $closetime = strtotime('22:00');
+      $opentime = strtotime('10:00');
+      $closetime = strtotime('23:00');
 
       //Initalizes the booking time to be used in the loop
       //CHANGE THE NAME OF BOOKING TIME POSSIBLY? SEEMS A BIT DAFT HERE 
 
       $bookingtime = $opentime;
   
-
+      echo '<button onclick="yesterdayFunc">Yesterday</button>';
+      echo '<button onclick="todayFunc()">Today</button>';
+      echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
+      echo '</br>';
+      echo '</br>';
       echo '<table border ="1" id="the_table">';
 
 
@@ -569,13 +612,14 @@
                 //NOT WORKING JUST RETURNS 10.
               
               $booking_id = $row['id']; 
+              $band_Name = $row['band_Name'];
 
               }
 
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$booking_id.'</td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else

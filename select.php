@@ -1,4 +1,4 @@
- 
+   <script type="text/javascript" src="moment.js"></script>
 <script>
 
  //Function to set up the Jquery datepicker used within the web page, add's the options to 
@@ -14,7 +14,7 @@
       });
 
 
-          function changedate() {
+      function changedate() {
   
       chosendate = $("#grid_datepicker").val();
 
@@ -27,13 +27,54 @@
       }
 
 
+      function todayFunc() {
+  
+      chosendate = moment().format('YYYY-MM-DD'); 
+
+      
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+         });
+      }
+
+
+
+      function tomorrowFunc() {
+
+
+      var today = moment();
+      var tomorrow = today.add('days', 1);
+      chosendate = moment(tomorrow).format("YYYY-MM-DD");
+                   
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+         });
+      }
+
+      function yesterdayFunc() {
+
+
+      var today = moment();
+      var tomorrow = today.subtract('days', 1);
+      chosendate = moment(tomorrow).format("YYYY-MM-DD");
+                   
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+         });
+      }
+
       </script>
 
-</br>
 
-</br>
 
- <p>Selected date booking grid view</p>
+
+
+
+ <p id="chocolate">Selected date booking grid view</p>
+ </br>
 
 
  <?php
@@ -57,6 +98,13 @@
 
       $bookingtime = $opentime;
       $con=mysqli_connect("localhost","root","cake123","polestar"); 
+
+      echo '<button onclick="yesterdayFunc()">Yesterday</button>';
+      echo '<button onclick="todayFunc()">Today</button>';
+      echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
+      echo '</br>';
+      echo '</br>';
+
 
       echo '<table border ="1">';
 
@@ -116,7 +164,7 @@
               //Stores the bookings ID in a variable called ID, used to pass in the onclick method. REPHRASE THIS
                 //NOT WORKING JUST RETURNS 10.
               
-              $booking_id = $row['id']; 
+              $booking_id = $row['band_Name']; 
 
               }
 
