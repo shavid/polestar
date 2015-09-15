@@ -2,18 +2,18 @@
   <?php
 
 
-        require("common.php");
+      //  require("common.php");
     
     // At the top of the page we check to see whether the user is logged in or not
-    if(empty($_SESSION['user']))
-    {
+    //if(empty($_SESSION['user']))
+    //{
         // If they are not, we redirect them to the login page.
-        header("Location: login.php");
+    //    header("Location: login.php");
         
-        // Remember that this die statement is absolutely critical.  Without it,
-        // people can view your members-only content without logging in.
-        die("Redirecting to login.php");
-    }
+       // Remember that this die statement is absolutely critical.  Without it,
+   //     // people can view your members-only content without logging in.
+ //       die("Redirecting to login.php");
+//    }
       
 
       ?>
@@ -32,7 +32,7 @@
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-       <script type="text/javascript" src="moment.js"></script>
+
 
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
@@ -228,18 +228,35 @@
 
 
       }
+// OPENS AND CLOSES MANUALBOOKING DIV\
+	$(document).ready(function() {
+        
+    
+	$("a#manual-booking-button").click(function(){
+	$("div#manualBooking").fadeIn(1000);
+});});
 
-
-      function testfunc(bookingID) {
-  
-
-      $("#selectedBooking").load("phptest.php", {bookingID:bookingID}, function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
+// OPENS AND CLOSES THE SELECTEDBOOKING DIV
+      	function testfunc(bookingID) {
+	$("div#selectedBooking").fadeIn(1000);
+    $("#selectedBooking-info").load("phptest.php", {bookingID:bookingID}, function(responseTxt,statusTxt,xhr){
+		if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
-     
-
-      }
+		  ///THIS IS TO CLICK ANYWHERE ON THE PAGE TO MAKE DISSAPEAR..NEEDS WORK
+///	$(document).mouseup(function (e)
+//{
+//    var container = $("div.popup-container");
+//
+//    if (!container.is(e.target) // if the target of the click isn't the container...
+//        && container.has(e.target).length === 0) // ... nor a descendant of the container
+//    {
+//        container.fadeOut(1000);}
+//    });
+	$("button.close-popup").click(function(){
+		$("div.popup-container").fadeOut(1000);
+	});
+     }
 	//RESTING WAITING TO BE INTEGRATED...
 	//, first_cell:first_cell
 
@@ -252,47 +269,8 @@
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
      
+
       }
-
-
-      function todayFunc() {
-  
-      chosendate = moment().format('YYYY-MM-DD'); 
-
-      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
-     
-      }
-
-
-      function tomorrowFunc() {
-
-
-      var today = moment();
-      var tomorrow = today.add('days', 1);
-      chosendate = moment(tomorrow).format("YYYY-MM-DD");
-                   
-      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-         });
-      }
-
-      function yesterdayFunc() {
-
-
-      var today = moment();
-      var tomorrow = today.subtract('days', 1);
-      chosendate = moment(tomorrow).format("YYYY-MM-DD");
-                   
-      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-         });
-      }
-
     </script>
 
   </head>
@@ -311,6 +289,7 @@
         	<li class="menu-item"><a href="logout.php">Logout</a></li>
             <li class="menu-item"><a href="booking.php">Booking.php</a></li>
             <li class="menu-item"><a href="bookingmanage.php">Reload</a></li>
+            <li class="menu-item"><a href="#" id="manual-booking-button">Add Booking</a></li>
         </ul></nav>
         
 
@@ -540,19 +519,15 @@
 
       $all_rooms = array("Red", "Blue", "Green", "Yellow");
 
-      $opentime = strtotime('10:00');
-      $closetime = strtotime('23:00');
+      $opentime = strtotime('09:00');
+      $closetime = strtotime('22:00');
 
       //Initalizes the booking time to be used in the loop
       //CHANGE THE NAME OF BOOKING TIME POSSIBLY? SEEMS A BIT DAFT HERE 
 
       $bookingtime = $opentime;
   
-      echo '<button onclick="yesterdayFunc">Yesterday</button>';
-      echo '<button onclick="todayFunc()">Today</button>';
-      echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
-      echo '</br>';
-      echo '</br>';
+
       echo '<table border ="1" id="the_table">';
 
 
@@ -612,14 +587,13 @@
                 //NOT WORKING JUST RETURNS 10.
               
               $booking_id = $row['id']; 
-              $band_Name = $row['band_Name'];
 
               }
 
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$booking_id.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
@@ -668,13 +642,11 @@ echo '</div>';
 echo '</br>';
 ?>
 
-<div id="selectedBooking" class="clear">
+<div id="selectedBooking" class="clear popup-container">
   <p>This box will contain the booking that has been selected in the above grid</p>
+  <div id="selectedBooking-info"></div>
+  <div class="bottom-note"><button class="close-popup">Close</button></div>
   </br>
-
-
-   
-
 </div>
 
 
@@ -682,7 +654,7 @@ echo '</br>';
 
 
 
-<div id="inputDiv" class="clear">
+<div id="manualBooking" class=" clear popup-container">
       <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
       the administrator and the customer.</p>
       <p>First Name: <input type="text" id="fname"></input> </p>
@@ -722,6 +694,7 @@ echo '</br>';
       <p id ="costEstimate">Cost Estimate: </p>
       -->
  <button id="Submit">Submit</button> 
+ <button class="close-popup">Close</button>
     
     </div>
     </div>

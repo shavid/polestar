@@ -73,7 +73,7 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 	margin: auto;	
 	border-left:solid 3px #000;
 	border-right: solid 3px #000;
-	width: 95%;
+	width: 97%;
 	/*padding: 1em 0;*/
 	height: 100%;
 }
@@ -93,7 +93,7 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 /*BOOKINGMANAGE.php*/
 /*TOP BAR*/
 #manager-nav {
-	position:fixed;
+	position:relative;
 	top: 0;
 	height: 30px;
 	width: 100%;
@@ -111,8 +111,8 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 	width: 48%;
 	height: 37%;
 	border: solid #00F;
-	margin-top: 5em;
-	margin-bottom: 1em;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	overflow-y:scroll;
     overflow-x:hidden;
 }
@@ -138,7 +138,7 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 
 
 #timeline {
-	height: 54%;
+	height: 47%;
 	border: solid #00F;
 	padding-top: 25px;
     padding-right: 50px;
@@ -150,16 +150,35 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 }
 
 #selectedBooking {
-	height: 44%;
+	position:fixed;
+	height: 50%;
+	width:30%;
 	border: solid #00F;
 	padding-top: 25px;
     padding-right: 50px;
     padding-bottom: 25px;
     padding-left: 10px;
-    
-   
+	top:25%;
+	left: 25%;
+	background:#CCC;
+	display: none;
+}
+#manualBooking {
+	position:fixed;
+	height: 50%;
+	width:30%;
+	border: solid #00F;
+	padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+	top:25%;
+	left: 25%;
+	background:#CCC;
+	display: none;
 }
 
+/*WHAT IS THIS
 #div_manual_bookings {
 	height: 44%;
 	border: solid #00F;
@@ -169,9 +188,8 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
     padding-left: 10px;
     width: 70%;	
 	margin: auto
-    
-   
-}
+}*/
+
 
 .left {float:left;}
 .right {float:right;}
@@ -179,11 +197,11 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 
 /*Booking Form CSS*/
 
-/*Rename Me Plz*/#inputDiv {
+#booking-form {
 	width: 70%;	
 	margin: auto;
 	padding-top: 25px;
-	border: solid #00F;
+	border: none;
 }
 
 label#booking-label {
@@ -195,6 +213,9 @@ button#Submit {
 	float:right;
 	margin-right: 22%;
 }
+#captcha-container {padding-top: 1em;}
+#captcha { height: 80px; width: 25%; padding: 0 1%}
+.bottom-note { padding-top:1em;}
 
 /***** Typography *****/
 

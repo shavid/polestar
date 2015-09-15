@@ -166,11 +166,11 @@
           if($("#fname").val().length > 0 && $("#lname").val().length > 0 && $("#lname").val().length > 0
             && $("#mobile").val().length > 0 && $("#email").val().length > 0 && 
             $("#date_input").val().length > 0 && $("#room").val().length > 0 && correct_email == true
-            && correct_mobile == true && $("#startTime").val() != ""  && $("#endTime").val() != "" && 
-            correct_Time == true)
-
-		     //$("#captcha_code").val().length > 0--> 
-				           
+            && correct_mobile == true && 
+			<!--$("#captcha_code").val().length > 0--> 
+			
+			$("#startTime").val() != ""
+            && $("#endTime").val() != "" && correct_Time == true)
             {
               $('#Submit').prop('disabled', false);
               $('#submit_text').prop('hidden', true);
@@ -188,7 +188,6 @@
 
           fname = $("#fname").val();
           lname = $("#lname").val();
-          bandName = $("#band_Name").val();
           mobile = $("#mobile").val();
           email = $("#email").val();
           date = $("#date_input").val(); 
@@ -197,8 +196,6 @@
           room = $("#room").val();
           costEstimate = $("#costEstimate").val();
           captcha_code = $("#captcha_code").val();
-
-
 
 
           //Minimun booking time is one hour, the following code calculates if the booking time 
@@ -221,10 +218,6 @@
 
           //
 
-
-          if(startTime != '' && endTime != '')
-
-          {
           cpr = 9;
           //Calculates the cost estimate.
           startTimec = startTime.replace(':','.');
@@ -233,46 +226,11 @@
           endTimec = Math.ceil(endTimec);
           totalTime = endTimec - startTimec;
           totalcost = totalTime * 9;
-
-
-
+          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalTime + " Number should be taken as an estimate only";
           
-
-         if(document.getElementById("drumKit").options
-           [document.getElementById("drumKit").selectedIndex].value == "Yes")
-         {
-          totalcost = totalcost + 2;
-         }
-
-
-         if(document.getElementById("bassAmp").options
-           [document.getElementById("bassAmp").selectedIndex].value == "Yes")
-         {
-          totalcost = totalcost + 2;
-         }
-
-
-         if(document.getElementById("guitarAmp").options
-           [document.getElementById("guitarAmp").selectedIndex].value != "0")
-         {
-           guitarAmps = document.getElementById("guitarAmp").options
-           [document.getElementById("guitarAmp").selectedIndex].value;
-
-           guitarAmpsCost = guitarAmps * 2
-           totalcost = totalcost + guitarAmpsCost
-         }
-
-
-          //Finalises the cost estimate.
-          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalcost + " || Number should be taken as an estimate only";
-          
-
-
-          }
-         });
+          });
       });
 
-  
 
       //Function ready on page load, when user clicks the submit button, loads into the over-arching
       //or main Div the web page that will confirm with the user a booking request has been submitted
@@ -280,7 +238,7 @@
       //Relevant error checking is in place
       $(document).ready(function(){
         $("#Submit").on("click", function(){
-          $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, bandName:bandName, email:email, date:date, startTime:startTime
+          $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, email:email, date:date, startTime:startTime
           , endTime:endTime, room:room, costEstimate:costEstimate, captcha_code:captcha_code} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
@@ -296,7 +254,7 @@
   <body> 
 
     <div id="superDiv">
-     <div id="inputDiv">
+     <div id="booking-form">
       <label id="booking-label">First Name:</label>
         <input type="text" id="fname" class="input"></input>
           <br />
@@ -312,27 +270,25 @@
       <label id="booking-label">Date of Booking :</label>
         <input type="text" id="date_input" class="input">
           <br />
-      <label id="booking-label">Band Name :</label>
-        <input type="text" id="band_Name" class="input">
-          <br />
+      
        
       <!-- Following PHP code auto populates the start/end time input -->
       <?php
 
         echo '<label id="booking-label">Start Time:</label>';
-        echo ' <select id = "startTime">';
+        echo '<select id = "startTime">';
 
         //Sets the inital open and close time.
         //These can be changed as per requirements
-        $opentime = strtotime('10:00');
-        $closetime = strtotime('23:00');
+        $opentime = strtotime('09:00');
+        $closetime = strtotime('22:00');
 
 
         //Initalizes the booking time to be used in the loop
         $bookingtime = $opentime;
   
         //Echos a blank option for default.
-        echo ' <option></option>';
+        echo '<option></option>';
 
         //While the booking time is before the closing time and after the open time.
         while($bookingtime <= $closetime && $bookingtime >= $opentime) 
@@ -353,7 +309,7 @@
 
 
         echo'<label id="booking-label">End Time:</label>';
-        echo' <select id="endTime" class="input">';
+        echo'<select id="endTime" class="input">';
 
         echo '<option></option>';
 
@@ -385,30 +341,26 @@
       <br />
 
 
-      <!-- Requires Implementation 
-      1:1:3-->
+      <!-- Requires Implementation
       <label id="booking-label">Equipment Required:</label>
-        Drum Kit: 
-        <select id="drumKit">
-          <option>No</option>
-          <option>Yes</option>
+        <select id="gear1">
+          <option value="Drums">Drum Kit</option>
+          <option value="Bass">Bass Amp</option>
+          <option value="Guitar">Guitar Amp</option>
+          <option selected="selected"value="None">None</option>
         </select>
-        
-        Bass Amp:
-        <select id="bassAmp">
-          <option>No</option>
-          <option>Yes</option>
+        <select id="gear2">
+          <option value="Drums">Drum Kit</option>
+          <option value="Bass">Bass Amp</option>
+          <option value="Guitar">Guitar Amp</option>
+          <option selected="selected"value="None">None</option>
         </select>
-
-        Guitar Amps:
-        <select id="guitarAmp">
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
+        <select id="gear3">
+          <option value="Drums">Drum Kit</option>
+          <option value="Bass">Bass Amp</option>
+          <option value="Guitar">Guitar Amp</option>
+          <option selected="selected"value="None">None</option>
         </select>
-
-          <!--
        <select id="gear4">
           <option value="Drums">Drum Kit</option>
           <option value="Bass">Bass Amp</option>
@@ -423,17 +375,21 @@
       <p>Equipment Required:</p>-->
       <p id ="costEstimate">Cost Estimate: </p>
       
-     <!-- <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
+      <div id="captcha-container">
+     <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
       <input type="text" class ="input "id="captcha_code" size="10" maxlength="6" />
-      <a href="#" onClick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>-->
-    
+      <a href="#" onClick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+      </div>
+      
+    <div class="bottom-note">
+    <label id ="submit_text">You must fill in all fields before being able to submit.</label>
+
+    <button id="Submit" disabled>Submit</button></div>
     </div>
 
     </br>
-    <!-- Not sure why this label isn't lined up like the rest - Alex? Changed it to a Paragraph for time being--> 
-    <label id ="submit_text">You must fill in all fields before being able to submit.</label>
-
-    <button id="Submit" disabled>Submit</button>
+  
+    
 
 
   </div>
