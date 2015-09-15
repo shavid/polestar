@@ -1,0 +1,58 @@
+/*
+Theme Name: Poley MH Purity lite Child
+Template: mh-purity-lite
+Author: Child Theme Configurator
+Version: 1.0.1428327133
+Updated: 2015-04-06 13:32:13
+*/
+
+@charset "UTF-8";
+
+.header-wrap {
+	border-top: 5px solid #182981 ;
+}
+
+.main-nav ul .current-menu-item a {
+	border-bottom: 2px solid #182981 ;
+}
+
+.footer {
+	border-top: 5px solid #182981 ;
+}
+
+.widget-title {
+	color: #182981 ;
+}
+
+.fa-comment-o {
+	color: #182981 ;
+}
+
+a:hover {
+	color: #182981;
+}
+
+/*Booking Form CSS*/
+
+/*Rename Me Plz*/#testDiv {
+	width: 70%;	
+	margin: auto;
+}
+
+label {
+	display: inline-block;
+	width: 27%;
+	padding-bottom: 0.5em;
+}
+
+input[type=text], input[type=email] {
+}
+
+input[type=text]:hover, input[type=email]:hover, textarea:hover {
+    border: 1px solid #182981;
+}
+
+button#Apples {
+	float:right;
+	margin-right: 22%;
+}
