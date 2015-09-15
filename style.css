@@ -5,7 +5,62 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
-table { border-collapse: collapse; border-spacing: 0; }
+
+
+table{
+   
+   border-collapse: collapse;
+ 
+   overflow:visible;
+   table-layout: fixed;
+
+   
+}
+td{
+
+
+width: 20px;
+height: 35px;
+
+
+
+}
+
+input.ui-datepicker{
+
+	width:50px;
+	 font-size:10px;
+}
+
+tr td { background-color: white }
+/* td:hover { background-color: black }; */
+
+td[class=roomcolour]{
+
+width: 63px;
+height: 40px;
+text-align: right;
+font-size: 1em;
+
+
+}
+
+td[id=cell_time]{
+
+	color: #00ff00;
+	
+	white-space: nowrap;
+  	font-size: 0.7em;
+  	text-align: right;
+  	padding-right: 5px;
+  
+	}
+
+
+ 
+table td.highlighted {
+  background-color:#999;
+}
 
 /***** Structure *****/
 
@@ -16,13 +71,14 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 
 .wrapper { 
 	margin: auto;	
-	border-left:solid ;
-	border-right: solid;
+	border-left:solid 3px #000;
+	border-right: solid 3px #000;
 	width: 95%;
 	/*padding: 1em 0;*/
 	height: 100%;
 }
 
+/*LOGIN.PHP*/
 .login-content { 
 	border: solid #F00;
 	text-align:center;
@@ -34,16 +90,87 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 	padding-bottom: 2em;
 }
 
+/*BOOKINGMANAGE.php*/
+/*TOP BAR*/
+#manager-nav {
+	position:fixed;
+	top: 0;
+	height: 30px;
+	width: 100%;
+	background: #666;
+}
+
+.manager-menu.items {
+}
+
+.manager-menu-items > li {
+	float:left;
+	padding: 0px 15px;}
+
 #top {
-	width: 46%;
-	height: 35%;
+	width: 48%;
+	height: 37%;
+	border: solid #00F;
+	margin-top: 5em;
+	margin-bottom: 1em;
+	overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+#input{
+	font-size: 18px;
 	border: solid #00F;
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+
+
+#logout {
+
+	
+	margin-top: 1em;
+	position: absolute;
+	top: 0px;
+	left: 35px;
+
+	margin-bottom: 5em;
+}
+
+
 #timeline {
 	height: 54%;
 	border: solid #00F;
+	padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    overflow-y:scroll;
+    overflow-x:scroll;
+   
+}
+
+#selectedBooking {
+	height: 44%;
+	border: solid #00F;
+	padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    
+   
+}
+
+#div_manual_bookings {
+	height: 44%;
+	border: solid #00F;
+	padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    width: 70%;	
+	margin: auto
+    
+   
 }
 
 .left {float:left;}
@@ -55,6 +182,8 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 /*Rename Me Plz*/#inputDiv {
 	width: 70%;	
 	margin: auto;
+	padding-top: 25px;
+	border: solid #00F;
 }
 
 label#booking-label {
@@ -68,6 +197,10 @@ button#Submit {
 }
 
 /***** Typography *****/
+
+.date_input {
+    width: 100px;
+}
 
 h1 { font-size: 32px; font-size: 2rem; }
 h2 { font-size: 24px; font-size: 1.5rem; }

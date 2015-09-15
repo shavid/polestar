@@ -5,6 +5,13 @@
   </head>
 
   <body>
+  	 <nav id="manager-nav" role="navigation">
+		<!-- #site-navigation -->
+        <ul class="manager-menu-items">
+        	<li class="menu-item"><a href="logout.php">Logout</a></li>
+            <li class="menu-item"><a href="booking.php">Booking.php</a></li>
+            <li class="menu-item"><a href="bookingmanage.php">Reload</a></li>
+        </ul></nav>
 
     <?php
 
@@ -23,6 +30,7 @@
       //Gets the booking ID and it's status (Accepted/Rejected) via POST
 			$booking_ID = $_POST["booking_ID"];
 			$booking_Status = $_POST["booking_Status"];
+      $new_room = $_POST["new_room"];
 			
 			//Opens up a connection to the database
 		  $con=mysqli_connect("localhost","root","cake123","polestar"); 
@@ -34,7 +42,7 @@
     			echo '<!-- BEGIN content -->
   				<p> Booking with ID: '.$booking_ID.' has been accepted.</p>';
 
-  				$update = mysqli_query($con, "UPDATE requested_Bookings SET status = 'Accepted' WHERE id = $booking_ID");
+  				$update = mysqli_query($con, "UPDATE requested_Bookings SET status = 'Accepted', room = '$new_room' WHERE id = $booking_ID");
     		}
 
     		//Does the same as above but echos to the user and updates the database to show that the
