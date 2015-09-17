@@ -289,7 +289,7 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 // OPENS AND CLOSES THE SELECTEDBOOKING DIV - u fucking wot
         function testfunc(bookingID, bookingTime) {
   $("div#selectedBooking").fadeIn(1000);
-    $("#selectedBooking-info").load("booking_popup.php", {bookingID:bookingID, bookingTime:bookingTime}, function(responseTxt,statusTxt,xhr){
+    $("#selectedBooking-info").load("bookingpopups.php", {bookingID:bookingID, bookingTime:bookingTime}, function(responseTxt,statusTxt,xhr){
     if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
@@ -716,9 +716,7 @@ echo '<button type="button" id="bob"
 
  echo '<input type="text" class="date_input" id="grid_datepicker" width:50px>';
 
-echo '</div>'
-
-;
+echo '</div>';
 
 echo '</br>';
 ?>

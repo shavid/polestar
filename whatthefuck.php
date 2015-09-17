@@ -112,18 +112,7 @@
 
       
 
-       function yesterdayFunc() {
 
-
- var today = moment();
- var tomorrow = today.subtract('days', 1);
- chosendate = moment(tomorrow).format("YYYY-MM-DD");
-
- $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
- if(statusTxt=="error")
- alert("Error: "+xhr.status+": "+xhr.statusText)
- });
- }
 
 
 
@@ -218,45 +207,6 @@
       }
 
 
-      function todayFunc() {
-
- chosendate = moment().format('YYYY-MM-DD');
-
- $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
- if(statusTxt=="error")
- alert("Error: "+xhr.status+": "+xhr.statusText)
- });
-
-}
-
-
- function tomorrowFuncs() {
-
-
- var today = moment();
- var tomorrow = today.add(1 , 'days');
- chosendate = moment(tomorrow).format("YYYY-MM-DD");
-
-$("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
-if(statusTxt=="error")
-alert("Error: "+xhr.status+": "+xhr.statusText)
- });
- }
-
- function yesterdayFunc() {
-
-
- var today = moment();
- var tomorrow = today.subtract('days', 1);
- chosendate = moment(tomorrow).format("YYYY-MM-DD");
-
- $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
- if(statusTxt=="error")
- alert("Error: "+xhr.status+": "+xhr.statusText)
- });
- }
-
-
 
       function alterRoomFuncs(booking_ID) {
   
@@ -286,20 +236,53 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
 
 
-// OPENS AND CLOSES THE SELECTEDBOOKING DIV - u fucking wot
-        function testfunc(bookingID, bookingTime) {
+// OPENS AND CLOSES THE SELECTEDBOOKING DIV
+        function testfunc(bookingID) {
   $("div#selectedBooking").fadeIn(1000);
-    $("#selectedBooking-info").load("booking_popup.php", {bookingID:bookingID, bookingTime:bookingTime}, function(responseTxt,statusTxt,xhr){
+    $("#selectedBooking-info").load("phptest.php", {bookingID:bookingID}, function(responseTxt,statusTxt,xhr){
     if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
 
 
 
- 
+ function todayFunc() {
+
+ chosendate = moment().format('YYYY-MM-DD');
+
+ $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+ if(statusTxt=="error")
+ alert("Error: "+xhr.status+": "+xhr.statusText)
+ });
+
+}
 
 
+ function tomorrowFunc() {
 
+
+ var today = moment();
+ var tomorrow = today.add('days', 1);
+ chosendate = moment(tomorrow).format("YYYY-MM-DD");
+
+$("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+if(statusTxt=="error")
+alert("Error: "+xhr.status+": "+xhr.statusText)
+ });
+ }
+
+ function yesterdayFunc() {
+
+
+ var today = moment();
+ var tomorrow = today.subtract('days', 1);
+ chosendate = moment(tomorrow).format("YYYY-MM-DD");
+
+ $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+ if(statusTxt=="error")
+ alert("Error: "+xhr.status+": "+xhr.statusText)
+ });
+ }
 
 
 
@@ -578,10 +561,8 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
 
 </div>
-
 <div id="timeline" class="clear">
-<p>Currently Showing: Today</p>
-  
+  <p>Currently Selected Date:</p>
   </br>
 
 
@@ -597,7 +578,7 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
       $bookingtime = $opentime;
   
-       echo '<button onclick="yesterdayFuncaddada">Yesterday</button>';
+       echo '<button onclick="yesterdayFunc">Yesterday</button>';
  echo '<button onclick="todayFunc()">Today</button>';
  echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
  echo '</br>';
@@ -634,9 +615,6 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
             //Formats the booking time so it can be used to query the database
             $form_bookingtime = (string)date('H:i:s', $bookingtime);
 
-            //Formats the booking time to pass via javascript - RENAME ME PLEASE
-            $js_bookingtime = (string)date('Hi', $bookingtime);
-
             //Query that will check for any bookings that match given date (default today), room and time
             //and that are accepted.
             $query_Room = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE 
@@ -672,18 +650,18 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
             {
 
 
-              //'.$js_bookingtime.'
+
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null, '.$js_bookingtime.')"></td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null)"></td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
 
             }
@@ -716,9 +694,7 @@ echo '<button type="button" id="bob"
 
  echo '<input type="text" class="date_input" id="grid_datepicker" width:50px>';
 
-echo '</div>'
-
-;
+echo '</div>';
 
 echo '</br>';
 ?>

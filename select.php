@@ -44,7 +44,7 @@
 
 
       var today = moment();
-      var tomorrow = today.add('days', 1);
+      var tomorrow = today.add(1 , 'days');
       chosendate = moment(tomorrow).format("YYYY-MM-DD");
                    
       $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
@@ -57,7 +57,7 @@
 
 
       var today = moment();
-      var tomorrow = today.subtract('days', 1);
+      var tomorrow = today.subtract(1 , 'days');
       chosendate = moment(tomorrow).format("YYYY-MM-DD");
                    
       $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
@@ -70,14 +70,13 @@
 
 
 
-
-
-
- <p id="chocolate">Selected date booking grid view</p>
- </br>
-
-
  <?php
+
+
+
+
+
+
 
       $all_rooms = array("Red", "Blue", "Green", "Yellow");
 
@@ -85,13 +84,15 @@
       $closetime = strtotime('22:00');
 
       $chosendate = $_POST["chosendate"];
-      $first_cell = $_POST["first_cell"];
-      echo ''.$first_cell.'';
+  
     
 
       $newDate = date("Y-m-d", strtotime($chosendate));
+      $displayDate = date("l jS F Y", strtotime($chosendate));
 
- 
+       echo '<p">Currently Showing: '.$displayDate.'</p>
+ </br>';
+
 
       //Initalizes the booking time to be used in the loop
       //CHANGE THE NAME OF BOOKING TIME POSSIBLY? SEEMS A BIT DAFT HERE 
@@ -164,14 +165,15 @@
               //Stores the bookings ID in a variable called ID, used to pass in the onclick method. REPHRASE THIS
                 //NOT WORKING JUST RETURNS 10.
               
-              $booking_id = $row['band_Name']; 
+              $band_Name = $row['band_Name'];
+              $booking_id = $row['id']; 
 
               }
 
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$booking_id.'</td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else

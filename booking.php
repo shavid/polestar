@@ -189,6 +189,7 @@
           fname = $("#fname").val();
           lname = $("#lname").val();
           mobile = $("#mobile").val();
+          bandName = $("#band_Name").val();
           email = $("#email").val();
           date = $("#date_input").val(); 
           startTime = $("#startTime").val();
@@ -238,7 +239,7 @@
       //Relevant error checking is in place
       $(document).ready(function(){
         $("#Submit").on("click", function(){
-          $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, email:email, date:date, startTime:startTime
+          $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, bandName:bandName, email:email, date:date, startTime:startTime
           , endTime:endTime, room:room, costEstimate:costEstimate, captcha_code:captcha_code} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
@@ -271,6 +272,9 @@
         <input type="text" id="date_input" class="input">
           <br />
       
+       <label id="booking-label">Band Name :</label>
+          <input type="text" id="band_Name" class="input">
+            <br />
        
       <!-- Following PHP code auto populates the start/end time input -->
       <?php
@@ -280,8 +284,8 @@
 
         //Sets the inital open and close time.
         //These can be changed as per requirements
-        $opentime = strtotime('09:00');
-        $closetime = strtotime('22:00');
+        $opentime = strtotime('10:00');
+        $closetime = strtotime('23:00');
 
 
         //Initalizes the booking time to be used in the loop
@@ -312,6 +316,7 @@
         echo'<select id="endTime" class="input">';
 
         echo '<option></option>';
+
 
         //While the booking time is before the closing time and after the open time.
         while($bookingtime <= $closetime && $bookingtime >= $opentime) 
