@@ -15,7 +15,8 @@ $bookingTime = $_POST["bookingTime"];
 
 
 //RENAME THESE
-
+$date = DateTime::createFromFormat('Hi', $bookingTime);
+$output = $date->format('H:i');
 
 
 
@@ -28,9 +29,6 @@ $bookingTime = $_POST["bookingTime"];
 if ($booking_ID == null)
 
 {
-
-$date = DateTime::createFromFormat('Hi', $bookingTime);
-$output = $date->format('H:i');
 
 echo 'No booking on selected slot.
       </br>
