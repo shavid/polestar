@@ -278,29 +278,49 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
 
       }
-// OPENS AND CLOSES MANUALBOOKING DIV\
+// OPENS AND CLOSES MANUALBOOKING DIV //PSEUDO
+// If SelectedBooking windows is open, close it and open Manual Booking. or just open manual booking.
   $(document).ready(function() {
   $("a#manual-booking-button").click(function(){
-  $("div#manualBooking").fadeIn(1000);
+	  if ($("div#selectedBooking").is(':visible')) {
+		  $("div#selectedBooking").fadeOut(1000);
+		  $("div#manualBooking").fadeIn(1000);
+	  }
+	  else {
+  $("div#manualBooking").fadeIn(1000);}
 });});
 
 
 
-// OPENS AND CLOSES THE SELECTEDBOOKING DIV - u fucking wot
+// OPENS AND CLOSES THE SELECTEDBOOKING DIV - u fucking wot //PSUEDO
+//
         function testfunc(bookingID, bookingTime) {
-  $("div#selectedBooking").fadeIn(1000);
-    $("#selectedBooking-info").load("booking_popup.php", {bookingID:bookingID, bookingTime:bookingTime}, function(responseTxt,statusTxt,xhr){
-    if(statusTxt=="error")
+			if ($('div#manualBooking').is(':visible')) {
+				$('div#manualBooking').fadeOut(1000);
+				$("div#selectedBooking").fadeIn(1000);
+    	$("#selectedBooking-info").load("booking_popup.php", 
+					{bookingID:bookingID, bookingTime:bookingTime}, 
+					function(responseTxt,statusTxt,xhr){
+						if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
+				}
+			else{
+		$("div#selectedBooking").fadeIn(1000);
+    	$("#selectedBooking-info").load("booking_popup.php", 
+					{bookingID:bookingID, bookingTime:bookingTime}, 
+					function(responseTxt,statusTxt,xhr){
+						if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
+			}
 
 
-
- 
-
-
-
-
+//CLOSES ALL POPUPS
+$("button.close-popup").click(function(){
+    $("div.popup-container").fadeOut(1000);
+  });
+		}
 
 
 
@@ -321,10 +341,7 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 //    {
 //        container.fadeOut(1000);}
 //    });
-  $("button.close-popup").click(function(){
-    $("div.popup-container").fadeOut(1000);
-  });
-     }
+  
   //RESTING WAITING TO BE INTEGRATED...
   //, first_cell:first_cell
 
@@ -580,11 +597,11 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 </div>
 
 <div id="timeline" class="clear">
-<p>Currently Showing: Today</p>
-  
-  </br>
+	<div class="timeline-title">
+    Currently Showing: Today
+    </div>
 
-
+	<div class="timeline-buttons">
     <?php
 
       $all_rooms = array("Red", "Blue", "Green", "Yellow");
@@ -594,14 +611,16 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
       //Initalizes the booking time to be used in the loop
       //CHANGE THE NAME OF BOOKING TIME POSSIBLY? SEEMS A BIT DAFT HERE 
-
-      $bookingtime = $opentime;
+	  $bookingtime = $opentime;
   
-       echo '<button onclick="yesterdayFuncaddada">Yesterday</button>';
- echo '<button onclick="todayFunc()">Today</button>';
- echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
- echo '</br>';
- echo '</br>';
+    echo '<button onclick="yesterdayFuncaddada">Yesterday</button>';
+ 	echo '<button onclick="todayFunc()">Today</button>';
+ 	echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
+ 
+ 	//ENDS TIMELINE-BUTTONDIV
+ echo '</div>
+ 		<div class="timeline-content">';
+		//^Starts Timeline-content div
 
       echo '<table border ="1" id="the_table">';
 
@@ -703,24 +722,22 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
       }
 
-echo '</table>';
+echo '</table> </div>';
+//^ ENDS TIMELINE CONTENT DIV AND TABLE
 
 
 
 
 
-
+echo '<div class="timeline-selector">';
 
 echo '<button type="button" id="bob" 
                 onclick="changedate()">Pick Date</button>';
 
  echo '<input type="text" class="date_input" id="grid_datepicker" width:50px>';
 
-echo '</div>'
-
-;
-
-echo '</br>';
+echo '</div></div>';
+//^ENDS ALL TIMELINE SECTION
 ?>
 
 <div id="selectedBooking" class="clear popup-container">
@@ -729,11 +746,6 @@ echo '</br>';
   <div class="bottom-note"><button class="close-popup">Close</button></div>
   </br>
 </div>
-
-
-
-
-
 
 <div id="manualBooking" class=" clear popup-container">
       <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
