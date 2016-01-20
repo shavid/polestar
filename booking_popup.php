@@ -1,6 +1,19 @@
+<html>
+    <script>
+
+
+      $(function() {
+        $( "#date_inputs" ).datepicker({
+         changeMonth: true,
+         changeYear: true,
+         minDate: 0+2,
+         dateFormat: "dd-mm-yy"
+        });
+      });
 
 
 
+    </script>
 <?php 
 
 //Will be loaded into the booking admin page
@@ -12,6 +25,13 @@ $con=mysqli_connect("localhost","root","cake123","polestar");
 
 
 $booking_ID = $_POST["bookingID"];
+$bookingTime = $_POST["bookingTime"];
+
+
+//RENAME THESE
+
+
+
 
 
   $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE id = '$booking_ID'");
@@ -23,8 +43,118 @@ if ($booking_ID == null)
 
 {
 
+$output = date('H:i', $bookingTime); 
+
 echo 'No booking on selected slot.
+      </br>
+      </br>
 ';
+
+echo '<p>Manually added bookings will be auto accepted.</p>
+      </br>
+      
+      <p>First Name: <input type="text" id="fname"></input> </p>
+      <p>Last Name : <input type="text" id="lname"></input></p>
+      <p>Mobile Number : <input type="text" id="mobile"></input></p>
+      <p>Email : <input type="text" id="email"></p>
+      <p>Date of Booking: <input type="text" id="manual_book_date" class="date_inputs"></p>
+
+     ';
+
+       echo '<label id="booking-label">Start Time:</label>';
+        echo '<select id = "startTime">';
+
+
+
+        //Sets the inital open and close time.
+        //These can be changed as per requirements
+        $opentime = strtotime('10:00');
+        $closetime = strtotime('23:00');
+
+
+        //Initalizes the booking time to be used in the loop
+        $bookingtime = $opentime;
+  
+        //Echos a blank option for default.
+        echo '<option></option>';
+
+        //While the booking time is before the closing time and after the open time.
+        while($bookingtime <= $closetime && $bookingtime >= $opentime) 
+
+          {
+
+            //RENAME THESE
+            $theapple = date('H:i', $bookingtime);
+            $theapple = (string)$theapple;
+
+            if($theapple == $output){
+            //Echos a option , the value is the same as the time displayed
+            echo '<option selected = "selected">'.date('H:i', $bookingtime).'</option>'."\n";
+
+            $bookingtime = strtotime('+30 minutes', $bookingtime);
+            }
+            else
+
+            {
+
+             echo '<option value="'. date('H:i', $bookingtime) .'">' . date('H:i', $bookingtime) . 
+            '</option>'."\n";
+
+            $bookingtime = strtotime('+30 minutes', $bookingtime);   
+
+            }
+          }
+
+        echo "</select>"; 
+      echo '</p>';
+
+
+      echo '<label id="booking-label">End Time:</label>';
+        echo '<select id = "endTime">';
+
+
+
+        //Sets the inital open and close time.
+        //These can be changed as per requirements
+        $opentime = strtotime('10:00');
+        $closetime = strtotime('23:00');
+
+
+        //Initalizes the booking time to be used in the loop
+        $bookingtime = $opentime;
+  
+        //Echos a blank option for default.
+        echo '<option></option>';
+
+        //While the booking time is before the closing time and after the open time.
+        while($bookingtime <= $closetime && $bookingtime >= $opentime) 
+
+          {
+
+         
+            //Echos a option , the value is the same as the time displayed
+            echo '<option value="'. date('H:i', $bookingtime) .'">' . date('H:i', $bookingtime) . 
+            '</option>'."\n";
+
+            $bookingtime = strtotime('+30 minutes', $bookingtime);
+            
+            
+          }
+
+        echo "</select>"; 
+      echo '</p>
+
+
+
+    
+      <p>Room Requested:
+        <select id="room">
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Green">Green</option>
+        </select> 
+      </p>';
 
 }
 
@@ -86,7 +216,7 @@ while($row = mysqli_fetch_array($result)) {
 
 
 
-echo ''.$booking_ID.''
+
 
 
 
@@ -96,7 +226,7 @@ echo ''.$booking_ID.''
 
 
 ?>
-
+</html>
 <!-- 
 
 

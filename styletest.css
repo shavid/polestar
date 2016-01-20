@@ -28,8 +28,8 @@ height: 35px;
 
 input.ui-datepicker{
 
-    width:50px;
-     font-size:10px;
+	width:50px;
+	 font-size:10px;
 }
 
 tr td { background-color: white }
@@ -47,14 +47,14 @@ font-size: 1em;
 
 td[id=cell_time]{
 
-    color: #00ff00;
-    
-    white-space: nowrap;
-    font-size: 0.7em;
-    text-align: right;
-    padding-right: 5px;
+	color: #00ff00;
+	
+	white-space: nowrap;
+  	font-size: 0.7em;
+  	text-align: right;
+  	padding-right: 5px;
   
-    }
+	}
 
 
  
@@ -71,107 +71,109 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 
 .wrapper { 
 
-    margin: auto;   
-    border-left:solid 3px #000;
-    border-right: solid 3px #000;
-    width: 97%;
-    /*padding: 1em 0;*/
-    height: 100%;
+	margin: auto;	
+	border-left:solid 3px #000;
+	border-right: solid 3px #000;
+	width: 97%;
+	/*padding: 1em 0;*/
+	height: 100%;
 }
 
 /*LOGIN.PHP*/
 .login-content { 
-    border: solid #F00;
-    text-align:center;
-    width: 40%;
-    margin: 1em auto;
-    padding: 1em 0;
+	border: solid #F00;
+	text-align:center;
+	width: 40%;
+	margin: 1em auto;
+	padding: 1em 0;
 }
 .login-title {
-    padding-bottom: 2em;
+	padding-bottom: 2em;
 }
 
 /*BOOKINGMANAGE.php*/
 /*TOP BAR*/
 #manager-nav {
-    position:relative;
-    top: 0;
-    height: 30px;
-    width: 100%;
-    background: #666;
+	position:relative;
+	top: 0;
+	height: 30px;
+	width: 100%;
+	background: #666;
 }
 
 .manager-menu.items {
 }
 
 .manager-menu-items > li {
-    float:left;
-    padding: 0px 15px;}
+	float:left;
+	padding: 0px 15px;}
 
 #top {
-    width: 48%;
-    height: 37%;
-    border: solid #00F;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    overflow-y:scroll;
+	width: 48%;
+	height: 37%;
+	border: solid #00F;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	overflow-y:scroll;
     overflow-x:hidden;
 }
 
 #input{
-    font-size: 18px;
-    border: solid #00F;
-    margin-top: 1em;
-    margin-bottom: 1em;
+	font-size: 18px;
+	border: solid #00F;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 
 #logout {
 
-    
-    margin-top: 1em;
-    position: absolute;
-    top: 0px;
-    left: 35px;
+	
+	margin-top: 1em;
+	position: absolute;
+	top: 0px;
+	left: 35px;
 
-    margin-bottom: 5em;
+	margin-bottom: 5em;
 }
 
 
 #timeline {
-    height: 47%;
-    border: solid #00F;
-    padding: 25px 10px;
+	height: 47%;
+	border: solid #00F;
+	padding: 25px 10px;
     overflow-y:scroll;
     overflow-x:scroll;
 }
 .timeline-title{
-    text-align:center;
+	text-align:center;
 }
 .timeline-buttons{
-    padding-bottom:5px;
+	padding-bottom:5px;
 }
 .timeline-content{
-    padding-bottom:5px;
+	padding-bottom:5px;
 }
 .timeline-selector{
 }
 
 #selectedBooking {
     position: fixed;
-    top: 50;
-    left: 50;
-    width: 25%;
-    height: 25%;
+    top: 30%;
+    left: 30%;
+    width: auto;
+    height: auto;
     background-color: #000;
-   
-    opacity: 0.7;
+    filter:alpha(opacity=0);
+    -moz-opacity:0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.85;
     z-index: 100;
-  
+float:left
     
 }
 #manualBooking {
-        position: fixed;
+	    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -184,18 +186,19 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
     z-index: 100;
     display: none;
      visibility: hidden;
+     color: white;
 }
 
 /*WHAT IS THIS
 #div_manual_bookings {
-    height: 44%;
-    border: solid #00F;
-    padding-top: 25px;
+	height: 44%;
+	border: solid #00F;
+	padding-top: 25px;
     padding-right: 50px;
     padding-bottom: 25px;
     padding-left: 10px;
-    width: 70%; 
-    margin: auto
+    width: 70%;	
+	margin: auto
 }*/
 
 
@@ -206,20 +209,20 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 /*Booking Form CSS*/
 
 #booking-form {
-    width: 70%; 
-    margin: auto;
-    padding-top: 25px;
-    border: none;
+	width: 70%;	
+	margin: auto;
+	padding-top: 25px;
+	border: none;
 }
 
 label#booking-label {
-    display: inline-block;
-    width: 27%;
-    padding-bottom: 0.5em;
+	display: inline-block;
+	width: 27%;
+	padding-bottom: 0.5em;
 }
 button#Submit {
-    float:right;
-    margin-right: 22%;
+	float:right;
+	margin-right: 22%;
 }
 #captcha-container {padding-top: 1em;}
 #captcha { height: 80px; width: 25%; padding: 0 1%}

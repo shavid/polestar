@@ -1,5 +1,5 @@
 
- <!--  <?php
+  <?php
 
 
       //  require("common.php");
@@ -16,11 +16,13 @@
 //    }
       
 
-      ?> -->
+      ?>
 
 
 
 <html>
+
+
 
 
   <head>
@@ -31,10 +33,8 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script type="text/javascript" src="moment.js"></script>
-    <script type="text/javascript" src="js/datepicker.js"></script>
-    <script type="text/javascript" src="js/pickday.js"></script>
-       <script type="text/javascript" src="js/bookingstatus.js"></script>
-    <link rel="stylesheet" type="text/css" href="styletest.css" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
 
 
@@ -42,22 +42,40 @@
 
     <script>
 
-
-
+   //   $(function () {
+ //var isMouseDown = false;
+ // $("#the_table td")
+  //  .mousedown(function () {
+  //    isMouseDown = true;
+   //   first_cell = $(this).attr('id');
+   //   $(this).toggleClass("highlighted");
       
+     
+    //  return false; // prevent text selection
+   // })
+   // .mouseover(function () {
+   //  if (isMouseDown) {
+   //     $(this).toggleClass("highlighted");
+   //   }
+   // });
+  
+  //$(document)
+   // .mouseup(function () {
+    //  isMouseDown = false;
+   // });
+//});
+
       //Function to set up the Jquery datepicker used within the web page, add's the options to 
       //pick month and year, also forces minimun date to be today's date + 2 days.
       //Finally sets the format to Day - Month - Year as per standard British.
       $(function() {
-        $( "#date_input" ).datepicker({
+        $( ".date_input" ).datepicker({
          changeMonth: true,
          changeYear: true,
-         minDate: 0+2,
+         minDate: 0,
          dateFormat: "dd-mm-yy"
         });
       });
-
-     
 
       //Function that is active on the page load. 
       //When an element contained in the main input div is changed
@@ -99,13 +117,95 @@
 
 
 
+      function accFunc(booking_ID) {
+
+        //Sets the new_room variable to blank each time the accept function is called
+        new_room = ""
+
+  
+        //A confirm message is presented to the user.        
+        var click =confirm("Press Ok to confirm booking!")
+        // If the user clicked to accept the booking the booking_status is set to Accepted.
+        var booking_Status = "Accepted"
 
 
+        //The variable room_change_sel is used to identify the corresponding Select box that is part of 
+        //the same booking as the 
+        //accept button that has just been pressed.
+        room_change_sel = "room_change"+booking_ID;
 
+        //The room_change_sel select button is only available if the user has pressed the adjust button.
+        //As such the variable new_room will only be updated if the select box has been displayed to the user.
+        if (document.getElementById(room_change_sel).style.display = "inline"){
+           new_room = document.getElementById(room_change_sel).options
+           [document.getElementById(room_change_sel).selectedIndex].value;        
+        }
+
+        //If the user has accepted the confirmation box
+        if (click == true) {
+
+          //If the room wasn't adjusted and was kept at it's original value
+          //Then it'll be set to the value of the room paragraph.
+          if (new_room == "")
+          {
+              var requested_room_ID = "requested_room" + booking_ID;
+              new_room = document.getElementById(requested_room_ID).innerHTML;
+
+          }
+          
+          $("#superDiv").load("booking_confrej.php", {booking_ID:booking_ID,
+           booking_Status: booking_Status, new_room:new_room}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+            alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
     
+        } 
+        else {
+          // txt = "You pressed Cancel!";
+          //If the user cancels the box then nothing happens
+        }
+      }
 
 
- 
+      function rejFunc(booking_ID) {
+
+        // If the user clicked to confirm true
+        var click =confirm("Press Ok to reject booking!")
+        var booking_Status = "Rejected"
+        if (click == true) {
+          // txt = "You pressed OK!"; 
+          $("#superDiv").load("booking_confrej.php", {booking_ID:booking_ID, booking_Status:booking_Status}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
+        } 
+        else {
+         // txt = "You pressed Cancel!";
+        //If the user cancels the box then nothing happens
+        } 
+      }
+
+
+
+      function cancFunc(booking_ID) {
+  
+        // If the user clicked to cancel a booking
+        var click =confirm("Press Ok to cancel booking!")
+        var booking_Status = "Cancelled"
+        if (click == true) {
+          // txt = "You pressed OK!"; 
+          $(".left").load("booking_cancelled.php", {booking_ID:booking_ID}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
+    
+        } 
+        else {
+          // txt = "You pressed Cancel!";
+          //If the user cancels the box then nothing happens
+        }
+      }
+
 
 
       function alterRoomFuncs(booking_ID) {
@@ -128,49 +228,62 @@
 
 
       }
-// OPENS AND CLOSES MANUALBOOKING DIV //PSEUDO
-// If SelectedBooking windows is open, close it and open Manual Booking. or just open manual booking.
+// OPENS AND CLOSES MANUALBOOKING DIV\
   $(document).ready(function() {
   $("a#manual-booking-button").click(function(){
-    if ($("div#selectedBooking").is(':visible')) {
-      $("div#selectedBooking").fadeOut(1000);
-      $("div#manualBooking").fadeIn(1000);
-    }
-    else {
-  $("div#manualBooking").fadeIn(1000);}
+  $("div#manualBooking").fadeIn(1000);
 });});
 
 
 
-// OPENS AND CLOSES THE SELECTEDBOOKING DIV - u fucking wot //PSUEDO
-//
-        function testfunc(bookingID, bookingTime) {
-      if ($('div#manualBooking').is(':visible')) {
-        $('div#manualBooking').fadeOut(1000);
-        $("div#selectedBooking").fadeIn(1000);
-      $("#selectedBooking-info").load("booking_popup.php", 
-          {bookingID:bookingID, bookingTime:bookingTime}, 
-          function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
+// OPENS AND CLOSES THE SELECTEDBOOKING DIV
+        function testfunc(bookingID) {
+  $("div#selectedBooking").fadeIn(1000);
+    $("#selectedBooking-info").load("phptest.php", {bookingID:bookingID}, function(responseTxt,statusTxt,xhr){
+    if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
-        }
-      else{
-    $("div#selectedBooking").fadeIn(1000);
-      $("#selectedBooking-info").load("booking_popup.php", 
-          {bookingID:bookingID, bookingTime:bookingTime}, 
-          function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
-      }
 
 
-//CLOSES ALL POPUPS
-$("button.close-popup").click(function(){
-    $("div.popup-container").fadeOut(1000);
-  });
-    }
+
+ function todayFunc() {
+
+ chosendate = moment().format('YYYY-MM-DD');
+
+ $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+ if(statusTxt=="error")
+ alert("Error: "+xhr.status+": "+xhr.statusText)
+ });
+
+}
+
+
+ function tomorrowFunc() {
+
+
+ var today = moment();
+ var tomorrow = today.add('days', 1);
+ chosendate = moment(tomorrow).format("YYYY-MM-DD");
+
+$("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+if(statusTxt=="error")
+alert("Error: "+xhr.status+": "+xhr.statusText)
+ });
+ }
+
+ function yesterdayFunc() {
+
+
+ var today = moment();
+ var tomorrow = today.subtract('days', 1);
+ chosendate = moment(tomorrow).format("YYYY-MM-DD");
+
+ $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+ if(statusTxt=="error")
+ alert("Error: "+xhr.status+": "+xhr.statusText)
+ });
+ }
+
 
 
 
@@ -191,7 +304,10 @@ $("button.close-popup").click(function(){
 //    {
 //        container.fadeOut(1000);}
 //    });
-  
+  $("button.close-popup").click(function(){
+    $("div.popup-container").fadeOut(1000);
+  });
+     }
   //RESTING WAITING TO BE INTEGRATED...
   //, first_cell:first_cell
 
@@ -445,18 +561,11 @@ $("button.close-popup").click(function(){
 
 
 </div>
-
-
-
-
-
-
 <div id="timeline" class="clear">
-  <div class="timeline-title">
-    Currently Showing: Today
-    </div>
+  <p>Currently Selected Date:</p>
+  </br>
 
-  <div class="timeline-buttons">
+
     <?php
 
       $all_rooms = array("Red", "Blue", "Green", "Yellow");
@@ -466,16 +575,14 @@ $("button.close-popup").click(function(){
 
       //Initalizes the booking time to be used in the loop
       //CHANGE THE NAME OF BOOKING TIME POSSIBLY? SEEMS A BIT DAFT HERE 
-    $bookingtime = $opentime;
+
+      $bookingtime = $opentime;
   
-    echo '<button onclick="yesterdayFuncaddada">Yesterday</button>';
-    echo '<button onclick="todayFunc()">Today</button>';
-     echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
- 
-  //ENDS TIMELINE-BUTTONDIV
-    echo '</div>
-    <div class="timeline-content">';
-    //^Starts Timeline-content div
+       echo '<button onclick="yesterdayFunc">Yesterday</button>';
+ echo '<button onclick="todayFunc()">Today</button>';
+ echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
+ echo '</br>';
+ echo '</br>';
 
       echo '<table border ="1" id="the_table">';
 
@@ -507,9 +614,6 @@ $("button.close-popup").click(function(){
           {
             //Formats the booking time so it can be used to query the database
             $form_bookingtime = (string)date('H:i:s', $bookingtime);
-
-            //Formats the booking time to pass via javascript - RENAME ME PLEASE
-            $js_bookingtime = (string)date('Hi', $bookingtime);
 
             //Query that will check for any bookings that match given date (default today), room and time
             //and that are accepted.
@@ -546,18 +650,18 @@ $("button.close-popup").click(function(){
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
             {
 
 
-              //'.$js_bookingtime.'
+
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null, '.$js_bookingtime.')"></td>';
+              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null)"></td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
 
             }
@@ -577,36 +681,35 @@ $("button.close-popup").click(function(){
 
       }
 
-echo '</table> </div>';
-//^ ENDS TIMELINE CONTENT DIV AND TABLE
+echo '</table>';
 
 
 
 
 
-echo '<div class="timeline-selector">';
+
 
 echo '<button type="button" id="bob" 
                 onclick="changedate()">Pick Date</button>';
 
  echo '<input type="text" class="date_input" id="grid_datepicker" width:50px>';
 
-echo '</div></div>';
-//^ENDS ALL TIMELINE SECTION
+echo '</div>';
+
+echo '</br>';
 ?>
 
-
-
-
-
-
-
-<div id="selectedBooking" class="popup-container" hidden>
+<div id="selectedBooking" class="clear popup-container">
   
   <div id="selectedBooking-info"></div>
   <div class="bottom-note"><button class="close-popup">Close</button></div>
   </br>
 </div>
+
+
+
+
+
 
 <div id="manualBooking" class=" clear popup-container">
       <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 

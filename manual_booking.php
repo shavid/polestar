@@ -1,3 +1,5 @@
+<html>
+ <script type="text/javascript" src="js/datepicker.js"></script>
 <?php
 
 
@@ -72,3 +74,5 @@
 
 
 ?>
+
+</html>
