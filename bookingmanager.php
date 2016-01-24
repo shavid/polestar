@@ -35,7 +35,8 @@
     <script type="text/javascript" src="js/pickday.js"></script>
     <script type="text/javascript" src="js/bookingstatus.js"></script>
     <script type="text/javascript" src="js/bookingvalidation.js"></script>
-      <script type="text/javascript" src="js/manualbooking.js"></script>
+
+    <script type="text/javascript" src="js/manualbooking.js"></script>
     
     <link rel="stylesheet" type="text/css" href="styletest.css" media="screen" />
 
@@ -93,7 +94,7 @@
         <div id="top" class="left" >
           <?php
 
-            
+
 
 
             $con=mysqli_connect("localhost","root","cake123","polestar");   

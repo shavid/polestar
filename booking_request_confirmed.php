@@ -7,7 +7,7 @@
 
 
 
-    session_start(); 
+    //session_start(); 
 
     //include_once $_SERVER['DOCUMENT_ROOT'] . '/securimage/securimage.php';
   
@@ -51,10 +51,7 @@
 
 
       //Database connection details.
-      $dbhost     = "localhost";
-      $dbname     = "polestar";
-      $dbuser     = "root";
-      $dbpass     = "cake123";
+      include 'dbsettings.php'; 
 
 
 
