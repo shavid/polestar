@@ -66,14 +66,16 @@
 
           //
 
-          cpr = 9;
+          cpr = 9; //Cost Per Hour
           //Calculates the cost estimate.
           startTimec = startTime.replace(':','.');
           endTimec = endTime.replace(':','.');
           startTimec = Math.ceil(startTimec);
           endTimec = Math.ceil(endTimec);
           totalTime = endTimec - startTimec;
-          totalcost = totalTime * 9;
+          totalcost = totalTime * cpr;
+
+          if totalcost < 9
           document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalTime + " Number should be taken as an estimate only";
           
           });

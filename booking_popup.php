@@ -1,20 +1,17 @@
 <html>
-    <script>
+  <head>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
+    <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+     <script type="text/javascript" src="js/datepicker.js"></script>
+  
+  </head>
 
-      $(function() {
-        $( "#date_inputs" ).datepicker({
-         changeMonth: true,
-         changeYear: true,
-         minDate: 0+2,
-         dateFormat: "dd-mm-yy"
-        });
-      });
+  <body> 
 
-
-
-    </script>
-<?php 
+    <div id="superDiv">
+     <?php 
 
 //Will be loaded into the booking admin page
 //will handle displaying of the booking that has been clicked on and providing a print out of the information.
@@ -57,10 +54,11 @@ echo '<p>Manually added bookings will be auto accepted.</p>
       <p>Last Name : <input type="text" id="lname"></input></p>
       <p>Mobile Number : <input type="text" id="mobile"></input></p>
       <p>Email : <input type="text" id="email"></p>
-      <p>Date of Booking: <input type="text" id="manual_book_date" class="date_inputs"></p>
+      <p>Date of Booking: <input type="text" id="date_input" class="input"></p>
+     
 
      ';
-
+     // <input type="text" id="date_input" class="input">
        echo '<label id="booking-label">Start Time:</label>';
         echo '<select id = "startTime">';
 
@@ -226,6 +224,13 @@ while($row = mysqli_fetch_array($result)) {
 
 
 ?>
+
+
+</div>
+</body>
+</html>
+
+
 </html>
 <!-- 
 

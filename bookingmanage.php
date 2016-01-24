@@ -33,7 +33,11 @@
     <script type="text/javascript" src="moment.js"></script>
     <script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/pickday.js"></script>
-       <script type="text/javascript" src="js/bookingstatus.js"></script>
+    <script type="text/javascript" src="js/bookingstatus.js"></script>
+    <script type="text/javascript" src="js/bookingvalidation.js"></script>
+    <script type="text/javascript" src="js/bookingstatus.js"></script>
+    <script type="text/javascript" src="js/manualbooking.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="styletest.css" media="screen" />
 
 
@@ -45,52 +49,9 @@
 
 
       
-      //Function to set up the Jquery datepicker used within the web page, add's the options to 
-      //pick month and year, also forces minimun date to be today's date + 2 days.
-      //Finally sets the format to Day - Month - Year as per standard British.
-      $(function() {
-        $( "#date_input" ).datepicker({
-         changeMonth: true,
-         changeYear: true,
-         minDate: 0+2,
-         dateFormat: "dd-mm-yy"
-        });
-      });
-
+    
      
 
-      //Function that is active on the page load. 
-      //When an element contained in the main input div is changed
-      //Make variables equal to the values of the corresponding input boxes 
-      //Note to self, can probably make this more efficient so it only executes once the page is
-      //submitted and not everytime something is changed.
-      $(document).ready(function(){
-        $('#inputDiv').on('change', function (e) {
-          fname = $("#fname").val();
-          lname = $("#lname").val();
-          mobile = $("#mobile").val();
-          email = $("#email").val();
-          thedate = $("#manual_book_date").val(); 
-          startTime = $("#startTime").val();
-          endTime = $("#endTime").val();
-          room = $("#room").val();
-          
-          });
-      });
-
-      
-      
-
-
-      $(document).ready(function(){
-        $("#Submit").on("click", function(){
-          $("#inputDiv").load("manual_booking.php", {fname:fname, lname:lname, mobile:mobile, email:email, thedate:thedate, startTime:startTime
-          , endTime:endTime, room:room} , function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
-        });
-      }); 
 
       
 
@@ -128,50 +89,6 @@
 
 
       }
-// OPENS AND CLOSES MANUALBOOKING DIV //PSEUDO
-// If SelectedBooking windows is open, close it and open Manual Booking. or just open manual booking.
-  $(document).ready(function() {
-  $("a#manual-booking-button").click(function(){
-    if ($("div#selectedBooking").is(':visible')) {
-      $("div#selectedBooking").fadeOut(1000);
-      $("div#manualBooking").fadeIn(1000);
-    }
-    else {
-  $("div#manualBooking").fadeIn(1000);}
-});});
-
-
-
-// OPENS AND CLOSES THE SELECTEDBOOKING DIV - u fucking wot //PSUEDO
-//
-        function testfunc(bookingID, bookingTime) {
-      if ($('div#manualBooking').is(':visible')) {
-        $('div#manualBooking').fadeOut(1000);
-        $("div#selectedBooking").fadeIn(1000);
-      $("#selectedBooking-info").load("booking_popup.php", 
-          {bookingID:bookingID, bookingTime:bookingTime}, 
-          function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
-        }
-      else{
-    $("div#selectedBooking").fadeIn(1000);
-      $("#selectedBooking-info").load("booking_popup.php", 
-          {bookingID:bookingID, bookingTime:bookingTime}, 
-          function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
-      }
-
-
-//CLOSES ALL POPUPS
-$("button.close-popup").click(function(){
-    $("div.popup-container").fadeOut(1000);
-  });
-    }
-
 
 
 
@@ -195,17 +112,10 @@ $("button.close-popup").click(function(){
   //RESTING WAITING TO BE INTEGRATED...
   //, first_cell:first_cell
 
-      function changedate() {
-  
-      chosendate = $("#grid_datepicker").val();
-
-      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
-            if(statusTxt=="error")
-              alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
+      
      
 
-      }
+      
     </script>
 
   </head>
@@ -215,7 +125,7 @@ $("button.close-popup").click(function(){
 
 
 
-    <div id="superDiv">
+    <div id="superDiv" class="test123">
     <div class="wrapper">
     
     <nav id="manager-nav" role="navigation">

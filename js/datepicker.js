@@ -10,3 +10,13 @@
          dateFormat: "dd-mm-yy"
         });
       });
+
+
+function changedate() {
+  
+      chosendate = $("#grid_datepicker").val();
+
+      $("#timeline").load("select.php", {chosendate:chosendate}, function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText)
+          });
