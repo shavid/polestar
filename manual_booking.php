@@ -24,11 +24,9 @@
     $status = "Accepted";
 
       //Database connection details.
-      $dbhost     = "localhost";
-      $dbname     = "polestar";
-      $dbuser     = "root";
-      $dbpass     = "cake123";
-
+    include 'dbsettings.php'; 
+            #Connects to the database
+      
 
 
    

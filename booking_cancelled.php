@@ -23,10 +23,10 @@
       //Gets the booking ID and it's status (Accepted/Rejected) via POST
 			$booking_ID = $_POST["booking_ID"];
 			
-   
-			//Opens up a connection to the database
-		  	$con=mysqli_connect("localhost","root","cake123","polestar"); 
-			
+    
+			include 'dbsettings.php'; 
+           #Connects to the database
+            $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
       //First the If statement checks if a booking was accepted,
       // If so it echos this to the user and updates the database so that the correct 
       //booking now has the status of accepted

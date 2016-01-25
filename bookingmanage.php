@@ -93,10 +93,13 @@
         <div id="top" class="left" >
           <?php
 
-            
+          include 'dbsettings.php'; 
+           
+       
 
 
-            $con=mysqli_connect("localhost","root","cake123","polestar");   
+
+            $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Accepted' AND booking_Date = DATE(NOW())");
             echo '<h5> The following are todays confirmed bookings:</h5>';
             
@@ -146,8 +149,10 @@
 
         <div id="top" class="rights">
           <?php 
+
+            include 'dbsettings.php'; 
             #Connects to the database
-            $con=mysqli_connect("localhost","root","cake123","polestar"); 
+            $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             #Loads the bookings that have had inital reciept emails sent out
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Reciept'"); 
       

@@ -17,8 +17,9 @@
 //will handle displaying of the booking that has been clicked on and providing a print out of the information.
 
 
-
-$con=mysqli_connect("localhost","root","cake123","polestar");   
+include 'dbsettings.php'; 
+            #Connects to the database
+            $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
 
 
 $booking_ID = $_POST["bookingID"];

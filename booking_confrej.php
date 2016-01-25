@@ -26,8 +26,9 @@
 			$booking_Status = $_POST["booking_Status"];
       $new_room = $_POST["new_room"];
 			
-			//Opens up a connection to the database
-		  $con=mysqli_connect("localhost","root","cake123","polestar"); 
+			include 'dbsettings.php'; 
+            #Connects to the database
+            $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
 			
       //First the If statement checks if a booking was accepted,
       // If so it echos this to the user and updates the database so that the correct 
