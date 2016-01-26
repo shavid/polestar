@@ -34,7 +34,7 @@
 
           }
           
-          $(".booking_Requests").load("booking_confrej.php", {booking_ID:booking_ID,
+          $(".right").load("booking_confrej.php", {booking_ID:booking_ID,
            booking_Status: booking_Status, new_room:new_room}, function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
             alert("Error: "+xhr.status+": "+xhr.statusText)
@@ -45,6 +45,7 @@
           // txt = "You pressed Cancel!";
           //If the user cancels the box then nothing happens
         }
+        setTimeout('delayedRedirect()', 6000);
       }
 
 
@@ -55,7 +56,7 @@
         var booking_Status = "Rejected"
         if (click == true) {
           // txt = "You pressed OK!"; 
-          $(".left").load("booking_confrej.php", {booking_ID:booking_ID, booking_Status:booking_Status}, function(responseTxt,statusTxt,xhr){
+          $(".right").load("booking_confrej.php", {booking_ID:booking_ID, booking_Status:booking_Status}, function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
           });
@@ -64,11 +65,11 @@
          // txt = "You pressed Cancel!";
         //If the user cancels the box then nothing happens
         } 
+        setTimeout('delayedRedirect()', 6000);
       }
 
 
-      //function delayedRedirect(){
-    //window.location = "bookingmanage.php"
+
 
 
 
@@ -89,5 +90,10 @@
           // txt = "You pressed Cancel!";
           //If the user cancels the box then nothing happens
         }
-        setTimeout('delayedRedirect()', 6000)
+        setTimeout('delayedRedirect()', 6000);
       }
+
+
+       function delayedRedirect(){
+       window.location = "bookingmanage.php";
+        }

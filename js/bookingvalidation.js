@@ -44,7 +44,7 @@ $(document).ready(function(){
     //time, if so an alert is sent and the correct_Time variable is set to false.
     else if (startTime >= endTime)  
       {  
-        alert('Start time must be before end time');   
+       // alert('Start time must be before end time');   
         correct_Time = false;
       } 
     //If the above conditions are not met then the start time must be a value that can be considered 
@@ -77,7 +77,7 @@ $(document).ready(function(){
     //time, if so an alert is sent and the correct_Time variable is set to false.
     else if (startTime >= endTime)  
     {  
-      alert('Start time must be before end time');   
+     // alert('Start time must be before end time');   
       correct_Time = false;
     } 
     //If the above conditions are not met then the start time must be a value that can be considered 

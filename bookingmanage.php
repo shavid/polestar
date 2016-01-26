@@ -147,7 +147,7 @@
         </div>
 
 
-        <div id="top" class="rights">
+        <div id="top" class="right">
           <?php 
 
             include 'dbsettings.php'; 

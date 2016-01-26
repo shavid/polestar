@@ -57,10 +57,12 @@
 
           if (totalTime <100 && endTime != '') {
 
-              endTimeIndex =document.getElementById("endTime").selectedIndex;
+              startTimeIndex =document.getElementById("startTime").selectedIndex;
               alert("Minimun booking time is 1 hour, end time has been changed.");
-              endTimeIndex = endTimeIndex + 1;
+              endTimeIndex = startTimeIndex + 2;
               document.getElementById("endTime").selectedIndex = endTimeIndex;
+
+              
 
           }
 
@@ -75,8 +77,8 @@
           totalTime = endTimec - startTimec;
           totalcost = totalTime * cpr;
 
-          if (totalcost < 9){
-          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalTime + " Number should be taken as an estimate only";
+          if (totalcost > 9){
+          document.getElementById("costEstimate").innerHTML = "Cost Estimate: £" + totalcost + " Number should be taken as an estimate only";
           
           };
       });

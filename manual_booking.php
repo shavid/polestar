@@ -18,7 +18,7 @@
 	$date = date('Y-m-d', strtotime($_POST['thedate']));
 	$startTime = $_POST["startTime"];
 	$endTime = $_POST["endTime"];
-    $room = $_POST["room"];
+  $room = $_POST["room"];
 
 
     $status = "Accepted";
