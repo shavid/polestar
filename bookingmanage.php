@@ -72,37 +72,89 @@
 
   <body>
 
+<div class="overlay"></div>
+<div id="selectedBooking" class="popup-container">
+  
+  <div id="selectedBooking-info"></div>
+  <div id="selectedBooking-info"><button class="close-popup">Close</button>
+  								 <button id="Submit">Submit</button></div>
+</div>
+
+<div id="manualBooking" class="popup-container">
+      <div class="manualBooking-info">
+      <h1>Manual Booking</h1><p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
+      the administrator and the customer.</p>
+      <div id="popup-form">
+      <label class="booking-label">First Name:</label> <input type="text" id="fname"></input><br>
+     <label class="booking-label">Last Name:</label> <input type="text" id="lname"></input><br>
+      <label class="booking-label">Mobile Number:</label> <input type="text" id="mobile"></input><br>
+      <label class="booking-label">Email:</label> <input type="text" id="email"><br>
+      <label class="booking-label">Date of Booking:</label> <input type="text" id="manual_book_date" class="date_input"><br>
+      <label class="booking-label">Start Time:</label> 
+       <select id="startTime">
+         <option value = "09:00">09:00</option>
+         <option value = "09:30">09:30</option>
+         <option value = "10:00">10:00</option>
+       </select>
+      <span style="padding-right:37px;"></span>
+      <label class="booking-label">End Time:</label>
+       <select id="endTime">
+        <option value = "09:30">09:30</option>
+        <option value = "10:00">10:00</option>
+       </select><br>
+      
+      <label class="booking-label">Room Requested:</label>
+        <select id="room">
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Green">Green</option>
+        </select> 
+        </div></div>
+      
+      <!-- Requires Implementation
+      <p>Equipment Required:</p>
+      <p id ="costEstimate">Cost Estimate: </p>
+      -->
+      <div class="manualBooking-info">
+ <button class="close-popup">Close</button>
+ <button id="Submit">Submit</button> 
+ </div>
+    
+    </div>
 
 
 
     <div id="superDiv" class="test123">
+    <div class="manager-nav" role="navigation">
+    	<div class="wrapper">
+        <a class="logo"><h1>Polestar Studios Booking System Alpha 0.65</h1></a>
+        <div class="nav-bar">
+        <ul>
+            <li><a href="#" id="manual-booking-button">Add Booking</a></li>
+            <li><a href="bookingmanage.php">Reload</a></li>
+            <li><a href="booking.php">Booking.php</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul></div></div></div>
     <div class="wrapper">
     
-    <nav id="manager-nav" role="navigation">
-    <!-- #site-navigation -->
-        <ul class="manager-menu-items">
-          <li class="menu-item"><a href="logout.php">Logout</a></li>
-            <li class="menu-item"><a href="booking.php">Booking.php</a></li>
-            <li class="menu-item"><a href="bookingmanage.php">Reload</a></li>
-            <li class="menu-item"><a href="#" id="manual-booking-button">Add Booking</a></li>
-        </ul></nav>
+    
         
 
 
 
-        <div id="top" class="left" >
+        <div class="top-box left" >
+         
           <?php
 
           include 'dbsettings.php'; 
-           
-       
-
-
-
+		  
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Accepted' AND booking_Date = DATE(NOW())");
             echo '<h5> The following are todays confirmed bookings:</h5>';
-            
+			
+            echo '<div class="top-box-container">';
+			
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything fro mthe query.
 
@@ -144,10 +196,11 @@
                 ;
               }
           ?>
+        	</div>
         </div>
 
 
-        <div id="top" class="right">
+        <div class="top-box right">
           <?php 
 
             include 'dbsettings.php'; 
@@ -156,7 +209,9 @@
             #Loads the bookings that have had inital reciept emails sent out
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Reciept'"); 
       
-            echo '<h5>Unconfirmed bookings.</h5> </br>';
+            echo '<h5>Unconfirmed bookings.</h5>
+			<div class="top-box-container">';
+			
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything from the query.
 
@@ -308,7 +363,7 @@
 
 
 
-
+</div>
 </div>
 
 
@@ -466,56 +521,7 @@ echo '</div></div>';
 
 
 
-<div id="selectedBooking" class="popup-container" hidden>
-  
-  <div id="selectedBooking-info"></div>
-  <div class="bottom-note"><button class="close-popup">Close</button></div>
-  </br>
-</div>
 
-<div id="manualBooking" class=" clear popup-container">
-      <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
-      the administrator and the customer.</p>
-      <p>First Name: <input type="text" id="fname"></input> </p>
-      <p>Last Name : <input type="text" id="lname"></input></p>
-      <p>Mobile Number : <input type="text" id="mobile"></input></p>
-      <p>Email : <input type="text" id="email"></p>
-      <p>Date of Booking: <input type="text" id="manual_book_date" class="date_input"></p>
-
-      <p>Start Time: 
-       <select id="startTime">
-         <option value = "09:00">09:00</option>
-         <option value = "09:30">09:30</option>
-         <option value = "10:00">10:00</option>
-       </select>
-      </p>
-
-      <p>End Time:
-       <select id="endTime">
-        <option value = "09:30">09:30</option>
-        <option value = "10:00">10:00</option>
-       </select>
-      </p>
-
-
-    
-      <p>Room Requested:
-        <select id="room">
-          <option value="Red">Red</option>
-          <option value="Blue">Blue</option>
-          <option value="Yellow">Yellow</option>
-          <option value="Green">Green</option>
-        </select> 
-      </p>
-
-      <!-- Requires Implementation
-      <p>Equipment Required:</p>
-      <p id ="costEstimate">Cost Estimate: </p>
-      -->
- <button id="Submit">Submit</button> 
- <button class="close-popup">Close</button>
-    
-    </div>
     </div>
   </div>
     

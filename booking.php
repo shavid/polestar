@@ -13,44 +13,45 @@
     <script type="text/javascript" src="js/bookingvalidation.js"></script>
     <script type="text/javascript" src="js/costcalculators.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styletest.css">
 
 
   </head>
 
-  <body> 
+  <body id="booking"> 
 
     <div id="superDiv">
+    	<div class=""><h1>Polestar Booking</h1>
+        	<p>Please fill in all of the relevant details and click 'Submit'. We will get back to you via email or phone confirming your booking. Thank you.</p></div>
       <div id="booking-form">
-
-        <label id="booking-label">First Name:</label>
+        <label class="booking-label">First Name:</label>
         <input type="text" id="fname" class="input"></input>
         <br />
 
-        <label id="booking-label">Last Name :</label>
+        <label class="booking-label">Last Name :</label>
         <input type="text" id="lname" class="input"></input>
         <br />
 
-        <label id="booking-label">Mobile Number :</label>
+        <label class="booking-label">Mobile Number :</label>
         <input type="text" id="mobile" class="input"></input>
         <br />
 
-        <label id="booking-label">Email :</label>
+        <label class="booking-label">Email :</label>
         <input type="email" id="email" class="input">
         <br />
 
-        <label id="booking-label">Date of Booking :</label>
+        <label class="booking-label">Date of Booking :</label>
         <input type="text" id="date_input" class="input">
         <br />
 
-        <label id="booking-label">Band Name :</label>
+        <label class="booking-label">Band Name :</label>
         <input type="text" id="band_Name" class="input">
         <br />
 
         <!-- Following PHP code auto populates the start/end time input -->
         <?php
 
-          echo '<label id="booking-label">Start Time:</label>';
+          echo '<label class="booking-label">Start Time:</label>';
           echo '<select id = "startTime">';
 
           //Sets the inital open and close time.
@@ -76,12 +77,12 @@
           }
 
           echo "</select>"; 
-          echo "<br />";
+          echo '<span style="padding-left:37px;"></span>';
 
           $bookingtime = $opentime;
 
 
-          echo'<label id="booking-label">End Time:</label>';
+          echo'<label class="booking-label">End Time:</label>';
           echo'<select id="endTime" class="input">';
           echo '<option></option>';
 
@@ -100,7 +101,7 @@
         ?>
 
     <br />
-    <label id="booking-label">Room Requested:</label>
+    <label class="booking-label">Room Requested:</label>
     <select id="room" class="input">
       <option value="Red">Red</option>
       <option value="Blue">Blue</option>
@@ -111,7 +112,7 @@
 
 
   <!-- Requires Implementation
-  <label id="booking-label">Equipment Required:</label>
+  <label class="booking-label">Equipment Required:</label>
   <select id="gear1">
   <option value="Drums">Drum Kit</option>
   <option value="Bass">Bass Amp</option>
@@ -149,12 +150,6 @@
 
   <button id="Submit" disabled>Submit</button></div>
   </div>
-
-  </br>
-
-
-
-
 </div>
 </body>
 </html>

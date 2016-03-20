@@ -18,10 +18,6 @@
           });
       });
 
-      
-      
-
-
       $(document).ready(function(){
         $("#Submit").on("click", function(){
           $("#inputDiv").load("manual_booking.php", {fname:fname, lname:lname, mobile:mobile, email:email, thedate:thedate, startTime:startTime
@@ -33,16 +29,18 @@
       }); 
 
 
-      / OPENS AND CLOSES MANUALBOOKING DIV //PSEUDO
+      // OPENS AND CLOSES MANUALBOOKING DIV //PSEUDO
 // If SelectedBooking windows is open, close it and open Manual Booking. or just open manual booking.
   $(document).ready(function() {
   $("a#manual-booking-button").click(function(){
     if ($("div#selectedBooking").is(':visible')) {
       $("div#selectedBooking").fadeOut(1000);
       $("div#manualBooking").fadeIn(1000);
+	  $("div.overlay").fadeIn(1000);
     }
     else {
   $("div#manualBooking").fadeIn(1000);}
+  $("div.overlay").fadeIn(1000);
 });});
 
 
@@ -51,9 +49,10 @@
 //
         function testfunc(bookingID, bookingTime) {
       if ($('div#manualBooking').is(':visible')) {
+		  $("div.overlay").fadeIn(1000);
         $('div#manualBooking').fadeOut(1000);
         $("div#selectedBooking").fadeIn(1000);
-      $("#selectedBooking-info").load("booking_popup.php", 
+     	$("#selectedBooking-info").load("booking_popup.php", 
           {bookingID:bookingID, bookingTime:bookingTime}, 
           function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
@@ -61,31 +60,28 @@
           });
         }
       else{
-    $("div#selectedBooking").fadeIn(1000);
-      $("#selectedBooking-info").load("booking_popup.php", 
+		$("div.overlay").fadeIn(1000);
+		$("div#selectedBooking").fadeIn(1000);
+      	$("#selectedBooking-info").load("booking_popup.php", 
           {bookingID:bookingID, bookingTime:bookingTime}, 
           function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)
-          });
-      }
-
+          });};
+      
 
 //CLOSES ALL POPUPS
+
 $("button.close-popup").click(function(){
-    $("div.popup-container").fadeOut(1000);
-  });
-
+    $("div.overlay").fadeOut(1000);
+	$("div.popup-container").fadeOut(1000);
+	});
 //Click outside the popup should close it!
-//$("body").click(function(){
-  //  $("div.popup-container").fadeOut(1000); 
-  //});
-  
-    
-  
-
-
-    };
+$("div.overlay").click(function(){
+	$("div.overlay").fadeOut(1000);
+	$("div.popup-container").fadeOut(1000); 
+});
+};
 
 
 

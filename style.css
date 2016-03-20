@@ -71,10 +71,11 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
 
 .wrapper { 
 
-    margin: auto;   
+    margin-left: auto;
+	margin-right: auto;   
     border-left:solid 3px #000;
     border-right: solid 3px #000;
-    width: 97%;
+    width: 1280;
     /*padding: 1em 0;*/
     height: 100%;
 }
@@ -183,7 +184,6 @@ body { font-family: 'Vollkorn', serif; font-size: 18px; font-size: 1.125rem; fon
     opacity: 0.7;
     z-index: 100;
     display: none;
-     visibility: hidden;
 }
 
 /*WHAT IS THIS

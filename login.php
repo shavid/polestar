@@ -107,9 +107,10 @@
     }
     
 ?>
-<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-<body>
+<link rel="stylesheet" type="text/css" href="styletest.css" media="screen" />
+<body id="login">
 <div class="wrapper">
+<div class="page-title"><h1>Polestar Booking System Alpha0.65</h1></div>
 <div class="login-content">
 <div class="login-title"><h1>Login</h1></div>
 <form action="login.php" method="post">
