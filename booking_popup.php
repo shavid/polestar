@@ -176,30 +176,31 @@ while($row = mysqli_fetch_array($result)) {
               $end_Time["$id"] = $row['end_Time'];
               $room["$id"] = $row['room'];
               $booking_id["$id"] = $id;
-              
+              $band_Name["$id"] = $row['band_Name'];
+			  
               $formatDate = DateTime::createFromFormat('Y-m-d', $date["$id"]);
-              $newdate = $formatDate->format('l jS F Y');
+              $newdate = $formatDate->format('d/m/y');
 
               //Reformats the start time to a more view friendly format.
               $format_ST = DateTime::createFromFormat('H:i:s', $start_Time["$id"]);
-              $start_Time["$id"] = $format_ST->format('g:i a');
+              $start_Time["$id"] = $format_ST->format('g:ia');
 
               //Reformats the end time to a more view friendly format.
               $format_ET = DateTime::createFromFormat('H:i:s', $end_Time["$id"]);
-              $end_Time["$id"] = $format_ET->format('g:i a');
+              $end_Time["$id"] = $format_ET->format('g:ia');
 
     
               echo '
-                Selected Booking:
-                <div id="accepted_Bookings">
-                <p>
-                </br>
-                <p>Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].' <br> 
-                Phone Number : '.$mobile["{$id}"].' </br>
-                Date : '.$newdate.' </br>
-                Time : '.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
-                Requested room : '.$room["{$id}"].' </br>
-                Booking ID: '.$booking_id["{$id}"].' </br>
+                <h1>Selected Booking:</h1>
+				<p> The following booking is confirmed.</p>
+                <div id="popup-form">
+                <label class="booking-label">Name:</label>'.$fname["{$id}"] . ' '.$lname["{$id}"].' <br> 
+                <label class="booking-label">Band:</label>'.$band_Name["{$id}"].' </br>
+				<label class="booking-label">Phone Number:</label>'.$mobile["{$id}"].' </br>
+                <label class="booking-label">Date:</label>'.$newdate.' </br>
+                <label class="booking-label">Time:</label>'.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
+                <label class="booking-label">Requested room:</label>'.$room["{$id}"].' </br>
+                <label class="booking-label">Booking ID:</label>'.$booking_id["{$id}"].' </br>
 				<button type="button" id="edit">Edit</button>
                 <button type="button" id="'.$booking_id["{$id}"].'" 
                 onclick="cancFunc('.$booking_id["{$id}"].')">Cancel</button>

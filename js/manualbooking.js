@@ -34,13 +34,13 @@
   $(document).ready(function() {
   $("a#manual-booking-button").click(function(){
     if ($("div#selectedBooking").is(':visible')) {
-      $("div#selectedBooking").fadeOut(1000);
-      $("div#manualBooking").fadeIn(1000);
-	  $("div.overlay").fadeIn(1000);
+      $("div#selectedBooking").fadeOut(500);
+      $("div#manualBooking").fadeIn(500);
+	  $("div.overlay").fadeIn(500);
     }
     else {
-  $("div#manualBooking").fadeIn(1000);}
-  $("div.overlay").fadeIn(1000);
+  $("div#manualBooking").fadeIn(500);}
+  $("div.overlay").fadeIn(500);
 });});
 
 
@@ -49,9 +49,9 @@
 //
         function testfunc(bookingID, bookingTime) {
       if ($('div#manualBooking').is(':visible')) {
-		  $("div.overlay").fadeIn(1000);
-        $('div#manualBooking').fadeOut(1000);
-        $("div#selectedBooking").fadeIn(1000);
+		  $("div.overlay").fadeIn(500);
+        $('div#manualBooking').fadeOut(500);
+        $("div#selectedBooking").fadeIn(500);
      	$("#selectedBooking-info").load("booking_popup.php", 
           {bookingID:bookingID, bookingTime:bookingTime}, 
           function(responseTxt,statusTxt,xhr){
@@ -60,8 +60,8 @@
           });
         }
       else{
-		$("div.overlay").fadeIn(1000);
-		$("div#selectedBooking").fadeIn(1000);
+		$("div.overlay").fadeIn(500);
+		$("div#selectedBooking").fadeIn(500);
       	$("#selectedBooking-info").load("booking_popup.php", 
           {bookingID:bookingID, bookingTime:bookingTime}, 
           function(responseTxt,statusTxt,xhr){
@@ -71,20 +71,21 @@
       
 
 //CLOSES ALL POPUPS
-
 $("button.close-popup").click(function(){
-    $("div.overlay").fadeOut(1000);
-	$("div.popup-container").fadeOut(1000);
+    $("div.overlay").fadeOut(500);
+	$("div.popup-container").fadeOut(500);
 	});
 //Click outside the popup should close it!
 $("div.overlay").click(function(){
-	$("div.overlay").fadeOut(1000);
-	$("div.popup-container").fadeOut(1000); 
+	$("div.overlay").fadeOut(500);
+	$("div.popup-container").fadeOut(500); 
 });
 };
-
-
-
-
-
-    
+		
+//THIS IS MESSY AS FUCK.^^^^^^^^^^^^
+//Also it doesnt work.. I've spent a couple of hours trying to fix it with no avail.
+//Problem:
+//	When freshly loading bookingmanage.php kicking on 'Add Booking' opens popup.
+//	However the close button does not close it.
+//	If click on the table and open 'Selected Booking' popup before clicking 'Add Booking' it closes fine.
+//	I'm stumped.

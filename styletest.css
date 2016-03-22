@@ -10,11 +10,11 @@ p, ul, ol, pre, code, figure {
 }
 
 /*TABLE/DATEPICKER TIMELINE*/
-table{
+#timeline-table{
    border-collapse: collapse;
    table-layout: fixed;
 }
-td{
+#timeline-table td{
 width: 20px;
 height: 35px;
 }
@@ -27,36 +27,50 @@ input.ui-datepicker{
 tr td { background-color: white }
 /* td:hover { background-color: black }; */
 
-td[class=roomcolour]{
-width: 63px;
-height: 40px;
+#timeline-table td[class=roomcolour]{
+width: 25px;
+height: 35px;
 text-align: right;
 font-size: 1em;
+padding-right: 5px;
 }
 
-td[id=cell_time]{
+#timeline-table td[id=cell_time]{
 	color: #000;
 	white-space: nowrap;
   	font-size: 0.7em;
   	padding-right: 5px;
+	height: 15px;
 }
 /*table td.highlighted {
   background-color:#999;
 }*/
-table td:hover {
-  background-color:#999;}
-
+#timeline-table td[class=bookingcell]:hover {
+  background-color:#999;
+}
+#timeline-table td[class=bookingcell] {
+	max-width: 20px;
+	height: 35px;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	overflow: hidden;
+}
 
 
 /***** Structure *****/
 
-html { font-size: 100%; -ms-text-size-adjust: none; -webkit-text-size-adjust: none; }
+html { 
+	font-size: 100%;
+	-ms-text-size-adjust: none; 
+	-webkit-text-size-adjust: none; 
+	overflow-y: scroll;}
 
 body { 
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size: 1em; 
 	color: #000; 
-	background-color: #333; }
+	background-color: #333;
+	overflow: }
 
 
 .wrapper { 
@@ -71,6 +85,14 @@ body {
 .wrapper::after, .wrapper::before {
     content: "";
     display: table;
+}
+
+.wrapper-small {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left:auto;
+	margin-right: auto;
+	width: 1020px;
 }
 
 /*LOGIN.PHP*/
@@ -165,6 +187,19 @@ body {
 	border: 1px solid black;
 	border-radius: 5px;
 	margin-top: 10px;}
+	
+.scroller {
+	height: 99%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#accepted_Bookings {
+	display: inline-block;
+	margin-left:10px;
+	margin-right: 5px;
+	width:228px;
+	border-right: 1px #000 solid}
 
 #input{
 	font-size: 18px;
@@ -188,7 +223,7 @@ body {
 
 /*TIMELINE*/
 #timeline {
-	height: 47%;
+	height: 40%;
 	border: 1px solid #000;
 	border-radius: 5px;
 	padding: 25px 10px;
@@ -259,11 +294,27 @@ body {
 
 /*Booking.PHP*/
 #booking {
-	background-color: #333;
+	background-color: #fff;
+}
+
+#booking .header-wrap{
+	border-top: 5px solid #182981;
+}
+#booking .logo {
+	background: url(Images/polestar-logo-header.jpg) no-repeat;
+	display: block;
+	margin-top: 20px;
+	height: 0;
+	font-size: 0;
+	width: 1020px;
+	overflow: hidden;
+	background-size: 1020px;
+	padding-top: 251px;
+	margin-bottom: 50px;
 }
 
 #booking #booking-form {
-	width: 35%;
+	width: 75%;
     margin: auto;
     border: 1px solid #000;
     border-radius: 5px;
@@ -341,14 +392,26 @@ footer { color: #808080; margin: 40px 15px 0; border-top: 5px solid red; }
 /***** Tables *****/
 
 table { width: 100%; margin-bottom: 20px; margin-bottom: 1.25rem; border-left: 1px solid #ebebeb; border-top: 1px solid #ebebeb; }
-td, th { padding: 5px 10px; padding: 0.3125rem 0.625rem; border-right: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
+td, th { border-right: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
 th { background-color: #f9f9f9; font-weight: 600; color: #000; }
 
 /***** Forms *****/
 
 input { font-size: 12px; font-size: 0.75rem; padding: 5px; padding: 0.3125rem; border: 1px solid #d7d8d8; -webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
 input[type=text], input[type=email], input[type=password] { width: 55%; }
-input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, textarea:hover { border: 1px solid red; }
+input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, textarea:hover { border: 1px solid #182981; }
 input[type=submit] { color: #fff; padding: 5px 10px; padding: 0.3125rem 0.625rem; background: #ccc; text-decoration: none; cursor: pointer; display: inline-block; border: 0; -webkit-appearance: none;}
 input[type=submit]:hover { color: #000;}
 textarea { width: 96%; line-height: 1.5; padding: 5px; padding: 0.3125rem; border: 1px solid #d7d8d8; }
+
+/*USER PAGE*/
+#users {
+}
+
+.user-table {
+	width:100%; text-align:left; border:1px solid #DDDDDD; font-size:12px; color:#000;background:#fff; margin-top:5px; margin-bottom:10px; margin-left: auto; margin-right: auto;
+}
+.user-table th {background-color:#E5E5E5; border:1px solid #BBBBBB; padding:3px 6px; font-weight:normal; color:#000;}
+.user-table tr td {border:1px solid #DDDDDD; padding:5px 6px;}
+.user-table tr.alt td {background-color:#E2E2E2;}
+.user-table tr:hover {background-color:#F0F0F0; color:#000;}

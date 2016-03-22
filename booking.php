@@ -21,8 +21,10 @@
   <body id="booking"> 
 
     <div id="superDiv">
-    	<div class=""><h1>Polestar Booking</h1>
-        	<p>Please fill in all of the relevant details and click 'Submit'. We will get back to you via email or phone confirming your booking. Thank you.</p></div>
+    <div class="wrapper-small">
+    	<div class="header-wrap">
+        <a class="logo" href="http://www.polestarstudios.co.uk/" target="_blank"><h1>Polestar Studios</h1></a></div>
+        	<p>Please fill in all of the relevant details and click 'Submit'. We will get back to you via email or phone confirming your booking. Thank you.</p>
       <div id="booking-form">
         <label class="booking-label">First Name:</label>
         <input type="text" id="fname" class="input"></input>
@@ -149,7 +151,7 @@
   <label id ="submit_text">You must fill in all fields before being able to submit.</label>
 
   <button id="Submit" disabled>Submit</button></div>
-  </div>
+  </div></div>
 </div>
 </body>
 </html>

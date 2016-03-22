@@ -2,7 +2,7 @@
  <!--  <?php
 
 
-      //  require("common.php");
+       require("common.php");
     
     // At the top of the page we check to see whether the user is logged in or not
     //if(empty($_SESSION['user']))
@@ -92,15 +92,15 @@
       <label class="booking-label">Date of Booking:</label> <input type="text" id="manual_book_date" class="date_input"><br>
       <label class="booking-label">Start Time:</label> 
        <select id="startTime">
-         <option value = "09:00">09:00</option>
-         <option value = "09:30">09:30</option>
          <option value = "10:00">10:00</option>
+         <option value = "10:30">10:30</option>
+         <option value = "11:00">11:00</option>
        </select>
       <span style="padding-right:37px;"></span>
       <label class="booking-label">End Time:</label>
        <select id="endTime">
-        <option value = "09:30">09:30</option>
-        <option value = "10:00">10:00</option>
+        <option value = "10:30">10:30</option>
+        <option value = "11:00">11:00</option>
        </select><br>
       
       <label class="booking-label">Room Requested:</label>
@@ -126,16 +126,7 @@
 
 
     <div id="superDiv" class="test123">
-    <div class="manager-nav" role="navigation">
-    	<div class="wrapper">
-        <a class="logo"><h1>Polestar Studios Booking System Alpha 0.65</h1></a>
-        <div class="nav-bar">
-        <ul>
-            <li><a href="#" id="manual-booking-button">Add Booking</a></li>
-            <li><a href="bookingmanage.php">Reload</a></li>
-            <li><a href="booking.php">Booking.php</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul></div></div></div>
+    <?php include ('header.php');?>
     <div class="wrapper">
     
     
@@ -154,13 +145,14 @@
             echo '<h5> The following are todays confirmed bookings:</h5>';
 			
             echo '<div class="top-box-container">';
-			
+			echo '<div class="scroller">';
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything fro mthe query.
 
               $id = $row['id']; 
               $fname["$id"] = $row['fname'];
               $lname["$id"] = $row['lname'];
+			  $band_Name ["$id"] = $row['band_Name'];
               $mobile["$id"] = $row['mobile'];
               $date["$id"] = $row['booking_Date'];
               $start_Time["$id"] = $row['start_Time'];
@@ -169,34 +161,36 @@
               $booking_id["$id"] = $id;
               
               $formatDate = DateTime::createFromFormat('Y-m-d', $date["$id"]);
-              $newdate = $formatDate->format('l jS F Y');
+              $newdate = $formatDate->format('d/m/y');
 
               //Reformats the start time to a more view friendly format.
               $format_ST = DateTime::createFromFormat('H:i:s', $start_Time["$id"]);
-              $start_Time["$id"] = $format_ST->format('g:i a');
+              $start_Time["$id"] = $format_ST->format('g:ia');
 
               //Reformats the end time to a more view friendly format.
               $format_ET = DateTime::createFromFormat('H:i:s', $end_Time["$id"]);
-              $end_Time["$id"] = $format_ET->format('g:i a');
+              $end_Time["$id"] = $format_ET->format('g:ia');
 
     
               echo '<!-- BEGIN content -->
                 <div id="accepted_Bookings">
                 <p>
                 </br>
-                <p>Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].' <br> 
+                <p>Name: '.$fname["{$id}"] . ' '.$lname["{$id}"].' </br>
+				Band:  '.$band_Name["{$id}"] . ' </br>
                 Phone Number : '.$mobile["{$id}"].' </br>
-                Date : '.$newdate.' </br>
-                Time : '.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
-                Requested room : '.$room["{$id}"].' </br>
-                Booking ID: '.$booking_id["{$id}"].' </br>  
+                Date: '.$newdate.' </br>
+                Time: '.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
+                Room: '.$room["{$id}"].' </br>
+            <!--Booking ID: '.$booking_id["{$id}"].' </br> --> 
+			<button type="button" id="edit">Edit</button>
                 <button type="button" id="'.$booking_id["{$id}"].'" 
                 onclick="cancFunc('.$booking_id["{$id}"].')">Cancel</button>
                 </div>'
                 ;
               }
           ?>
-        	</div>
+        	</div></div>
         </div>
 
 
@@ -207,10 +201,14 @@
             #Connects to the database
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             #Loads the bookings that have had inital reciept emails sent out
+			//RECEIPT SPELLED WRONG
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Reciept'"); 
       
             echo '<h5>Unconfirmed bookings.</h5>
 			<div class="top-box-container">';
+			
+			echo '<p>currently not active.</br>
+						Implement in bookingmanage.php under top-right div</p>';
 			
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything from the query.
@@ -373,7 +371,7 @@
 
 <div id="timeline" class="clear">
   <div class="timeline-title">
-    Currently Showing: Today
+   <p>Currently Showing: Today</p>
     </div>
 
   <div class="timeline-buttons">
@@ -393,11 +391,11 @@
      echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
  
   //ENDS TIMELINE-BUTTONDIV
-    echo '</div>
-    <div class="timeline-content">';
+    echo '</div>';
+    echo '<div class="timeline-content">';
     //^Starts Timeline-content div
 
-      echo '<table border ="1" id="the_table">';
+      echo '<table id="timeline-table">';
 
 
 
@@ -466,7 +464,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id="'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else

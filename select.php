@@ -80,8 +80,8 @@
 
       $all_rooms = array("Red", "Blue", "Green", "Yellow");
 
-      $opentime = strtotime('09:00');
-      $closetime = strtotime('22:00');
+      $opentime = strtotime('10:00');
+      $closetime = strtotime('23:00');
 
       $chosendate = $_POST["chosendate"];
   
@@ -90,8 +90,8 @@
       $newDate = date("Y-m-d", strtotime($chosendate));
       $displayDate = date("l jS F Y", strtotime($chosendate));
 
-       echo '<p">Currently Showing: '.$displayDate.'</p>
- </br>';
+       echo '<p>Currently Showing: '.$displayDate.'
+ </p>';
 
 
       //Initalizes the booking time to be used in the loop
@@ -107,7 +107,7 @@
       echo '</br>';
 
 
-      echo '<table border ="1">';
+      echo '<table id="timeline-table">';
 
 
 
@@ -173,7 +173,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id= "'.$cell_ref.'" class="bookingcell" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
@@ -184,7 +184,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null)"></td>';
+              echo '<td class="bookingcell" id= "'.$cell_ref.'" onclick="testfunc(null)"></td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
 
             }
