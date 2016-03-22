@@ -14,13 +14,14 @@
           startTime = $("#startTime").val();
           endTime = $("#endTime").val();
           room = $("#room").val();
+		  band_Name = $("#band_Name").val();
           
           });
       });
 
       $(document).ready(function(){
         $("#Submit").on("click", function(){
-          $("#inputDiv").load("manual_booking.php", {fname:fname, lname:lname, mobile:mobile, email:email, thedate:thedate, startTime:startTime
+          $("#inputDiv").load("manual_booking.php", {fname:fname, lname:lname,band_Name:band_Name, mobile:mobile, email:email, thedate:thedate, startTime:startTime
           , endTime:endTime, room:room} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)

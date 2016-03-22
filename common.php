@@ -1,6 +1,6 @@
  <?php
  	//Version of site. This will display as the header on the relevant pages
-	$sitename = "Polestar Studios Booking System Alpha 0.66";
+	$sitename = "Polestar Studios Booking System Alpha 0.66.1";
 
     // These variables define the connection information for your MySQL database
     $username = "root";

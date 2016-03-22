@@ -85,6 +85,7 @@
       <h1>Manual Booking</h1><p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
       the administrator and the customer.</p>
       <div id="popup-form">
+      <label class="booking-label">Band:</label> <input type="text" id="band_Name"></input><br>
       <label class="booking-label">First Name:</label> <input type="text" id="fname"></input><br>
      <label class="booking-label">Last Name:</label> <input type="text" id="lname"></input><br>
       <label class="booking-label">Mobile Number:</label> <input type="text" id="mobile"></input><br>
@@ -174,8 +175,6 @@
     
               echo '<!-- BEGIN content -->
                 <div id="accepted_Bookings">
-                <p>
-                </br>
                 <p>Name: '.$fname["{$id}"] . ' '.$lname["{$id}"].' </br>
 				Band:  '.$band_Name["{$id}"] . ' </br>
                 Phone Number : '.$mobile["{$id}"].' </br>
@@ -195,21 +194,19 @@
 
 
         <div class="top-box right">
+        
           <?php 
 
             include 'dbsettings.php'; 
             #Connects to the database
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             #Loads the bookings that have had inital reciept emails sent out
-			//RECEIPT SPELLED WRONG
-            $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Reciept'"); 
+			//CHANGED TO REQUESTED
+            $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Requested'"); 
       
             echo '<h5>Unconfirmed bookings.</h5>
 			<div class="top-box-container">';
-			
-			echo '<p>currently not active.</br>
-						Implement in bookingmanage.php under top-right div</p>';
-			
+			echo '<div class="scroller">';
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything from the query.
 
@@ -298,9 +295,9 @@
               
                
               echo '<!-- BEGIN content -->
-                <div id="booking_Requests">       
+                <div id="request_Bookings">       
                   
-                  <p id="pFname'.$booking_id["{$id}"].'"> Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].' </p>
+                  <p id="pFname'.$booking_id["{$id}"].'"> Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].'</br> 
                     Phone Number : '.$mobile["{$id}"].' </br>
                     Date : '.$newdate.' </br>
                     Time : '.$fstart_Time["$id"].' to '.$fend_Time["{$id}"].' </br>
@@ -359,7 +356,7 @@
           ?>
 
 
-
+</div>
 
 </div>
 </div>

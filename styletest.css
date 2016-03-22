@@ -198,8 +198,18 @@ body {
 	display: inline-block;
 	margin-left:10px;
 	margin-right: 5px;
+	padding-top: 2em;
 	width:228px;
 	border-right: 1px #000 solid}
+#request_Bookings {
+	display: inline-block;
+	margin-left:10px;
+	margin-right: 5px;
+	padding-top: 2em;
+	width:415px;
+	border-right: 1px #000 solid}
+	
+	
 
 #input{
 	font-size: 18px;
@@ -223,7 +233,7 @@ body {
 
 /*TIMELINE*/
 #timeline {
-	height: 40%;
+	height: 47%;
 	border: 1px solid #000;
 	border-radius: 5px;
 	padding: 25px 10px;

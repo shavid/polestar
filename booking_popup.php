@@ -53,6 +53,7 @@ echo 'No booking on selected slot.
 echo '<p>Manually added bookings will be auto accepted.</p>
       </br>
       <div class="popup-form">
+	  <label class="booking-label">Band:</label> <input type="text" id="band_Name"></input><br>
       <label class="booking-label">First Name:</label> <input type="text" id="fname"></input><br>
       <label class="booking-label">Last Name:</label> <input type="text" id="lname"></input><br>
       <label class="booking-label">Mobile Number:</label> <input type="text" id="mobile"></input><br>

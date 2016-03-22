@@ -26,6 +26,10 @@
         <a class="logo" href="http://www.polestarstudios.co.uk/" target="_blank"><h1>Polestar Studios</h1></a></div>
         	<p>Please fill in all of the relevant details and click 'Submit'. We will get back to you via email or phone confirming your booking. Thank you.</p>
       <div id="booking-form">
+      	<label class="booking-label">Band Name :</label>
+        <input type="text" id="band_Name" class="input">
+        <br />
+      
         <label class="booking-label">First Name:</label>
         <input type="text" id="fname" class="input"></input>
         <br />
@@ -46,9 +50,7 @@
         <input type="text" id="date_input" class="input">
         <br />
 
-        <label class="booking-label">Band Name :</label>
-        <input type="text" id="band_Name" class="input">
-        <br />
+        
 
         <!-- Following PHP code auto populates the start/end time input -->
         <?php
