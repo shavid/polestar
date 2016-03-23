@@ -106,8 +106,8 @@
       
       <label class="booking-label">Room Requested:</label>
         <select id="room">
-          <option value="Red">Red</option>
           <option value="Blue">Blue</option>
+          <option value="Red">Red</option>
           <option value="Yellow">Yellow</option>
           <option value="Green">Green</option>
         </select> 
@@ -234,7 +234,7 @@
               $fend_Time["$id"] = $format_ET->format('g:i a');
 
 
-              $all_rooms = array("Red", "Blue", "Green", "Yellow");
+              $all_rooms = array("Blue", "Red", "Green", "Yellow");
 
 
 
@@ -342,7 +342,7 @@
 
                     </br> 
 
-                    Booking ID: '.$booking_id["{$id}"].' </br>
+                   <!-- Booking ID: '.$booking_id["{$id}"].' </br>-->
                     <button type="button" id="'.$booking_id["{$id}"].'" 
                     onclick="accFunc('.$booking_id["{$id}"].')">Accept</button>
                     <button type="button" id="'.$booking_id["{$id}"].'" 
@@ -374,7 +374,7 @@
   <div class="timeline-buttons">
     <?php
 
-      $all_rooms = array("Red", "Blue", "Green", "Yellow");
+      $all_rooms = array( "Blue", "Red", "Green", "Yellow");
 
       $opentime = strtotime('10:00');
       $closetime = strtotime('23:00');

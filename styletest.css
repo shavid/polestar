@@ -190,7 +190,7 @@ body {
 	
 .scroller {
 	height: 99%;
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
 }
 
@@ -233,7 +233,7 @@ body {
 
 /*TIMELINE*/
 #timeline {
-	height: 47%;
+	height: 40%;
 	border: 1px solid #000;
 	border-radius: 5px;
 	padding: 25px 10px;

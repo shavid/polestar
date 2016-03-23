@@ -35,7 +35,8 @@
       //booking now has the status of accepted
     		if ($booking_Status == "Accepted"){
     			echo '<!-- BEGIN content -->
-  				<p> Booking with ID: '.$booking_ID.' has been accepted.</p>';
+  				<p> Booking with ID: '.$booking_ID.' has been accepted.</br>
+				Please refresh the page</p>';
 
   				$update = mysqli_query($con, "UPDATE requested_Bookings SET status = 'Accepted', room = '$new_room' WHERE id = $booking_ID");
     		}
@@ -44,7 +45,9 @@
     		//booking was rejected
     		else{
     			echo '<!-- BEGIN content -->
-  				<p> Booking with ID: '.$booking_ID.' has been rejected.</p>';
+  				<p> Booking with ID: '.$booking_ID.' has been rejected.
+				</br>
+				Please refresh the page</p></p>';
   				$update = mysqli_query($con, "UPDATE requested_Bookings SET status = 'Rejected' WHERE id = $booking_ID");
     		};
 ?>

@@ -435,7 +435,7 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
               $fend_Time["$id"] = $format_ET->format('g:i a');
 
 
-              $all_rooms = array("Red", "Blue", "Green", "Yellow");
+              $all_rooms = array("Blue", "Red", "Green", "Yellow");
 
 
 
@@ -568,7 +568,7 @@ alert("Error: "+xhr.status+": "+xhr.statusText)
 
     <?php
 
-      $all_rooms = array("Red", "Blue", "Green", "Yellow");
+      $all_rooms = array("Blue", "Red", "Green", "Yellow");
 
       $opentime = strtotime('10:00');
       $closetime = strtotime('23:00');
@@ -739,8 +739,8 @@ echo '</br>';
     
       <p>Room Requested:
         <select id="room">
-          <option value="Red">Red</option>
           <option value="Blue">Blue</option>
+          <option value="Red">Red</option>
           <option value="Yellow">Yellow</option>
           <option value="Green">Green</option>
         </select> 

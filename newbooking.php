@@ -196,8 +196,8 @@
       <br />
       <label id="booking-label">Room Requested:</label>
         <select id="room" class="input">
-          <option value="Red">Red</option>
           <option value="Blue">Blue</option>
+          <option value="Red">Red</option>
           <option value="Yellow">Yellow</option>
           <option value="Green">Green</option>
         </select> 
@@ -239,7 +239,7 @@
       -->
 <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />  
 <input type="text" class ="input "id="captcha_code" size="10" maxlength="6" />
-<a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+<a href="#" onClick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
     
     </div>
 

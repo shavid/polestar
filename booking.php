@@ -107,8 +107,8 @@
     <br />
     <label class="booking-label">Room Requested:</label>
     <select id="room" class="input">
+      <option value="Blue">Blue</option>      
       <option value="Red">Red</option>
-      <option value="Blue">Blue</option>
       <option value="Yellow">Yellow</option>
       <option value="Green">Green</option>
     </select> 

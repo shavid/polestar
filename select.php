@@ -78,7 +78,7 @@
 
 
 
-      $all_rooms = array("Red", "Blue", "Green", "Yellow");
+      $all_rooms = array("Blue", "Red", "Green", "Yellow");
 
       $opentime = strtotime('10:00');
       $closetime = strtotime('23:00');

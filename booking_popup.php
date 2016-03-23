@@ -152,8 +152,8 @@ echo '<p>Manually added bookings will be auto accepted.</p>
     
       <label class="booking-label">Room Requested:</label>
         <select id="room">
-          <option value="Red">Red</option>
           <option value="Blue">Blue</option>
+		  <option value="Red">Red</option>
           <option value="Yellow">Yellow</option>
           <option value="Green">Green</option>
         </select> 
