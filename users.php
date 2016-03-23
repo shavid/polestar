@@ -36,6 +36,7 @@ if(isset($_GET['deluser'])){
       }
   }
   </script>
+  <script type="text/javascript" src="js/manualbooking.js"></script>
 </head>
 <body id="users">
 
@@ -85,8 +86,12 @@ if(isset($_GET['deluser'])){
     ?>
     </table>
 
-    <p><a href='add-user.php'>Add User</a></p>
+    <p><a id="add-user-button"href='#'>Add User</a></p>
 
+</div>
+<div class="overlay"></div>
+<div id="newUser" class="popup-container">
+<?php include('register.php') ?>
 </div>
 
 </body>

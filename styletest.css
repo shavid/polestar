@@ -116,7 +116,7 @@ body {
 	border: 1px #000 solid;
 	border-radius: 5px;
 	text-align: center;
-	width: 30%;
+	width: 70%;
 	margin: 2em auto;
 	padding: 1em 0;
 	background-color: #fff;
@@ -274,9 +274,19 @@ body {
 	position: fixed;
     top: 15%;
     left: 30%;
-    width: 820;
+    width: 820px;
     height: auto;
     background-color: #CCC;
+    z-index: 100;
+	padding-bottom: 1em;
+}
+
+#newUser {    
+	position: fixed;
+    top: 15%;
+    left: 30%;
+    width: 820px;
+    height: auto;
     z-index: 100;
 	padding-bottom: 1em;
 }

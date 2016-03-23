@@ -1,7 +1,7 @@
 <?php
 
     // First we execute our common code to connection to the database and start the session
-    require("common.php");
+   // require("common.php");
     
     // This if statement checks to determine whether the registration form has been submitted
     // If it has, then the registration code is run, otherwise the form is displayed
@@ -187,9 +187,6 @@
     }
     
 ?>
-<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-<body>
-<div class="wrapper">
 <div class="login-content">
 <div class="login-title"><h1>Register</h1></div>
 <form action="register.php" method="post">
@@ -204,7 +201,7 @@
     <br /><br />
     <input type="submit" value="Register" />
 </form>
-</div>
+<button class="close-popup">Close</button>
+ <button id="Submit">Submit</button> 
 </div>
 
-</body>
