@@ -173,7 +173,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id= "'.$cell_ref.'" class="bookingcell" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id= "'.$cell_ref.'" class="bookingcell '.$val.'-back" onclick="testfunc('.$booking_id.')">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
