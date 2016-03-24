@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2016 at 10:21 PM
+-- Generation Time: Mar 24, 2016 at 02:12 AM
 -- Server version: 5.7.9
 -- PHP Version: 5.6.16
 
@@ -40,21 +40,24 @@ CREATE TABLE IF NOT EXISTS `requested_bookings` (
   `status` varchar(45) DEFAULT 'Requested',
   `band_Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `requested_bookings`
 --
 
 INSERT INTO `requested_bookings` (`id`, `fname`, `lname`, `mobile`, `email`, `booking_Date`, `start_Time`, `end_Time`, `room`, `status`, `band_Name`) VALUES
-(1, 'Greg', 'Holdfast', '07851068945', 'pod.racer@123.com', '2016-03-23', '10:00:00', '15:00:00', 'Blue', 'Accepted', 'Pod Racers'),
-(2, 'dave ', 'shpherd', '045454', 'davidjohnshepherd@msn.com', '2016-03-23', '10:00:00', '14:00:00', 'Red', 'Accepted', 'Keyboard Warriors'),
-(3, 'Sebulba', 'Dugg', '07851068945', 'pod.racer@123.com', '2016-03-23', '12:00:00', '15:00:00', 'Yellow', 'Accepted', 'Seb & The Dugs'),
-(4, 'Salmon', 'Johnson', '07851068945', 'salmon@123.com', '2016-03-23', '17:00:00', '20:00:00', 'Green', 'Accepted', 'Salmon & The Pink'),
-(5, 'Chick', 'McGee', '07851068945', 'salmon@123.com', '2016-03-23', '19:00:00', '23:00:00', 'Red', 'Accepted', 'McGee'),
-(6, 'Billy', 'Dangerous', '07851068945', 'danger@123.com', '2016-03-24', '17:00:00', '23:00:00', 'Blue', 'Accepted', 'Danger'),
-(7, 'Fred', 'Damzel', '07851068945', 'dammer@123.com', '2016-03-24', '15:00:00', '19:00:00', 'Blue', 'Requested', 'Damzels'),
-(8, 'Abukaris', 'Tikus', '07851068945', 'dammer@123.com', '2016-03-23', '12:00:00', '14:00:00', 'Blue', 'Requested', 'TikiTikus');
+(1, 'Greg', 'Holdfast', '07851068945', 'pod.racer@123.com', '2016-03-24', '10:00:00', '15:00:00', 'Blue', 'Accepted', 'Pod Racers'),
+(2, 'dave ', 'shpherd', '045454', 'davidjohnshepherd@msn.com', '2016-03-24', '10:00:00', '14:00:00', 'Red', 'Accepted', 'Keyboard Warriors'),
+(3, 'Sebulba', 'Dugg', '07851068945', 'pod.racer@123.com', '2016-03-24', '12:00:00', '15:00:00', 'Yellow', 'Accepted', 'Seb & The Dugs'),
+(4, 'Salmon', 'Johnson', '07851068945', 'salmon@123.com', '2016-03-24', '17:00:00', '20:00:00', 'Green', 'Accepted', 'Salmon & The Pink'),
+(5, 'Chick', 'McGee', '07851068945', 'salmon@123.com', '2016-03-24', '19:00:00', '23:00:00', 'Red', 'Accepted', 'McGee'),
+(6, 'Billy', 'Dangerous', '07851068945', 'danger@123.com', '2016-03-25', '17:00:00', '23:00:00', 'Blue', 'Accepted', 'Danger'),
+(7, 'Fred', 'Damzel', '07851068945', 'dammer@123.com', '2016-03-25', '15:00:00', '19:00:00', 'Blue', 'Requested', 'Damzels'),
+(8, 'Abukaris', 'Tikus', '07851068945', 'dammer@123.com', '2016-03-24', '12:00:00', '14:00:00', 'Blue', 'Requested', 'TikiTikus'),
+(9, 'Ronnie', 'Pickering', '0789451549', '123@123.com', '2016-03-26', '18:00:00', '21:00:00', 'Green', 'Accepted', 'U No Hu I Am'),
+(10, 'Larry', 'Lamb', '07851068945', '123@123.com', '2016-03-26', '17:00:00', '20:00:00', 'Blue', 'Accepted', 'Larry & The Lambs'),
+(11, 'Gandalf', 'Shire', '07777777777', '123@123.com', '2016-03-26', '10:00:00', '13:00:00', 'Blue', 'Accepted', 'Wizard');
 
 -- --------------------------------------------------------
 

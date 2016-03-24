@@ -95,5 +95,5 @@
 
 
        function delayedRedirect(){
-       window.location = "bookingmanage.php";
+       window.location = "index.php";
         }

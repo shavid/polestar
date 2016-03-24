@@ -1,6 +1,6 @@
 <?php
 //include config
-require('common.php');
+require('../includes/common.php');
 
 //if not logged in redirect to login page
 //if(!$user->is_logged_in()){ header('Location: login.php'); }
@@ -26,7 +26,7 @@ if(isset($_GET['deluser'])){
 <head>
   <meta charset="utf-8">
   <title>Admin - Users</title>
-  <link rel="stylesheet" href="styletest.css">
+  <link rel="stylesheet" href="../style/style.css">
   <script language="JavaScript" type="text/javascript">
   function deluser(id, title)
   {
@@ -42,7 +42,7 @@ if(isset($_GET['deluser'])){
 
     
 
-    <?php include('header.php');?>
+    <?php include('menu.php');?>
 
     <?php 
     //show message from add / edit page
@@ -69,7 +69,7 @@ if(isset($_GET['deluser'])){
                 ?>
 
                 <td>
-                    <a href="edit-user.php?id=<?php echo $row['id'];?>">Edit</a> 
+                    <a href="user-edit.php?id=<?php echo $row['id'];?>">Edit</a> 
                     <?php if($row['id'] != 1){?>
                         | <a href="javascript:deluser('<?php echo $row['id'];?>','<?php echo $row['username'];?>')">Delete</a>
                     <?php } ?>
@@ -91,7 +91,7 @@ if(isset($_GET['deluser'])){
 </div>
 <div class="overlay"></div>
 <div id="newUser" class="popup-container">
-<?php include('register.php') ?>
+<?php include('add-user.php') ?>
 </div>
 
 </body>

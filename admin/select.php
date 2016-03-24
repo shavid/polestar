@@ -1,4 +1,4 @@
-   <script type="text/javascript" src="moment.js"></script>
+   <script type="text/javascript" src="js/moment.js"></script>
 <script>
 
  //Function to set up the Jquery datepicker used within the web page, add's the options to 

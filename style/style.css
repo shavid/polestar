@@ -1,0 +1,443 @@
+/***** CSS Reset based on the work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/ v2.0 *****/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+p, ul, ol, pre, code, figure {
+    margin-bottom: 1em;
+}
+
+/*TABLE/DATEPICKER TIMELINE*/
+#timeline-table{
+   border-collapse: collapse;
+   table-layout: fixed;
+}
+#timeline-table td{
+width: 20px;
+height: 35px;
+}
+
+input.ui-datepicker{
+	width:50px;
+	 font-size:10px;
+}
+
+tr td { background-color: white }
+/* td:hover { background-color: black }; */
+
+#timeline-table td[class=roomcolour]{
+width: 25px;
+height: 35px;
+text-align: right;
+font-size: 1em;
+padding-right: 5px;
+}
+
+#timeline-table td[id=cell_time]{
+	color: #000;
+	white-space: nowrap;
+  	font-size: 0.7em;
+  	padding-right: 5px;
+	height: 15px;
+}
+/*table td.highlighted {
+  background-color:#999;
+}*/
+#timeline-table td[class=bookingcell]:hover {
+  background-color:#999;
+}
+#timeline-table td.bookingcell {
+	max-width: 20px;
+	height: 35px;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	overflow: hidden;
+}
+.blue-back {background-color:blue;}.blue-back:hover {background-color:#009;}
+.red-back {background-color:red;}.red-back:hover {background-color:#900;}
+.green-back {background-color:green;}.green-back:hover {background-color:#030;}
+.yellow-back {background-color:yellow;}.yellow-back:hover {background-color:#F90;}
+.purpleback {background-color:purple;}.purpleback:hover {background-color:#609;}
+
+/***** Structure *****/
+
+html { 
+	font-size: 100%;
+	-ms-text-size-adjust: none; 
+	-webkit-text-size-adjust: none; 
+	overflow-y: scroll;}
+
+body { 
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 1em; 
+	color: #000; 
+	background-color: #333;
+	overflow: }
+
+
+.wrapper { 
+	margin-left: auto;	
+	margin-right:auto;
+	max-width: 1840px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.wrapper::after {
+	clear:both;}
+.wrapper::after, .wrapper::before {
+    content: "";
+    display: table;
+}
+
+.wrapper-small {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left:auto;
+	margin-right: auto;
+	width: 1020px;
+}
+
+/*LOGIN.PHP*/
+#login{
+	background-colour: #666;
+}
+#login .page-title {
+	background-color: rgb(102, 102, 102);
+	text-align: center;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+.login-content { 
+	border: 1px #000 solid;
+	border-radius: 5px;
+	text-align: center;
+	width: 70%;
+	margin: 2em auto;
+	padding: 1em 0;
+	background-color: #fff;
+
+}
+.login-title {
+	padding-bottom: 2em;
+}
+
+/*BOOKINGMANAGE.php*/
+/*TOP BAR*/
+.manager-nav {
+	position:relative;
+	top: 0;
+	width: 100%;
+	background: #CCC;
+	padding-top: 20px;
+	padding-bottom: 0px;
+}
+
+.manager-nav .nav-bar ul {
+	float:right;
+}
+
+.manager-nav .nav-bar ul li {
+    display: inline-block;
+}
+	
+.manager-nav .nav-bar ul li a{
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 15px;
+	padding-top: 5px;
+	border-top-left-radius: 5px;	
+	border-top-right-radius: 5px;
+	background: #fff;
+}
+.manager-nav .nav-bar ul li a:hover{background-color:#999;}
+
+.manager-nav .wrapper a.logo {
+    display: block;
+    float: left;
+}
+.manager-nav a.logo h1 {
+    margin-top: 5px;
+    display: block;
+	font-size: 1em;
+}
+
+
+
+
+.top-box {
+	width: 40%;
+	height: 30%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left:;
+	margin-right:;
+	background-color: #ccc;
+	border-radius:5px;
+	border: 1px solid #000;
+	padding:5px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.top-box::after {clear:both;}
+.top-box::before .top-box::after { content:""; display:table;}
+
+.top-box-container {
+	background:#FFF;
+	height: 88%;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 10px;}
+	
+.scroller {
+	height: 99%;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+#accepted_Bookings {
+	display: inline-block;
+	margin-left:10px;
+	margin-right: 5px;
+	padding-top: 2em;
+	width:228px;
+	border-right: 1px #000 solid}
+#request_Bookings {
+	display: inline-block;
+	margin-left:10px;
+	margin-right: 5px;
+	padding-top: 2em;
+	width:415px;
+	border-right: 1px #000 solid}
+	
+	
+
+#input{
+	font-size: 18px;
+	border: solid #00F;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	
+}
+
+
+#logout {
+
+	
+	margin-top: 1em;
+	position: absolute;
+	top: 0px;
+	left: 35px;
+
+	margin-bottom: 5em;
+}
+
+/*TIMELINE*/
+#timeline {
+	height: 40%;
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 25px 10px;
+	background-color: #CCC;
+}
+.timeline-title{
+	text-align:center;
+}
+.timeline-buttons{
+	padding-bottom:5px;
+}
+.timeline-content{
+	padding-bottom:5px;
+}
+.timeline-selector{
+}
+
+/*POPUP BOXES*/
+#selectedBooking {
+	display: none;
+    position: fixed;
+    top: 15%;
+    left: 30%;
+    width: 820px;
+    height: auto;
+    background-color: #CCC;
+    z-index: 100;
+	padding-bottom: 1em;
+}
+#manualBooking {    
+	display: none;
+	position: fixed;
+    top: 15%;
+    left: 30%;
+    width: 820px;
+    height: auto;
+    background-color: #CCC;
+    z-index: 100;
+	padding-bottom: 1em;
+}
+
+#newUser {    
+	position: fixed;
+    top: 15%;
+    left: 30%;
+    width: 820px;
+    height: auto;
+    z-index: 100;
+	padding-bottom: 1em;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(10,10,10,0.8);
+    background-size: 100%;
+    overflow: auto;
+    z-index: 99;
+}
+
+.left {float:left;}
+.right {float:right;}
+.clear {clear:both;}
+
+#selectedBooking-info {
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:20px;
+}
+.manualBooking-info {
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:20px;
+}
+
+/*Booking.PHP*/
+#booking {
+	background-color: #fff;
+}
+
+#booking .header-wrap{
+	border-top: 5px solid #182981;
+}
+#booking .logo {
+	background: url(../images/polestar-logo-header.jpg) no-repeat;
+	display: block;
+	margin-top: 20px;
+	height: 0;
+	font-size: 0;
+	width: 1020px;
+	overflow: hidden;
+	background-size: 1020px;
+	padding-top: 251px;
+	margin-bottom: 50px;
+}
+
+#booking #booking-form {
+	width: 75%;
+    margin: auto;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #fff;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+}
+
+.popup-form {}
+
+label.booking-label {
+	display: inline-block;
+	width: 150px;
+	padding-bottom: 0.5em;
+}
+button#Submit {
+}
+#captcha-container {padding-top: 1em;}
+#captcha { height: 80px; width: 25%; padding: 0 1%}
+.bottom-note { padding-top:1em;}
+
+/***** Typography *****/
+
+.date_input {
+    width: 100px;
+}
+
+h1 { font-size: 32px; font-size: 2rem; }
+h2 { font-size: 24px; font-size: 1.5rem; }
+h3 { font-size: 20px; font-size: 1.25rem; }
+h4 { font-size: 18px; font-size: 1.125rem; }
+h5 { font-size: 16px; font-size: 1rem; }
+h6 { font-size: 14px; font-size: 0.875rem; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; color: #000; line-height: 1.3; font-weight: 900; }
+b, strong { font-weight: bold; }
+i, em { font-style: italic; }
+small { font-size: 6px; font-size: 0.375rem; }
+big { font-size: 20px; font-size: 1.25rem; }
+pre, code { font-family: "Consolas", Courier New, Courier, monospace; margin-bottom: 20px; margin-bottom: 1.25rem; background: #f7f7f7; border: 1px solid #ebebeb; }
+pre { padding: 20px; padding: 1.25rem; white-space: pre-wrap; white-space: -o-pre-wrap; white-space: -moz-pre-wrap; white-space: -webkit-pre-wrap; }
+kbd { padding: 0px 6px; padding: 0rem 0.375rem; background-color: #f7f7f7; border: 1px solid #aaa; border-radius: 0.1875em; -moz-border-radius: 0.1875em; -moz-box-shadow: 0 0.0625em 0 rgba(0,  0,  0,  0.2),  0 0 0 0.125em white inset; -webkit-border-radius: 0.1875em; -webkit-box-shadow: 0 0.0625em 0 rgba(0,  0,  0,  0.2),  0 0 0 0.125em white inset; box-shadow: 0 0.0625em 0 rgba(0,  0,  0,  0.2),  0 0 0 0.125em white inset; text-shadow: 0 0.0625em 0 #fff; }
+blockquote { font-size: 19px; font-size: 1.1875rem; line-height: 1.6; font-style: italic; letter-spacing: 0.38px; border-left: 12px solid red; display: inline-block; padding-left: 20px; padding-left: 1.25rem; }
+cite { font-style: normal; font-size: 14px; font-size: 0.875rem; line-height: 1.6; color: #000; text-transform: uppercase; }
+sup { vertical-align: super; font-size: 10px; font-size: 0.625rem; }
+sub { vertical-align: sub; font-size: 10px; font-size: 0.625rem; }
+abbr, acronym { border-bottom: 1px dashed; cursor: help; }
+q { font-style: italic; }
+address { font-family: "Courier new"; line-height: 1.5; margin-bottom: 20px; margin-bottom: 1.25rem; }
+a { color: #000; text-decoration: none; }
+a:hover { color: white; }
+.mh-excerpt a, .widget-title a { text-decoration: none; }
+.dropcap { font-family: 'Lato', sans-serif; font-size: 50px; font-size: 3.125rem; font-weight: 900; line-height: 1; top: -4px; margin-right: 6px; margin-right: 0.375rem; text-transform: uppercase; float: left; position: relative; }
+
+/***** Lists *****/
+
+.entry ul, .commentlist ul { list-style: square; }
+.entry ol, .commentlist ol { list-style: decimal; }
+.entry ul, .commentlist ul, .entry ol, .commentlist ol { margin: 0 0 20px 40px; margin: 0 0 1.25rem 2.5rem; }
+.entry ul ul, .commentlist ul ul, .entry ol ol, .commentlist ol ol { margin: 0 0 0 40px; margin: 0 0 0 2.5rem; }
+dl { margin: 0 0 10px 20px; margin: 0 0 0.625rem 1.25rem; }
+dt, dd { display: list-item; }
+dt { list-style-type: square; font-weight: bold; }
+dd { list-style-type: circle; margin-left: 20px; margin-left: 1.25rem; }
+select { max-width: 100%; }
+
+
+/***** Footer *****/
+
+footer { color: #808080; margin: 40px 15px 0; border-top: 5px solid red; }
+.copyright-wrap { margin: 0 15px 20px; padding-bottom: 20px; }
+.copyright { font-family: 'Lato', sans-serif; font-size: 14px; font-size: 0.875rem; color: #999; }
+.copyright a { color: #999; }
+
+/***** Tables *****/
+
+table { width: 100%; margin-bottom: 20px; margin-bottom: 1.25rem; border-left: 1px solid #ebebeb; border-top: 1px solid #ebebeb; }
+td, th { border-right: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
+th { background-color: #f9f9f9; font-weight: 600; color: #000; }
+
+/***** Forms *****/
+
+input { font-size: 12px; font-size: 0.75rem; padding: 5px; padding: 0.3125rem; border: 1px solid #d7d8d8; -webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
+input[type=text], input[type=email], input[type=password] { width: 55%; }
+input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, textarea:hover { border: 1px solid #182981; }
+input[type=submit] { color: #fff; padding: 5px 10px; padding: 0.3125rem 0.625rem; background: #ccc; text-decoration: none; cursor: pointer; display: inline-block; border: 0; -webkit-appearance: none;}
+input[type=submit]:hover { color: #000;}
+textarea { width: 96%; line-height: 1.5; padding: 5px; padding: 0.3125rem; border: 1px solid #d7d8d8; }
+
+/*USER PAGE*/
+#users {
+}
+
+.user-table {
+	width:100%; text-align:left; border:1px solid #DDDDDD; font-size:12px; color:#000;background:#fff; margin-top:5px; margin-bottom:10px; margin-left: auto; margin-right: auto;
+}
+.user-table th {background-color:#E5E5E5; border:1px solid #BBBBBB; padding:3px 6px; font-weight:normal; color:#000;}
+.user-table tr td {border:1px solid #DDDDDD; padding:5px 6px;}
+.user-table tr.alt td {background-color:#E2E2E2;}
+.user-table tr:hover {background-color:#F0F0F0; color:#000;}

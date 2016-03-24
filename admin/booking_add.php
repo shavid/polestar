@@ -24,7 +24,7 @@
     $status = "Accepted";
 
       //Database connection details.
-    include 'dbsettings.php'; 
+    include '../includes/dbsettings.php'; 
             #Connects to the database
       
 

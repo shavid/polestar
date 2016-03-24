@@ -19,7 +19,7 @@
 
     // or you can use the following code if there is no validation or you do not know how
     //echo "The security code entered was incorrect.<br /><br />";
-   // echo "Please go <a href='booking.php'>back</a> and try again.";
+   // echo "Please go <a href='index.php'>back</a> and try again.";
    //exit;
     //}
 
@@ -51,7 +51,7 @@
 
 
       //Database connection details.
-      include 'dbsettings.php'; 
+      include 'includes/dbsettings.php'; 
 
 
 
@@ -75,7 +75,6 @@
   
   			
 			echo '<!-- BEGIN content -->
-<div class="">
 			<h1>Request Submitted</h1>
 			<p> Your request has been successfully submitted, please await a response from us.</p></div>
 <div id="booking-form">
