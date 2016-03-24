@@ -187,8 +187,8 @@
     }
     
 ?>
-<div class="login-content">
-<div class="login-title"><h1>Register</h1></div>
+<div id="addUser-container" class="popup-container">
+<h1>Register</h1>
 <form action="add-user.php" method="post">
     Username:<br />
     <input type="text" name="username" value="" />

@@ -43,8 +43,7 @@ if ($booking_ID == null)
 {
 /////RE-ENABLE THIS WHEN FIXED
 //$output = date('H:i', $bookingTime); 
-echo '<h1>Selected Booking/Add Booking</h1>';
-
+echo '<h1>Add Booking</h1>';
 echo 'No booking on selected slot.
       </br>
       </br>

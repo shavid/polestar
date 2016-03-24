@@ -258,30 +258,23 @@ body {
 }
 
 /*POPUP BOXES*/
-#selectedBooking {
-	display: none;
-    position: fixed;
-    top: 15%;
-    left: 30%;
-    width: 820px;
-    height: auto;
-    background-color: #CCC;
-    z-index: 100;
+.popup-container {
+	display:none;
+	position: fixed;
+	top: 15%;
+	left: 30%;
+	width: 820px;
+	height: auto;
+	background-color: #CCC;
+	z-index: 100;
 	padding-bottom: 1em;
 }
-#manualBooking {    
-	display: none;
-	position: fixed;
-    top: 15%;
-    left: 30%;
-    width: 820px;
-    height: auto;
-    background-color: #CCC;
-    z-index: 100;
-	padding-bottom: 1em;
+#selectedBooking {
+}
+#manualBooking {
 }
 
-#newUser {    
+#addUser-container {    
 	position: fixed;
     top: 15%;
     left: 30%;
@@ -292,7 +285,7 @@ body {
 }
 
 .overlay {
-    display: none;
+	display:none;
     position: fixed;
     top: 0;
     height: 100%;
@@ -318,6 +311,8 @@ body {
 	padding-top:20px;
 }
 
+#editUser-container {
+}
 /*Booking.PHP*/
 #booking {
 	background-color: #fff;

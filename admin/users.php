@@ -36,7 +36,7 @@ if(isset($_GET['deluser'])){
       }
   }
   </script>
-  <script type="text/javascript" src="js/manualbooking.js"></script>
+  <script type="text/javascript" src="js/popup.js"></script>
 </head>
 <body id="users">
 
@@ -69,7 +69,8 @@ if(isset($_GET['deluser'])){
                 ?>
 
                 <td>
-                    <a href="user-edit.php?id=<?php echo $row['id'];?>">Edit</a> 
+                  <!--  <a href="user-edit.php?id=<?php echo $row['id'];?>">Edit</a> -->
+                  		<a id="edit-user-button "href="#">Edit</a>
                     <?php if($row['id'] != 1){?>
                         | <a href="javascript:deluser('<?php echo $row['id'];?>','<?php echo $row['username'];?>')">Delete</a>
                     <?php } ?>
@@ -89,9 +90,12 @@ if(isset($_GET['deluser'])){
     <p><a id="add-user-button"href='#'>Add User</a></p>
 
 </div>
-<div class="overlay"></div>
-<div id="newUser" class="popup-container">
+<div class="overlay" ></div>
+<div id="addUser-container" class="popup-container" >
 <?php include('add-user.php') ?>
+</div>
+<div id="editUser-container" class="popup-container" >
+<?php include ('user-edit.php') ?>
 </div>
 
 </body>

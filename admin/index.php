@@ -36,6 +36,7 @@
     <script type="text/javascript" src="js/bookingstatus.js"></script>
     <script type="text/javascript" src="js/bookingvalidation.js"></script>
       <script type="text/javascript" src="js/manualbooking.js"></script>
+      <script type="text/javascript" src="js/popup.js"></script>
     
     <link rel="stylesheet" type="text/css" href="../style/style.css" media="screen" />
 
@@ -75,7 +76,7 @@
 <div class="overlay"></div>
 <div id="selectedBooking" class="popup-container">
   
-  <div id="selectedBooking-info"></div>
+  <div id="selectedBooking-info"><h1>Selected Booking</h1></div>
   <div id="selectedBooking-info"><button class="close-popup">Close</button>
   								 <button id="Submit">Submit</button></div>
 </div>
