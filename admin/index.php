@@ -463,7 +463,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id="'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id="'.$cell_ref.'" onclick="selectedPopup('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
@@ -474,7 +474,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null, '.$js_bookingtime.')"></td>';
+              echo '<td id = "'.$cell_ref.'" onclick="selectedPopup(null, '.$js_bookingtime.')"></td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
 
             }

@@ -6,7 +6,7 @@
         <div class="nav-bar">
         <ul>
             <li><a href="index.php">Admin Home</a></li>
-            <li><a href="#" id="manual-booking-button">Add Booking</a></li>
+            <li><a href="#" id="manual-booking-button" <?php echo 'onclick="manualPopup()" '?>>Add Booking</a></li>
             <li><a href="../index.php">Booking.php</a></li>
             <li><a href="users.php">Users</a></li>
             <li><a href="logout.php">Logout</a></li>

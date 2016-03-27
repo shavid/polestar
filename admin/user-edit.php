@@ -15,7 +15,6 @@ require_once('../includes/dbsettings.php');
 <body>
 
 <div id="wrapper">
-    <div class="wrapper-small">
     <div class="login-content">
 	<p><a href="users.php">User Admin Index</a></p>
 	
@@ -140,7 +139,6 @@ require_once('../includes/dbsettings.php');
 		<p><button type='submit' name='submit' value='Update User'>Submit</button></p>
 
 	</form>
-</div>
 </div>
 </div>
 

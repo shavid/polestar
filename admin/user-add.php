@@ -187,9 +187,10 @@
     }
     
 ?>
-<div id="addUser-container" class="popup-container">
+<div id="wrapper">
+<div class="login-content">
 <h1>Register</h1>
-<form action="add-user.php" method="post">
+<form action="user-add.php" method="post">
     Username:<br />
     <input type="text" name="username" value="" />
     <br /><br />
@@ -204,4 +205,4 @@
 <button class="close-popup">Close</button>
  <button id="Submit">Submit</button> 
 </div>
-
+</div>

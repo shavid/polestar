@@ -70,7 +70,7 @@ if(isset($_GET['deluser'])){
 
                 <td>
                   <!--  <a href="user-edit.php?id=<?php echo $row['id'];?>">Edit</a> -->
-                  		<a id="edit-user-button "href="#">Edit</a>
+                  		<a id="edit-user-button" onClick="editUserPopup">Edit</a>
                     <?php if($row['id'] != 1){?>
                         | <a href="javascript:deluser('<?php echo $row['id'];?>','<?php echo $row['username'];?>')">Delete</a>
                     <?php } ?>
@@ -92,7 +92,7 @@ if(isset($_GET['deluser'])){
 </div>
 <div class="overlay" ></div>
 <div id="addUser-container" class="popup-container" >
-<?php include('add-user.php') ?>
+<?php include('user-add.php') ?>
 </div>
 <div id="editUser-container" class="popup-container" >
 <?php include ('user-edit.php') ?>
