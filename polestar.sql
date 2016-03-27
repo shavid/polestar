@@ -1,30 +1,33 @@
-CREATE DATABASE  IF NOT EXISTS `polestar` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `polestar`;
--- MySQL dump 10.13  Distrib 5.5.43, for debian-linux-gnu (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1    Database: polestar
--- ------------------------------------------------------
--- Server version	5.5.43-0ubuntu0.14.04.1
+-- Host: 127.0.0.1
+-- Generation Time: Mar 24, 2016 at 02:12 AM
+-- Server version: 5.7.9
+-- PHP Version: 5.6.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `requested_Bookings`
+-- Database: `polestar`
 --
 
-DROP TABLE IF EXISTS `requested_Bookings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `requested_Bookings` (
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requested_bookings`
+--
+
+DROP TABLE IF EXISTS `requested_bookings`;
+CREATE TABLE IF NOT EXISTS `requested_bookings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fname` varchar(45) DEFAULT NULL,
   `lname` varchar(45) DEFAULT NULL,
@@ -35,28 +38,35 @@ CREATE TABLE `requested_Bookings` (
   `end_Time` time DEFAULT NULL,
   `room` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT 'Requested',
+  `band_Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `requested_Bookings`
+-- Dumping data for table `requested_bookings`
 --
 
-LOCK TABLES `requested_Bookings` WRITE;
-/*!40000 ALTER TABLE `requested_Bookings` DISABLE KEYS */;
-INSERT INTO `requested_Bookings` VALUES (2,'dave ','shpherd','045454','davidjohnshepherd@msn.com','2015-08-08','09:30:00','10:00:00','Yellow','Reciept');
-/*!40000 ALTER TABLE `requested_Bookings` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `requested_bookings` (`id`, `fname`, `lname`, `mobile`, `email`, `booking_Date`, `start_Time`, `end_Time`, `room`, `status`, `band_Name`) VALUES
+(1, 'Greg', 'Holdfast', '07851068945', 'pod.racer@123.com', '2016-03-24', '10:00:00', '15:00:00', 'Blue', 'Accepted', 'Pod Racers'),
+(2, 'dave ', 'shpherd', '045454', 'davidjohnshepherd@msn.com', '2016-03-24', '10:00:00', '14:00:00', 'Red', 'Accepted', 'Keyboard Warriors'),
+(3, 'Sebulba', 'Dugg', '07851068945', 'pod.racer@123.com', '2016-03-24', '12:00:00', '15:00:00', 'Yellow', 'Accepted', 'Seb & The Dugs'),
+(4, 'Salmon', 'Johnson', '07851068945', 'salmon@123.com', '2016-03-24', '17:00:00', '20:00:00', 'Green', 'Accepted', 'Salmon & The Pink'),
+(5, 'Chick', 'McGee', '07851068945', 'salmon@123.com', '2016-03-24', '19:00:00', '23:00:00', 'Red', 'Accepted', 'McGee'),
+(6, 'Billy', 'Dangerous', '07851068945', 'danger@123.com', '2016-03-25', '17:00:00', '23:00:00', 'Blue', 'Accepted', 'Danger'),
+(7, 'Fred', 'Damzel', '07851068945', 'dammer@123.com', '2016-03-25', '15:00:00', '19:00:00', 'Blue', 'Requested', 'Damzels'),
+(8, 'Abukaris', 'Tikus', '07851068945', 'dammer@123.com', '2016-03-24', '12:00:00', '14:00:00', 'Blue', 'Requested', 'TikiTikus'),
+(9, 'Ronnie', 'Pickering', '0789451549', '123@123.com', '2016-03-26', '18:00:00', '21:00:00', 'Green', 'Accepted', 'U No Hu I Am'),
+(10, 'Larry', 'Lamb', '07851068945', '123@123.com', '2016-03-26', '17:00:00', '20:00:00', 'Blue', 'Accepted', 'Larry & The Lambs'),
+(11, 'Gandalf', 'Shire', '07777777777', '123@123.com', '2016-03-26', '10:00:00', '13:00:00', 'Blue', 'Accepted', 'Wizard');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` char(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -65,26 +75,16 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'shavid','81a5cb91824c20e706fd7a5a9d6b5b6752093503ca17ec2f7200131b90879dc9','7875a8843c26c8a1','davidjohnshepherd@msn.com');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`) VALUES
+(2, 'Alex', 'accc00554dfedf9180131dd6e6a9ba2dea1a64da767386e61f817cd3712dc58b', '347a2cb3369931c9', 'alex.blamire@icloud.com'),
+(3, 'shavid', '81a5cb91824c20e706fd7a5a9d6b5b6752093503ca17ec2f7200131b90879dc9', '7875a8843c26c8a1', 'davidjohnshepherd@msn.com');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2015-07-29 23:57:48

@@ -87,7 +87,7 @@
       //Relevant error checking is in place
       $(document).ready(function(){
         $("#Submit").on("click", function(){
-          $("#superDiv").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, bandName:bandName, email:email, date:date, startTime:startTime
+          $("div#booking-form").load("booking_request_confirmed.php", {fname:fname, lname:lname, mobile:mobile, bandName:bandName, email:email, date:date, startTime:startTime
           , endTime:endTime, room:room, costEstimate:costEstimate} , function(responseTxt,statusTxt,xhr){
             if(statusTxt=="error")
               alert("Error: "+xhr.status+": "+xhr.statusText)

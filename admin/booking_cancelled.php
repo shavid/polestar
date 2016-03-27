@@ -9,7 +9,7 @@
     <?php
 
       //Gathers neccessary data from common.php
-			//require("common.php");
+			//require("../includes/common.php");
    			 // At the top of the page we check to see whether the user is logged in or not
 		//  if(empty($_SESSION['user']))
 		   // {
@@ -24,7 +24,7 @@
 			$booking_ID = $_POST["booking_ID"];
 			
     
-			include 'dbsettings.php'; 
+			include '../includes/dbsettings.php'; 
            #Connects to the database
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
       //First the If statement checks if a booking was accepted,

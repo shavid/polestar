@@ -1,4 +1,4 @@
-   <script type="text/javascript" src="moment.js"></script>
+   <script type="text/javascript" src="js/moment.js"></script>
 <script>
 
  //Function to set up the Jquery datepicker used within the web page, add's the options to 
@@ -8,10 +8,22 @@
         $( ".date_input" ).datepicker({
          changeMonth: true,
          changeYear: true,
+
+           dateFormat: "dd-mm-yy"
+        });
+      });
+
+
+       $(function() {
+        $( ".date_input_restricted" ).datepicker({
+         changeMonth: true,
+         changeYear: true,
          minDate: 0,
          dateFormat: "dd-mm-yy"
         });
       });
+
+
 
 
       function changedate() {
@@ -78,10 +90,10 @@
 
 
 
-      $all_rooms = array("Red", "Blue", "Green", "Yellow");
+      $all_rooms = array("Blue", "Red", "Green", "Yellow");
 
-      $opentime = strtotime('09:00');
-      $closetime = strtotime('22:00');
+      $opentime = strtotime('10:00');
+      $closetime = strtotime('23:00');
 
       $chosendate = $_POST["chosendate"];
   
@@ -90,8 +102,8 @@
       $newDate = date("Y-m-d", strtotime($chosendate));
       $displayDate = date("l jS F Y", strtotime($chosendate));
 
-       echo '<p">Currently Showing: '.$displayDate.'</p>
- </br>';
+       echo '<p>Currently Showing: '.$displayDate.'
+ </p>';
 
 
       //Initalizes the booking time to be used in the loop
@@ -107,7 +119,7 @@
       echo '</br>';
 
 
-      echo '<table border ="1">';
+      echo '<table id="timeline-table">';
 
 
 
@@ -173,7 +185,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.')" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id= "'.$cell_ref.'" class="bookingcell '.$val.'-back" onclick="testfunc('.$booking_id.')">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
@@ -184,7 +196,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc(null)"></td>';
+              echo '<td class="bookingcell" id= "'.$cell_ref.'" onclick="testfunc(null)"></td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
 
             }
@@ -211,7 +223,7 @@ echo '</table>';
 
 ?>
 
-<button type="button" id="bob" 
+<button type="button" 
                 onclick="changedate()">Pick Date</button>
 
  <input type="text" class="date_input" id="grid_datepicker" width:50px>

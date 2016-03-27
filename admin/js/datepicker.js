@@ -3,13 +3,28 @@
       //pick month and year, also forces minimun date to be today's date + 2 days.
       //Finally sets the format to Day - Month - Year as per standard British.
       $(function() {
-        $( "#date_input" ).datepicker({
+        $( ".date_input" ).datepicker({
          changeMonth: true,
          changeYear: true,
-         minDate: 0+2,
+         
          dateFormat: "dd-mm-yy"
         });
       });
+
+
+      $(function() {
+        $( ".date_input_restricted" ).datepicker({
+         changeMonth: true,
+         changeYear: true,
+         minDate: 0,
+         dateFormat: "dd-mm-yy"
+        });
+      });
+
+
+
+
+   
 
 
 function changedate() {

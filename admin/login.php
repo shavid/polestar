@@ -1,7 +1,7 @@
 <?php
 
     // First we execute our common code to connection to the database and start the session
-    require("common.php");
+    require("../includes/common.php");
     
     // This variable will be used to re-display the user's username to them in the
     // login form if they fail to enter the correct password.  It is initialized here
@@ -89,8 +89,8 @@
             $_SESSION['user'] = $row;
             
             // Redirect the user to the private members-only page.
-            header("Location: bookingmanage.php");
-            die("Redirecting to: bookingmanage.php");
+            header("Location: index.php");
+            die("Redirecting to: index.php");
         }
         else
         {
@@ -107,9 +107,11 @@
     }
     
 ?>
-<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-<body>
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="screen" />
+<body id="login">
 <div class="wrapper">
+<div class="page-title">
+	<?php echo "<h1>$sitename</h1>"; ?></div>
 <div class="login-content">
 <div class="login-title"><h1>Login</h1></div>
 <form action="login.php" method="post">
@@ -121,6 +123,7 @@
     <br /><br />
     <input type="submit" value="Login" />
 </form>
+
 </div>
 </div>
 </body>

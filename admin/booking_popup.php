@@ -1,11 +1,12 @@
 <html>
   <head>
+  
    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+ 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    
      <script type="text/javascript" src="js/datepicker.js"></script>
-  
   </head>
 
   <body> 
@@ -17,13 +18,14 @@
 //will handle displaying of the booking that has been clicked on and providing a print out of the information.
 
 
-include 'dbsettings.php'; 
+include '../includes/dbsettings.php'; 
             #Connects to the database
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
 
 
 $booking_ID = $_POST["bookingID"];
-$bookingTime = $_POST["bookingTime"];
+/////RE-ENABLE THIS WHEN FIXED
+//$bookingTime = $_POST["bookingTime"];
 
 
 //RENAME THESE
@@ -40,9 +42,9 @@ $bookingTime = $_POST["bookingTime"];
 if ($booking_ID == null)
 
 {
-
-$output = date('H:i', $bookingTime); 
-
+/////RE-ENABLE THIS WHEN FIXED
+//$output = date('H:i', $bookingTime); 
+echo '<h1>Add Booking</h1>';
 echo 'No booking on selected slot.
       </br>
       </br>
@@ -50,17 +52,20 @@ echo 'No booking on selected slot.
 
 echo '<p>Manually added bookings will be auto accepted.</p>
       </br>
-      
-      <p>First Name: <input type="text" id="fname"></input> </p>
-      <p>Last Name : <input type="text" id="lname"></input></p>
-      <p>Mobile Number : <input type="text" id="mobile"></input></p>
-      <p>Email : <input type="text" id="email"></p>
-      <p>Date of Booking: <input type="text" id="date_input" class="input"></p>
+      <div class="popup-form">
+	  <label class="booking-label">Band:</label> <input type="text" id="band_Name"></input><br>
+      <label class="booking-label">First Name:</label> <input type="text" id="fname"></input><br>
+      <label class="booking-label">Last Name:</label> <input type="text" id="lname"></input><br>
+      <label class="booking-label">Mobile Number:</label> <input type="text" id="mobile"></input><br>
+      <label class="booking-label">Email:</label> <input type="text" id="email"><br>
+      <label class="booking-label">Date of Booking:</label> <input type="text" class="date_input_restricted"><br>
+
+       
      
 
      ';
      // <input type="text" id="date_input" class="input">
-       echo '<label id="booking-label">Start Time:</label>';
+       echo '<label class="booking-label">Start Time:</label>';
         echo '<select id = "startTime">';
 
 
@@ -104,11 +109,12 @@ echo '<p>Manually added bookings will be auto accepted.</p>
             }
           }
 
-        echo "</select>"; 
-      echo '</p>';
+        echo '</select><span style="padding-right:37px;"></span>
+		'; 
 
 
-      echo '<label id="booking-label">End Time:</label>';
+
+      echo '<label class="booking-label">End Time:</label>';
         echo '<select id = "endTime">';
 
 
@@ -141,19 +147,19 @@ echo '<p>Manually added bookings will be auto accepted.</p>
           }
 
         echo "</select>"; 
-      echo '</p>
+      echo '</br>
 
 
 
     
-      <p>Room Requested:
+      <label class="booking-label">Room Requested:</label>
         <select id="room">
-          <option value="Red">Red</option>
           <option value="Blue">Blue</option>
+		  <option value="Red">Red</option>
           <option value="Yellow">Yellow</option>
           <option value="Green">Green</option>
         </select> 
-      </p>';
+      </div>';
 
 }
 
@@ -173,30 +179,32 @@ while($row = mysqli_fetch_array($result)) {
               $end_Time["$id"] = $row['end_Time'];
               $room["$id"] = $row['room'];
               $booking_id["$id"] = $id;
-              
+              $band_Name["$id"] = $row['band_Name'];
+			  
               $formatDate = DateTime::createFromFormat('Y-m-d', $date["$id"]);
-              $newdate = $formatDate->format('l jS F Y');
+              $newdate = $formatDate->format('d/m/y');
 
               //Reformats the start time to a more view friendly format.
               $format_ST = DateTime::createFromFormat('H:i:s', $start_Time["$id"]);
-              $start_Time["$id"] = $format_ST->format('g:i a');
+              $start_Time["$id"] = $format_ST->format('g:ia');
 
               //Reformats the end time to a more view friendly format.
               $format_ET = DateTime::createFromFormat('H:i:s', $end_Time["$id"]);
-              $end_Time["$id"] = $format_ET->format('g:i a');
+              $end_Time["$id"] = $format_ET->format('g:ia');
 
     
               echo '
-                Selected Booking:
-                <div id="accepted_Bookings">
-                <p>
-                </br>
-                <p>Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].' <br> 
-                Phone Number : '.$mobile["{$id}"].' </br>
-                Date : '.$newdate.' </br>
-                Time : '.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
-                Requested room : '.$room["{$id}"].' </br>
-                Booking ID: '.$booking_id["{$id}"].' </br>  
+                <h1>Selected Booking:</h1>
+				<p> The following booking is confirmed.</p>
+                <div id="popup-form">
+                <label class="booking-label">Name:</label>'.$fname["{$id}"] . ' '.$lname["{$id}"].' <br> 
+                <label class="booking-label">Band:</label>'.$band_Name["{$id}"].' </br>
+				<label class="booking-label">Phone Number:</label>'.$mobile["{$id}"].' </br>
+                <label class="booking-label">Date:</label>'.$newdate.' </br>
+                <label class="booking-label">Time:</label>'.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
+                <label class="booking-label">Requested room:</label>'.$room["{$id}"].' </br>
+                <label class="booking-label">Booking ID:</label>'.$booking_id["{$id}"].' </br>
+				<button type="button" id="edit">Edit</button>
                 <button type="button" id="'.$booking_id["{$id}"].'" 
                 onclick="cancFunc('.$booking_id["{$id}"].')">Cancel</button>
                 </div>'

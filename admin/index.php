@@ -2,7 +2,7 @@
  <!--  <?php
 
 
-      //  require("common.php");
+       require("../includes/common.php");
     
     // At the top of the page we check to see whether the user is logged in or not
     //if(empty($_SESSION['user']))
@@ -30,14 +30,15 @@
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <script type="text/javascript" src="moment.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
     <script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/pickday.js"></script>
     <script type="text/javascript" src="js/bookingstatus.js"></script>
     <script type="text/javascript" src="js/bookingvalidation.js"></script>
       <script type="text/javascript" src="js/manualbooking.js"></script>
+      <script type="text/javascript" src="js/popup.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="styletest.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" media="screen" />
 
 
 
@@ -72,43 +73,88 @@
 
   <body>
 
+<div class="overlay"></div>
+<div id="selectedBooking" class="popup-container">
+  
+  <div id="selectedBooking-info"><h1>Selected Booking</h1></div>
+  <div id="selectedBooking-info"><button class="close-popup">Close</button>
+  								 <button id="Submit">Submit</button></div>
+</div>
+
+<div id="manualBooking" class="popup-container">
+      <div class="manualBooking-info">
+      <h1>Manual Booking</h1><p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
+      the administrator and the customer.</p>
+      <div id="popup-form">
+      <label class="booking-label">Band:</label> <input type="text" id="band_Name"></input><br>
+      <label class="booking-label">First Name:</label> <input type="text" id="fname"></input><br>
+     <label class="booking-label">Last Name:</label> <input type="text" id="lname"></input><br>
+      <label class="booking-label">Mobile Number:</label> <input type="text" id="mobile"></input><br>
+      <label class="booking-label">Email:</label> <input type="text" id="email"><br>
+      <label class="booking-label">Date of Booking:</label> <input type="text" id="manual_book_date" class="date_input_restricted"><br>
+      <label class="booking-label">Start Time:</label> 
+       <select id="startTime">
+         <option value = "10:00">10:00</option>
+         <option value = "10:30">10:30</option>
+         <option value = "11:00">11:00</option>
+       </select>
+      <span style="padding-right:37px;"></span>
+      <label class="booking-label">End Time:</label>
+       <select id="endTime">
+        <option value = "10:30">10:30</option>
+        <option value = "11:00">11:00</option>
+       </select><br>
+      
+      <label class="booking-label">Room Requested:</label>
+        <select id="room">
+          <option value="Blue">Blue</option>
+          <option value="Red">Red</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Green">Green</option>
+        </select> 
+        </div></div>
+      
+      <!-- Requires Implementation
+      <p>Equipment Required:</p>
+      <p id ="costEstimate">Cost Estimate: </p>
+      -->
+      <div class="manualBooking-info">
+ <button class="close-popup">Close</button>
+ <button id="Submit">Submit</button> 
+ </div>
+    
+    </div>
 
 
 
     <div id="superDiv" class="test123">
+    <?php include ('menu.php');?>
     <div class="wrapper">
     
-    <nav id="manager-nav" role="navigation">
-    <!-- #site-navigation -->
-        <ul class="manager-menu-items">
-          <li class="menu-item"><a href="logout.php">Logout</a></li>
-            <li class="menu-item"><a href="booking.php">Booking.php</a></li>
-            <li class="menu-item"><a href="bookingmanage.php">Reload</a></li>
-            <li class="menu-item"><a href="#" id="manual-booking-button">Add Booking</a></li>
-        </ul></nav>
+    
         
 
 
 
-        <div id="top" class="left" >
+        <div class="top-box left" >
+         
           <?php
 
-          include 'dbsettings.php'; 
-           
-       
-
-
-
+          include '../includes/dbsettings.php'; 
+		  
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Accepted' AND booking_Date = DATE(NOW())");
             echo '<h5> The following are todays confirmed bookings:</h5>';
-            
+			
+            echo '<div class="top-box-container">';
+			echo '<div class="scroller">';
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything fro mthe query.
 
               $id = $row['id']; 
               $fname["$id"] = $row['fname'];
               $lname["$id"] = $row['lname'];
+			  $band_Name ["$id"] = $row['band_Name'];
               $mobile["$id"] = $row['mobile'];
               $date["$id"] = $row['booking_Date'];
               $start_Time["$id"] = $row['start_Time'];
@@ -117,46 +163,52 @@
               $booking_id["$id"] = $id;
               
               $formatDate = DateTime::createFromFormat('Y-m-d', $date["$id"]);
-              $newdate = $formatDate->format('l jS F Y');
+              $newdate = $formatDate->format('d/m/y');
 
               //Reformats the start time to a more view friendly format.
               $format_ST = DateTime::createFromFormat('H:i:s', $start_Time["$id"]);
-              $start_Time["$id"] = $format_ST->format('g:i a');
+              $start_Time["$id"] = $format_ST->format('g:ia');
 
               //Reformats the end time to a more view friendly format.
               $format_ET = DateTime::createFromFormat('H:i:s', $end_Time["$id"]);
-              $end_Time["$id"] = $format_ET->format('g:i a');
+              $end_Time["$id"] = $format_ET->format('g:ia');
 
     
               echo '<!-- BEGIN content -->
                 <div id="accepted_Bookings">
-                <p>
-                </br>
-                <p>Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].' <br> 
+                <p>Name: '.$fname["{$id}"] . ' '.$lname["{$id}"].' </br>
+				Band:  '.$band_Name["{$id}"] . ' </br>
                 Phone Number : '.$mobile["{$id}"].' </br>
-                Date : '.$newdate.' </br>
-                Time : '.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
-                Requested room : '.$room["{$id}"].' </br>
-                Booking ID: '.$booking_id["{$id}"].' </br>  
+                Date: '.$newdate.' </br>
+                Time: '.$start_Time["$id"].' to '.$end_Time["{$id}"].' </br>
+                Room: '.$room["{$id}"].' </br>
+            <!--Booking ID: '.$booking_id["{$id}"].' </br> --> 
+			<button type="button" id="edit">Edit</button>
                 <button type="button" id="'.$booking_id["{$id}"].'" 
                 onclick="cancFunc('.$booking_id["{$id}"].')">Cancel</button>
                 </div>'
                 ;
               }
           ?>
+        	</div></div>
         </div>
 
 
-        <div id="top" class="right">
+        <div class="top-box right">
+        
           <?php 
 
-            include 'dbsettings.php'; 
+            include '../includes/dbsettings.php'; 
             #Connects to the database
             $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);   
             #Loads the bookings that have had inital reciept emails sent out
-            $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Reciept'"); 
+			//CHANGED TO REQUESTED
+            $result = mysqli_query($con, "SELECT * FROM requested_Bookings WHERE status = 'Requested'"); 
       
-            echo '<h5>Unconfirmed bookings.</h5> </br>';
+            echo '<h5>Unconfirmed bookings.</h5>
+
+			<div class="top-box-container">';
+			echo '<div class="scroller">';
             while($row = mysqli_fetch_array($result)) {
             # Run a loop that fetches everything from the query.
 
@@ -184,7 +236,7 @@
               $fend_Time["$id"] = $format_ET->format('g:i a');
 
 
-              $all_rooms = array("Red", "Blue", "Green", "Yellow");
+              $all_rooms = array("Blue", "Red", "Green", "Yellow");
 
 
 
@@ -245,9 +297,9 @@
               
                
               echo '<!-- BEGIN content -->
-                <div id="booking_Requests">       
+                <div id="request_Bookings">       
                   
-                  <p id="pFname'.$booking_id["{$id}"].'"> Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].' </p>
+                  <p id="pFname'.$booking_id["{$id}"].'"> Name : '.$fname["{$id}"] . ' '.$lname["{$id}"].'</br> 
                     Phone Number : '.$mobile["{$id}"].' </br>
                     Date : '.$newdate.' </br>
                     Time : '.$fstart_Time["$id"].' to '.$fend_Time["{$id}"].' </br>
@@ -257,9 +309,9 @@
 
                     <!-- Hidden Select box that is displayed when user clicks the alter button -->
 
-                    '?>
+                    ';
 
-                    <?php
+                    
                       echo '<select id = "room_change'.$booking_id["{$id}"].'" hidden>';    
 
 
@@ -292,7 +344,7 @@
 
                     </br> 
 
-                    Booking ID: '.$booking_id["{$id}"].' </br>
+                   <!-- Booking ID: '.$booking_id["{$id}"].' </br>-->
                     <button type="button" id="'.$booking_id["{$id}"].'" 
                     onclick="accFunc('.$booking_id["{$id}"].')">Accept</button>
                     <button type="button" id="'.$booking_id["{$id}"].'" 
@@ -306,9 +358,9 @@
           ?>
 
 
+</div>
 
-
-
+</div>
 </div>
 
 
@@ -318,13 +370,13 @@
 
 <div id="timeline" class="clear">
   <div class="timeline-title">
-    Currently Showing: Today
+   <p>Currently Showing: Today</p>
     </div>
 
   <div class="timeline-buttons">
     <?php
 
-      $all_rooms = array("Red", "Blue", "Green", "Yellow");
+      $all_rooms = array( "Blue", "Red", "Green", "Yellow");
 
       $opentime = strtotime('10:00');
       $closetime = strtotime('23:00');
@@ -338,11 +390,11 @@
      echo '<button onclick="tomorrowFunc()">Tomorrow</button>';
  
   //ENDS TIMELINE-BUTTONDIV
-    echo '</div>
-    <div class="timeline-content">';
+    echo '</div>';
+    echo '<div class="timeline-content">';
     //^Starts Timeline-content div
 
-      echo '<table border ="1" id="the_table">';
+      echo '<table id="timeline-table">';
 
 
 
@@ -411,7 +463,7 @@
 
               $cell_ref = (string)date('H:i', $bookingtime);
               $cell_ref = ((string) $val) . $cell_ref;
-              echo '<td id = "'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
+              echo '<td id="'.$cell_ref.'" onclick="testfunc('.$booking_id.', null)" style="background-color:'.$val.'">'.$band_Name.'</td>';
               $bookingtime = strtotime('+30 minutes', $bookingtime);
             }
             else
@@ -466,56 +518,7 @@ echo '</div></div>';
 
 
 
-<div id="selectedBooking" class="popup-container" hidden>
-  
-  <div id="selectedBooking-info"></div>
-  <div class="bottom-note"><button class="close-popup">Close</button></div>
-  </br>
-</div>
 
-<div id="manualBooking" class=" clear popup-container">
-      <p>Manually added bookings will be auto accepted, confirmation emails will be sent to both 
-      the administrator and the customer.</p>
-      <p>First Name: <input type="text" id="fname"></input> </p>
-      <p>Last Name : <input type="text" id="lname"></input></p>
-      <p>Mobile Number : <input type="text" id="mobile"></input></p>
-      <p>Email : <input type="text" id="email"></p>
-      <p>Date of Booking: <input type="text" id="manual_book_date" class="date_input"></p>
-
-      <p>Start Time: 
-       <select id="startTime">
-         <option value = "09:00">09:00</option>
-         <option value = "09:30">09:30</option>
-         <option value = "10:00">10:00</option>
-       </select>
-      </p>
-
-      <p>End Time:
-       <select id="endTime">
-        <option value = "09:30">09:30</option>
-        <option value = "10:00">10:00</option>
-       </select>
-      </p>
-
-
-    
-      <p>Room Requested:
-        <select id="room">
-          <option value="Red">Red</option>
-          <option value="Blue">Blue</option>
-          <option value="Yellow">Yellow</option>
-          <option value="Green">Green</option>
-        </select> 
-      </p>
-
-      <!-- Requires Implementation
-      <p>Equipment Required:</p>
-      <p id ="costEstimate">Cost Estimate: </p>
-      -->
- <button id="Submit">Submit</button> 
- <button class="close-popup">Close</button>
-    
-    </div>
     </div>
   </div>
     

@@ -19,7 +19,7 @@
 
     // or you can use the following code if there is no validation or you do not know how
     //echo "The security code entered was incorrect.<br /><br />";
-   // echo "Please go <a href='booking.php'>back</a> and try again.";
+   // echo "Please go <a href='index.php'>back</a> and try again.";
    //exit;
     //}
 
@@ -51,7 +51,7 @@
 
 
       //Database connection details.
-      include 'dbsettings.php'; 
+      include 'includes/dbsettings.php'; 
 
 
 
@@ -75,18 +75,18 @@
   
   			
 			echo '<!-- BEGIN content -->
-<div id="inputDiv">
 			<h1>Request Submitted</h1>
-			<p> Your request has been successfully submitted, please await a response from us.</p>
-    		<label id="booking-label">First Name:</label><b>'.$fname.'</b><br/>
-    		<label id="booking-label">Last Name:</label><b>'.$lname.'</b><br/>
-        <label id="booking-label">Band name:</label><b>'.$band_Name.'</b><br/>
-    		<label id="booking-label">Mobile Number:</label><b>'.$mobile.'</b><br/>
-    		<label id="booking-label">Email:</label><b>'.$email.'</b><br/>
-    		<label id="booking-label">Date of Booking:</label><b>'.$date.'</b><br/>
-    		<label id="booking-label">Start Time:</label><b>'.$startTime.'</b><br/>
-    		<label id="booking-label">End Time:</label><b>'.$endTime.'</b><br/>
-    		<label id="booking-label">Room Requested:</label><b>'.$room.'</b><br/>
+			<p> Your request has been successfully submitted, please await a response from us.</p></div>
+<div id="booking-form">
+			<label class="booking-label">First Name:</label><b>'.$fname.'</b><br/>
+    		<label class="booking-label">Last Name:</label><b>'.$lname.'</b><br/>
+        <label class="booking-label">Band name:</label><b>'.$band_Name.'</b><br/>
+    		<label class="booking-label">Mobile Number:</label><b>'.$mobile.'</b><br/>
+    		<label class="booking-label">Email:</label><b>'.$email.'</b><br/>
+    		<label class="booking-label">Date of Booking:</label><b>'.$date.'</b><br/>
+    		<label class="booking-label">Start Time:</label><b>'.$startTime.'</b><br/>
+    		<label class="booking-label">End Time:</label><b>'.$endTime.'</b><br/>
+    		<label class="booking-label">Room Requested:</label><b>'.$room.'</b><br/>
 
 			<b>'.$date.'</b>
 </div>
